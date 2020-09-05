@@ -1,0 +1,355 @@
+﻿@model IEnumerable<StrongHouseOwner.Data.EntityModel.TypeOfFlooring>
+
+@{
+    ViewBag.Title = "Delete";
+}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Business Casual - Start Bootstrap Theme</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/BootstrapStart/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/BootstrapStart/css/business-casual.min.css" rel="stylesheet" />
+    <link href="~/BootstrapStart/css/simple-sidebar.css" rel="stylesheet" />
+
+    <link href="~/maxcdn/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <style>
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+        }
+    </style>
+
+</head>
+<body>
+
+    <!--header start-->
+    <h1 class="site-heading text-center text-white d-none d-lg-block">
+        <span class="site-heading-upper text-primary mb-3">RENOVATION WHILE KEEPING CONSTRUCTION DETAILS</span>
+        <!-- User profile show -->
+        <div class="row">
+            <div class="col-4 col-md-10" style="padding-right: 0px;padding-left: 200px;">
+                <span class="site-heading-lower">Strong House Owner</span>
+            </div>
+
+            <div class="col-4 col-md-2">
+                @if (Session["User_Name"] == null)
+                {
+
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="color:#fff;font-size:.9rem;"></span>
+                        <img class="img-profile rounded-circle" src="~/Images/User/DefaultImage.png" style="width: 50px; height: 50px;">
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="font-size:12px;">
+                        <a class="dropdown-item" href='@Url.Action("Index","Login")'>
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Login
+                        </a>
+                        <a class="dropdown-item" href='@Url.Action("Index","Registration")'>
+                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Register
+                        </a>
+                    </div>
+
+                }
+                else
+                {
+
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="color:#fff;font-size:.9rem;">@Session["User_Name"]</span>
+                        <img class="img-profile rounded-circle" src="~/Images/User/DefaultImage.png" style="width: 50px; height: 50px;">
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="font-size:12px;">
+                        <a class="dropdown-item" href="#">
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Profile
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href='@Url.Action("LogOut","Login")'>
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </a>
+                    </div>
+
+                }
+            </div>
+            <!-- End user profile show -->
+        </div>
+    </h1>
+    <!--header end-->
+    <!--main menu-->
+    <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Start Bootstrap</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" style="margin-left:366px;margin-right:366px" id="navbarResponsive">
+                <ul class="navbar-nav mx-auto justify-content-center">
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Home", "Home")'>
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Products", "Product")'>Products</a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Index", "Store")'>Store</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--End main menu-->
+    <!--side menu-->
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-light" id="sidebar-wrapper">
+            <div class="sidebar-heading">Menu</div>
+            <div class="list-group list-group-flush">
+                <a href="#" class="list-group-item list-group-item-action bg-light">Plans</a>
+                <a href='@Url.Action("ListOfFlooringTypes", "Flooring")' class="list-group-item list-group-item-action bg-light" style="z-index:2;color:#007bff;background-color:#555;border-color:#ddd">Flooring Details</a>
+                <a href='@Url.Action("ListOfWallingTypes", "Walling")' class="list-group-item list-group-item-action bg-light">Walling Details</a>
+                <a href='@Url.Action("ListOfCeilingTypes", "Ceiling")' class="list-group-item list-group-item-action bg-light">Ceiling Details</a>
+            </div>
+        </div>
+
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <button class="btn btn-primary" id="menu-toggle">
+                    <span class="glyphicon glyphicon-menu-hamburger">
+                    </span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <button class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Flooring")'">
+                                <i class="fas fa-cart-plus ml-2" aria-hidden="true">Create Flooring</i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!--End side menu-->
+            <!--Start Table-->
+            <div class="bg-faded p-4 rounded">
+                <div class="container" style="margin-right:0px;margin-left:0;padding-right:0px;padding-left:0px;width:100%;">
+                    <div class="row">
+                        <!--start sticky buttons-->
+                        <div id="HorizontalScroll" style="padding-left:15px;">
+                            <button class="btn btn-primary" id="left-button"><span class="glyphicon glyphicon-chevron-left"></span></button>
+                            <button class="btn btn-primary" id="right-button"><span class="glyphicon glyphicon-chevron-right"></span></button>
+                        </div>
+                        <!--end sticky buttons-->
+                        <div class="col-md-12">
+                            <div class="table-responsive" style="overflow-x:hidden;">
+
+                                <div class="center" id="content" style="float:left;width:100%;height:100%;margin:1px;overflow:hidden;">
+
+                                    <table id="mytable" class="table table-bordred table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>FlooringTypeImage</th>
+                                                <th>FlooringTypeCategory</th>
+                                                <th>FlooringType</th>
+                                                <th>FlooringTypeDetails</th>
+                                                <th>FlooringTypeAdvantage</th>
+                                                <th>FlooringTypeDisadvantage</th>
+                                                <th>FlooringTypeBestUse</th>
+                                                <th>FlooringTypeReinstall</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody class="thead-light">
+                                            @{int i = 0;}
+
+                                            @foreach (var item in Model)
+                                            {
+
+                                                <tr>
+                                                    <td scope="row">@(i = i + 1)</td>
+
+                                                    <td>
+                                                        @if (item.FlooringTypeImage == null || item.FlooringTypeImage == "")
+                                                        {
+                                                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="@Url.Content(@item.FlooringTypeImage)" style="width: 72px; height: 72px;"> </a>
+                                                        }
+                                                    </td>
+                                                    <td>@item.FlooringTypeCategory</td>
+
+                                                    <td>@item.FlooringType</td>
+
+                                                    <td>@item.FlooringTypeDetails</td>
+                                                    <td>@item.FlooringTypeAdvantage</td>
+                                                    <td>@item.FlooringTypeDisadvantage</td>
+                                                    <td>@item.FlooringTypeBestUse</td>
+                                                    <td>@item.FlooringTypeReinstall</td>
+
+                                                    <td>
+                                                        <p data-placement="top" data-toggle="tooltip" title="More">
+                                                            <button class="btn btn-primary btn-xs" data-title="Samples" data-toggle="modal" data-id="@item.FlooringTypeId" onclick="location.href='@Url.Action("Samples", "Flooring",new { flooringTypeId = item.FlooringTypeId })'"><span class=" glyphicon glyphicon-list"></span></button>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p data-placement="top" data-toggle="tooltip" title="Edit">
+                                                            <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-id="@item.FlooringTypeId" data-target="#@("modalQuickView"+i)"><span class="glyphicon glyphicon-pencil"></span></button>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p data-placement="top" data-toggle="tooltip" title="Delete">
+                                                            <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-id="@item.FlooringTypeId" onclick="location.href='@Url.Action("Delete", "Flooring",new { flooringTypeId = item.FlooringTypeId })'"><span class="glyphicon glyphicon-trash"></span></button>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+
+
+                                            }
+                                        </tbody>
+                                    </table>
+                                    
+                                    <span class="glyphicon glyphicon-pencil">
+                                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true" data-backdrop="false">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <div class="row" style="width:100%;">
+                                                            <div class="col-md-9">
+                                                                <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <button type="button" id="btnSubmitClose" class="close" data-dismiss="modal" aria-hidden="true" style="padding-right: 0px;padding-top: 0px;padding-bottom: 0px;padding-left: 0px; margin-top: 0px;margin-bottom: 0px;margin-right: 0px;"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal-body">
+
+                                                        <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete @ViewBag.flooringType?</div>
+
+                                                    </div>
+                                                    <div class="modal-footer ">
+                                                        <button type="button" class="btn btn-success" id="btnSubmitDelete"><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
+                                                        <button type="button" id="btnSubmitNo" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Table-->
+        </div>
+    </div>
+    <footer class="footer text-faded text-center py-5">
+        <div class="container">
+            <p class="m-0 small">Copyright &copy; Your Website 2019</p>
+        </div>
+    </footer>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script type="text/javascript">
+    $(window).on('load', function () {
+        $('#myModal').modal('show');
+    });
+
+
+    $(document).ready(function () {
+
+        $("#btnSubmitDelete").click(function ()
+        {
+            getData();
+        });
+        $("#btnSubmitClose").click(function ()
+        {
+            window.location.href = "/Flooring/ListOfFlooringTypes";
+        });
+        $("#btnSubmitNo").click(function ()
+        {
+            window.location.href = "/Flooring/ListOfFlooringTypes";
+        });
+
+
+    });
+
+   
+
+    function getData()
+    {
+
+        var DeleteFlooringType = new FormData();
+
+        DeleteFlooringType.append("flooring_Type_Id", @ViewBag.flooringTypeId);
+        DeleteFlooringType.append("flooring_Type_Category", $("#flooringTypeCategory").val());
+        DeleteFlooringType.append("flooring_Type", $("#flooringType").val());
+        DeleteFlooringType.append("flooring_Type_Details", $("#flooringTypeDetails").val());
+
+        $.ajax({
+                    type: 'POST',
+                    data: DeleteFlooringType,
+                    url:'@Url.Action("DeleteFlooringType","Flooring")',
+                    dataType: 'json',
+                    contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                    processData: false, // NEEDED, DON'T OMIT THIS
+                    //cache: false,
+                    success: function (data)
+                    {
+
+                        if (data.success != null || data.success != "")
+                        {
+                            window.location.href = "/Flooring/ListOfFlooringTypes"
+                        }
+
+
+                    },
+                    error: function (response)
+                    {
+
+                        alert("error!");  //
+
+                    }
+               });
+
+    }
+
+
+</script>

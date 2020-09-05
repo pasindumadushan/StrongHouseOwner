@@ -1,0 +1,534 @@
+﻿@model StrongHouseOwner.Data.EntityModel.HouseDetail
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Business Casual - Start Bootstrap Theme</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/BootstrapStart/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/BootstrapStart/css/business-casual.min.css" rel="stylesheet" />
+    <link href="~/BootstrapStart/css/simple-sidebar.css" rel="stylesheet" />
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+
+    <h1 class="site-heading text-center text-white d-none d-lg-block">
+        <span class="site-heading-upper text-primary mb-3">RENOVATION WHILE KEEPING CONSTRUCTION DETAILS</span>
+        <div class="row">
+            <div class="col-4 col-md-10" style="padding-right: 0px;padding-left: 200px;">
+                <span class="site-heading-lower">Strong House Owner</span>
+            </div>
+            <div class="col-4 col-md-2">
+                @if (Session["User_Name"] == null)
+                {
+
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="color:#fff;font-size:.9rem;"></span>
+                        <img class="img-profile rounded-circle" src="~/Images/User/DefaultImage.png" style="width: 50px; height: 50px;">
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="font-size:12px;">
+                        <a class="dropdown-item" href='@Url.Action("Index","Login")'>
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Login
+                        </a>
+                        <a class="dropdown-item" href='@Url.Action("Index","Registration")'>
+                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Register
+                        </a>
+                        @*<div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </a>*@
+                    </div>
+
+                }
+                else
+                {
+
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="color:#fff;font-size:.9rem;">@Session["User_Name"]</span>
+                        <img class="img-profile rounded-circle" src="~/Images/User/DefaultImage.png" style="width: 50px; height: 50px;">
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="font-size:12px;">
+                        <a class="dropdown-item" href="#">
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Profile
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href='@Url.Action("LogOut","Login")'>
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </a>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </h1>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Start Bootstrap</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav mx-auto justify-content-center">
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Home", "Home")'>
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Products", "Product")'>Products</a>
+                    </li>
+                    <li class="nav-item active px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Index", "Store")'>Store</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="d-flex" id="wrapper">
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <button class="btn btn-primary" onclick="location.href='@Url.Action("UserPanel","Store")'">
+                                <i class="fas fa-cart-plus ml-2" aria-hidden="true">Back</i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="bg-faded p-4 rounded">
+                <div class="container">
+                    <form id="CreateHouseForm" method="post" enctype="application/x-www-form-urlencoded" novalidate>
+
+                        <div class="form-group">
+                            <label for="Ex_House_Name">House Name</label>
+                            <input type="text" class="form-control" name="House_Name" id="House_Name" aria-describedby="House_Name_Help" placeholder="" required>
+                            <small id="House_Name_Help" class="form-text text-muted">Ex : PereraHouse</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Ex_House_Address">House Address</label>
+                            <input type="text" class="form-control" name="House_Address" id="House_Address" aria-describedby="House_Address_Help" placeholder="" style="max-width:100%;" required>
+                            <small id="House_Address_Help" class="form-text text-muted">Ex : 154/D weedagama, Bandaragama</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Ex_Additional_Information">Additional Information</label>
+                            <input type="text" class="form-control input-lg" name="Additional_Information" id="Additional_Information" aria-describedby="Additional_Information_Help" placeholder="" style="max-width:100%;">
+                            <small id="Additional_Information_Help" class="form-text text-muted"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Ex_Number_Of_Floors">Number Of Floors</label>
+                            <input type="text" class="form-control" name="Number_Of_Floors" id="Number_Of_Floors" aria-describedby="Number_Of_Floors_Help" placeholder="" required>
+                            <small id="Number_Of_Floors_Help" class="form-text text-muted"></small>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="Ex_Floor_Area">Floor Area</label>
+                                <input type="text" class="form-control" name="Floor_Area" id="Floor_Area" aria-describedby="Floor_Area_Help" placeholder="" style="max-width:100%;" required>
+                                <small id="Floor_Area_Help" class="form-text text-muted">Ex : 20000 sq.ft</small>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="Ex_Land_Area">Land Area</label>
+                                <input type="text" class="form-control" name="Land_Area" id="Land_Area" aria-describedby="Land_Area_Help" placeholder="" style="max-width:100%;" required>
+                                <small id="Land_Area_Help" class="form-text text-muted">Ex : 20000 sq.ft</small>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="Ex_Number_Of_LivingRooms">Number Of Living Rooms</label>
+                                <input type="text" class="form-control" name="Number_Of_LivingRooms" id="Number_Of_LivingRooms" aria-describedby="Number_Of_LivingRooms_Help" placeholder="" required>
+                                <small id="Number_Of_LivingRooms_Help" class="form-text text-muted"></small>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="Ex_Number_Of_DiningRooms">Number Of Dining Rooms</label>
+                                <input type="text" class="form-control" name="Number_Of_DiningRooms" id="Number_Of_DiningRooms" aria-describedby="Number_Of_DiningRooms_Help" placeholder="" required>
+                                <small id="Number_Of_DiningRooms_Help" class="form-text text-muted"></small>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="Ex_Number_Of_BedRooms">Number Of Bed Rooms</label>
+                                <input type="text" class="form-control" name="Number_Of_BedRooms" id="Number_Of_BedRooms" aria-describedby="Number_Of_BedRooms_Help" placeholder="" required>
+                                <small id="Number_Of_BedRooms_Help" class="form-text text-muted"></small>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="Ex_Number_Of_WashRooms">Number Of Wash Rooms</label>
+                                <input type="text" class="form-control" name="Number_Of_WashRooms" id="Number_Of_WashRooms" aria-describedby="Number_Of_WashRooms_Help" placeholder="" required>
+                                <small id="Number_Of_WashRooms_Help" class="form-text text-muted"></small>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="Ex_Number_Of_Kitchens">Number Of Kitchens</label>
+                                <input type="text" class="form-control" name="Number_Of_Kitchens" id="Number_Of_Kitchens" aria-describedby="Number_Of_Kitchens_Help" placeholder="" required>
+                                <small id="Number_Of_Kitchens_Help" class="form-text text-muted"></small>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="Ex_Number_Of_StoreRooms">Number Of Store Rooms</label>
+                                <input type="text" class="form-control" name="Number_Of_StoreRooms" id="Number_Of_StoreRooms" aria-describedby="Number_Of_StoreRooms_Help" placeholder="" required>
+                                <small id="Number_Of_StoreRooms_Help" class="form-text text-muted"></small>
+                            </div>
+                        </div>
+
+                            <div class="form-group">
+                                <label for="Ex_Number_Of_Garages">Number Of Garages</label>
+                                <input type="text" class="form-control" name="Number_Of_Garages" id="Number_Of_Garages" aria-describedby="Number_Of_Garages_Help" placeholder="" required>
+                                <small id="Number_Of_Garages_Help" class="form-text text-muted"></small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Ex_Estimated_Value">Estimated Value</label>
+                                <input type="text" class="form-control" name="Estimated_Value" id="Estimated_Value" aria-describedby="Estimated_Value_Help" placeholder="">
+                                <small id="Estimated_Value_Help" class="form-text text-muted">Ex : Rs. 5 00 000</small>
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>House Image</label>
+
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="file" id="file" name="file">
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <div style="height:200px; width:200px; overflow:auto;">
+                                    <img id="img" alt="House Image">
+                                </div>
+
+                                <canvas id="canvas" height="5" width="5" style="vertical-align:top;"></canvas>
+
+
+                            </div>
+
+                            <input type="submit" class="btn btn-primary" id="CreateHouse" value="Create" />
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+
+
+
+
+    <!-- Modal: modalQuickView -->
+
+
+
+    <footer class="footer text-faded text-center py-5">
+        <div class="container">
+            <p class="m-0 small">Copyright &copy; Your Website 2019</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var imageCropWidth = 0;
+    var imageCropHeight = 0;
+    var cropPointX = 0;
+    var cropPointY = 0;
+    var jcropApi;
+
+    $(document).ready(function ()
+    {
+         $(function () {
+
+            jQuery.validator.addMethod("noSpace", function (value, element)
+            {
+                return value.indexOf(" ") < 0 && value != "";
+            }, "No space please and don't leave it empty");
+
+            jQuery.validator.addMethod("exactlength", function (value, element, param)
+            {
+                return this.optional(element) || value.length == param;
+            }, $.validator.format("Please enter exactly {0} characters."));
+
+            $("#CreateHouseForm").validate({
+                //errorLabelContainer: "#PasswordError",
+                wrapper: "div",
+                rules: {
+                    House_Name: {
+                        required: true,
+                        noSpace: true
+                    },
+                    House_Address: {
+                        required: true
+                    },
+                    Additional_Information: {
+                        maxlength: 500
+                    },
+                    Number_Of_Floors: {
+                        required: true,
+                        digits: true,
+                        range:[1,5]
+                    },
+                    Floor_Area: {
+                        required: true,
+                        number: true
+                    },
+                    Land_Area: {
+                        required: true,
+                        number: true,
+                    },
+                    Number_Of_LivingRooms: {
+                        required: true,
+                        digits: true,
+                        range:[1,10]
+                    },
+                    Number_Of_DiningRooms: {
+                        required: true,
+                        digits: true,
+                        range:[1,10]
+                    },
+                    Number_Of_BedRooms: {
+                        required: true,
+                        digits: true,
+                        range:[1,10]
+                    },
+                    Number_Of_WashRooms: {
+                        required: true,
+                        digits: true,
+                        range:[1,10]
+                    },
+                    Number_Of_Kitchens: {
+                        required: true,
+                        digits: true,
+                        range:[1,10]
+                    },
+                    Number_Of_StoreRooms: {
+                        required: true,
+                        digits: true,
+                        range:[1,10]
+                    },
+                    Number_Of_Garages: {
+                        required: true,
+                        digits: true,
+                        range:[1,10]
+                    },
+                    Estimated_Value:  {
+                        number: true
+                    }
+                },
+
+                messages: {
+                    House_Name: {
+                        required: "Please provide a name",
+                        noSpace: "Please don't leave a space"
+                    },
+                    House_Address: {
+                        required: "Please provide a address"
+                    },
+                    Additional_Information: {
+                        maxlength: "Please don't execeed maximum length 500"
+                    },
+                    Number_Of_Floors: {
+                        required: "Please fill the field",
+                        digits: "Please use valid input",
+                        range: "Please use value between 1-5"
+                    },
+                    Floor_Area: {
+                        required: "Please fill the field",
+                        number: "Please use valid input",
+                    },
+                    Land_Area: {
+                        required: "Please fill the field",
+                        number: "Please use valid input",
+                    },
+                    Number_Of_LivingRooms: {
+                        required: "Please fill the field",
+                        digits: "Please use valid input",
+                        range: "Please use value between 1-10"
+                    },
+                    Number_Of_DiningRooms: {
+                        required: "Please fill the field",
+                        digits: "Please use valid input",
+                        range: "Please use value between 1-10"
+                    },
+                    Number_Of_BedRooms: {
+                        required: "Please fill the field",
+                        digits: "Please use valid input",
+                        range: "Please use value between 1-10"
+                    },
+                    Number_Of_WashRooms: {
+                        required: "Please fill the field",
+                        digits: "Please use valid input",
+                        range: "Please use value between 1-10"
+                    },
+                    Number_Of_Kitchens: {
+                        required: "Please fill the field",
+                        digits: "Please use valid input",
+                        range: "Please use value between 1-10"
+                    },
+                    Number_Of_StoreRooms: {
+                        required: "Please fill the field",
+                        digits: "Please use valid input",
+                        range: "Please use value between 1-10"
+                    },
+                    Number_Of_Garages: {
+                        required: "Please fill the field",
+                        digits: "Please use valid input",
+                        range: "Please use value between 1-10"
+                    },
+                    Estimated_Value:  {
+                        number: "Please use valid input"
+                    }
+                },
+
+                submitHandler: function (form) {
+                    getData();
+                }
+
+            });
+        });
+        $('#file').change(function () {
+            readFile(this);
+            //initCrop();
+        });
+    });
+
+    function getData()
+    {
+
+        var CreateHouseForm = new FormData();
+
+        var file = $('#file').get(0).files;
+
+        CreateHouseForm.append("UserId", @ViewBag.ViewBaguserId);
+        CreateHouseForm.append("House_Name", $("#House_Name").val());
+        CreateHouseForm.append("House_Address", $("#House_Address").val());
+        CreateHouseForm.append("Additional_Information", $("#Additional_Information").val());
+        CreateHouseForm.append("Number_Of_Floors", $("#Number_Of_Floors").val());
+        CreateHouseForm.append("Floor_Area", $("#Floor_Area").val());
+        CreateHouseForm.append("Land_Area", $("#Land_Area").val());
+        CreateHouseForm.append("Number_Of_LivingRooms", $("#Number_Of_LivingRooms").val());
+        CreateHouseForm.append("Number_Of_DiningRooms", $("#Number_Of_DiningRooms").val());
+        CreateHouseForm.append("Number_Of_BedRooms", $("#Number_Of_BedRooms").val());
+        CreateHouseForm.append("Number_Of_WashRooms", $("#Number_Of_WashRooms").val());
+        CreateHouseForm.append("Number_Of_Kitchens", $("#Number_Of_Kitchens").val());
+        CreateHouseForm.append("Number_Of_StoreRooms", $("#Number_Of_StoreRooms").val());
+        CreateHouseForm.append("Number_Of_Garages", $("#Number_Of_Garages").val());
+        CreateHouseForm.append("Estimated_Value", $("#Estimated_Value").val());
+
+        CreateHouseForm.append("ImageFile", file[0]);
+
+        $.ajax({
+                    type: 'POST',
+                    data: CreateHouseForm,
+                    url:'@Url.Action("CreateHouse","Store")',
+                    dataType: 'json',
+                    contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                    processData: false, // NEEDED, DON'T OMIT THIS
+                    //cache: false,
+                    success: function (data)
+                    {
+
+                        if (data.validation != 0)
+                        {
+
+                            alert("Creation Sucessful!");
+                            window.location.href = "/Store/UserPanel"
+
+                        }
+                        else
+                        {
+
+                            // DoSomethingElse()
+                            alert("Creation Fail, Already Exist!");
+
+                        }
+
+                    },
+                    error: function (response)
+                    {
+
+                        alert("error!");  //
+
+                    }
+               });
+
+    }
+
+    function readFile(input)
+    {
+
+        if (input.files && input.files[0])
+        {
+            var reader = new FileReader();
+
+                /*Destroy jcrop initialization other wise it will hold it previous image in img tag*/
+            if (jcropApi != null)
+            {
+                jcropApi.destroy();
+            }
+            reader.onload = function (e)
+            {
+                $('#img').attr('src', "");
+                var img = $('#img').attr('src', e.target.result);
+
+                    /*Current uploaded image size*/
+                var width = img[0].height;
+                var height = img[0].width;
+                $("#lblWidth").text(width + "px");
+                $("#lblHeight").text(height + "px");
+
+                    //InitCrop must call here otherwise it will not work
+                initCrop();
+            }
+
+                reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+

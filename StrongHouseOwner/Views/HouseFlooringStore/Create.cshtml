@@ -1,0 +1,383 @@
+﻿@model IEnumerable<StrongHouseOwner.Data.EntityModel.TypeOfFlooring>
+@{
+    ViewBag.Title = "Create";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Business Casual - Start Bootstrap Theme</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/BootstrapStart/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/BootstrapStart/css/business-casual.min.css" rel="stylesheet" />
+    <link href="~/BootstrapStart/css/simple-sidebar.css" rel="stylesheet" />
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <link href="~/gitcdn/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <h1 class="site-heading text-center text-white d-none d-lg-block">
+        <span class="site-heading-upper text-primary mb-3">RENOVATION WHILE KEEPING CONSTRUCTION DETAILS</span>
+        <div class="row">
+            <div class="col-4 col-md-10" style="padding-right: 0px;padding-left: 200px;">
+                <span class="site-heading-lower">Strong House Owner</span>
+            </div>
+            <div class="col-4 col-md-2">
+                @if (Session["User_Name"] == null)
+                {
+
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="color:#fff;font-size:.9rem;"></span>
+                        <img class="img-profile rounded-circle" src="~/Images/User/DefaultImage.png" style="width: 50px; height: 50px;">
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="font-size:12px;">
+                        <a class="dropdown-item" href='@Url.Action("Index","Login")'>
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Login
+                        </a>
+                        <a class="dropdown-item" href='@Url.Action("Index","Registration")'>
+                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Register
+                        </a>
+                        @*<div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>*@
+                    </div>
+
+                }
+                else
+                {
+
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="color:#fff;font-size:.9rem;">@Session["User_Name"]</span>
+                        <img class="img-profile rounded-circle" src="~/Images/User/DefaultImage.png" style="width: 50px; height: 50px;">
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="font-size:12px;">
+                        <a class="dropdown-item" href="#">
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Profile
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href='@Url.Action("LogOut","Login")'>
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </a>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </h1>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Start Bootstrap</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav mx-auto justify-content-center">
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Home", "Home")'>
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Products", "Product")'>Products</a>
+                    </li>
+                    <li class="nav-item active px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Index", "Store")'>Store</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="d-flex" id="wrapper">
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <button class="btn btn-primary" onclick="location.href='@Url.Action("UserPanel","Store")'">
+                                <i class="fas fa-cart-plus ml-2" aria-hidden="true">Back</i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="bg-faded p-4 rounded">
+                <div class="container">
+                    <form id="CreateHouseFlooringForm" method="post" enctype="application/x-www-form-urlencoded" novalidate>
+
+                        <div class="form-group">
+                            <label for="Ex_Flooring_Name">Flooring Name</label>
+                            <input type="text" class="form-control" name="Flooring_Name" id="Flooring_Name" aria-describedby="Flooring_Name_Help" placeholder="" required>
+                            <small id="Flooring_Name_Help" class="form-text text-muted">Ex : Living Room Section A</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Ex_Type_Of_Partition">Type Of Partition</label>
+                            <div class="form-row">
+                                <select class="custom-select" id="Type_Of_Partition" name="Type_Of_Partition" aria-describedby="Type_Of_Partition_Help" required>
+                                    <option selected value="">Choose Type Of Partition...</option>
+                                    <option value="Living Room">Living Room</option>
+                                    <option value="Dining Room">Dining Room</option>
+                                    <option value="Bed Room">Bed Room</option>
+                                    <option value="Wash Room">Wash Room</option>
+                                    <option value="Kitchen">Kitchen</option>
+                                    <option value="Garage">Garage</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="SelectCategory" name="SelectCategory" checked data-toggle="toggle" data-on="Select" data-off="Create New" data-onstyle="primary" data-offstyle="info">
+                        </label>
+
+                        <div class="form-group">
+                            <label for="Ex_Flooring_Category">Category</label>
+                            <div class="form-row">
+                                <select class="custom-select" id="Flooring_Category1" name="Flooring_Category1" aria-describedby="Flooring_Category1_Help" required>
+                                    <option selected value="">Choose Type Of Category...</option>
+                                    @foreach (var item in Model)
+                                    {
+                                        <option value="@(item.FlooringTypeId+"-"+item.FlooringTypeCategory+"-"+item.FlooringType)">@item.FlooringTypeCategory - @item.FlooringType</option>
+                                    }
+                                </select>
+                                <input type="text" class="form-control" name="Flooring_Category2" id="Flooring_Category2" aria-describedby="Flooring_Category2_Help" placeholder="" required>
+                                <small id="Flooring_Category2" class="form-text text-muted" style="padding-left: 10px;">Ex : Seperate category and type with "-"  (Porcelain and Ceramic - Granite) .</small>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="Ex_Flooring_Area">Flooring Area</label>
+                            <input type="text" class="form-control input-lg" name="Flooring_Area" id="Flooring_Area" aria-describedby="Flooring_Area_Help" placeholder="" style="max-width:100%;">
+                            <small id="Flooring_Area_Help" class="form-text text-muted">Ex : 20000 sq.ft</small>
+                        </div>
+
+                        <input type="submit" class="btn btn-primary" id="CreateHouseFlooring" value="Create" />
+
+                    </form>
+
+                    <script>
+                        $('#SelectCategory').change(function () {
+                            if ($('#SelectCategory').is(":checked")) {
+                                $("#Flooring_Category1").attr("disabled", false);
+                                $("#Flooring_Category2").attr("disabled", true);
+                            }
+                            else {
+                                $("#Flooring_Category1").attr("disabled", true);
+                                $("#Flooring_Category2").attr("disabled", false);
+
+                            }
+                        });
+                        $('#SelectCategory').trigger('change');
+                        
+                    </script>
+
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+
+
+
+
+    <!-- Modal: modalQuickView -->
+
+
+
+    <footer class="footer text-faded text-center py-5">
+        <div class="container">
+            <p class="m-0 small">Copyright &copy; Your Website 2019</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var imageCropWidth = 0;
+    var imageCropHeight = 0;
+    var cropPointX = 0;
+    var cropPointY = 0;
+    var jcropApi;
+
+    $(document).ready(function ()
+    {
+        $(function () {
+
+            jQuery.validator.addMethod("noSpace", function (value, element) {
+                return value.indexOf(" ") < 0 && value != "";
+            }, "No space please and don't leave it empty");
+
+            jQuery.validator.addMethod("hyphenSeperation", function (value, element) {
+                return value.indexOf("-") > 0  && value != "";
+            }, "Please use only one hypen please and don't leave it empty");
+
+            jQuery.validator.addMethod("exactlength", function (value, element, param) {
+                return this.optional(element) || value.length == param;
+            }, $.validator.format("Please enter exactly {0} characters."));
+
+            $("#CreateHouseFlooringForm").validate({
+                //errorLabelContainer: "#PasswordError",
+                wrapper: "div",
+                rules: {
+                    Flooring_Name: {
+                        required: true,
+                        maxlength: 20
+                    },
+                    Type_Of_Partition: {
+                        required: true,
+                        maxlength: 15
+                    },
+                    Flooring_Category1: {
+                        required: true,
+                        maxlength: 50
+                    },
+                    Flooring_Category2: {
+                        required: true,
+                        hyphenSeperation: true,
+                        maxlength: 50
+                    },
+                    Flooring_Area: {
+                        required: true,
+                        number: true,
+                        maxlength: 10
+                    }
+                },
+
+                messages: {
+                    Flooring_Name: {
+                        required: "Please fill the field",
+                        maxlength: "Please don't execeed maximum length 20"
+                    },
+                    Type_Of_Partition: {
+                        required: "Please fill the field",
+                        maxlength: "Please don't execeed maximum length 15"
+                    },
+                    Flooring_Category1: {
+                        required: "Please fill the field",
+                        maxlength: "Please don't execeed maximum length 50"
+                    },
+                    Flooring_Category2: {
+                        required: "Please fill the field",
+                        hyphenSeperation: "Please use only one hypen please and don't leave it empty",
+                        maxlength: "Please don't execeed maximum length 50"
+                    },
+                    Flooring_Area: {
+                        required: "Please fill the field",
+                        number: "Numbers only",
+                        maxlength: "Please don't execeed maximum length 10"
+                    }
+                },
+
+                submitHandler: function (form) {
+                    getData();
+                }
+            });
+
+        });
+    });
+
+    function getData()
+    {
+        var CreateHouseFlooringForm = new FormData();
+
+
+
+
+        if ($('#SelectCategory').is(":checked")) {
+            var CategorySplit = $("#Flooring_Category1").val().split("-");
+
+            CreateHouseFlooringForm.append("Stored_Type_Of_Flooring_Ref_Id", CategorySplit[0]);
+            CreateHouseFlooringForm.append("Flooring_Category", CategorySplit[1]);
+            CreateHouseFlooringForm.append("Flooring_Type", CategorySplit[2]);
+        }
+        else {
+            var CategorySplit = $("#Flooring_Category2").val().split("-");
+
+            CreateHouseFlooringForm.append("Flooring_Category", CategorySplit[0]);
+            CreateHouseFlooringForm.append("Flooring_Type", CategorySplit[1]);
+
+        }
+
+
+        CreateHouseFlooringForm.append("House_Ref_Id", @ViewBag.ViewBagHouseRefId);
+        CreateHouseFlooringForm.append("Flooring_Name", $("#Flooring_Name").val());
+        CreateHouseFlooringForm.append("Type_Of_Partition", $("#Type_Of_Partition").val());
+        CreateHouseFlooringForm.append("Flooring_Area", $("#Flooring_Area").val());
+
+        $.ajax({
+                    type: 'POST',
+                    data: CreateHouseFlooringForm,
+                    url:'@Url.Action("CreateHouseFlooring","HouseFlooringStore")',
+                    dataType: 'json',
+                    contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                    processData: false, // NEEDED, DON'T OMIT THIS
+                    //cache: false,
+                    success: function (data)
+                    {
+
+                        if (data.validation == 1)
+                        {
+
+                            alert("Creation Sucessful");
+                            window.location.href = "/HouseFlooringStore/CreateUpdate?storedFlooringId="+ data.storedFlooringId
+
+                        }
+                        else if (data.validation == 0)
+                        {
+
+                            // DoSomethingElse()
+                            alert("Creation Fail, Already Exist!");
+
+                        }
+                        
+
+                    },
+                    error: function (response)
+                    {
+
+                        alert("error!");  //
+
+                    }
+               });
+    }
+
+</script>
+

@@ -1,0 +1,222 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Creative Colorlib SignUp Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Custom Theme files -->
+    <link href="~/CssStyles/Registration.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- //Custom Theme files -->
+    <!-- web font -->
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+    <!-- Jquery validation links -->
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+    <!-- //web font -->
+</head>
+<body>
+    <!-- main -->
+    <div class="main-w3layouts wrapper">
+        <h1>Strong House Owner SignUp</h1>
+        <div class="main-agileinfo">
+            <div class="agileits-top">
+                <form id="Registration" novalidate>
+                    <input class="text" type="text" name="User_Name" id="User_Name" placeholder="Username" required>
+                    <input class="text email" type="text" name="User_Mail" id="User_Mail" placeholder="Email" required>
+                    <input class="text" type="text" name="User_Age" id="User_Age" placeholder="Age" required>
+                    <input class="text" type="password" name="User_Password" id="User_Password" placeholder="Password" required>
+                    <input class="text w3lpass" type="password" name="User_Confirm_Password" id="User_Confirm_Password" placeholder="Confirm Password" required>
+                    <input class="text" type="text" name="User_Address" id="User_Address" placeholder="Home Address" required>
+                    <input class="text" type="text" name="User_Phone_Number" id="User_Phone_Number" placeholder="Phone Number" required>
+                    <input class="text" type="text" name="User_Type" id="User_Type" placeholder="As a ShopOwner or HouseOwner" required>
+                    <div class="wthree-text">
+                        <label class="anim">
+                            <input type="checkbox" class="checkbox">
+                            <span>I Agree To The Terms & Conditions</span>
+                        </label>
+                        <div class="clear"> </div>
+                    </div>
+                    <input type="submit" id="UserRegister" value="Register">
+                </form>
+                <p>Don't have an Account? <a href="@Url.Action("Index", "Login")"> Login Now!</a></p>
+            </div>
+        </div>
+        <!-- copyright -->
+        <div class="colorlibcopy-agile">
+            <p>All copyrights are reserved</p>
+        </div>
+        <!-- //copyright -->
+        <ul class="colorlib-bubbles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <!-- //main -->
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function ()
+    {
+
+        $(function () {
+
+            jQuery.validator.addMethod("noSpace", function (value, element)
+            {
+                return value.indexOf(" ") < 0 && value != "";
+            }, "No space please and don't leave it empty");
+
+            jQuery.validator.addMethod("exactlength", function (value, element, param)
+            {
+                return this.optional(element) || value.length == param;
+            }, $.validator.format("Please enter exactly {0} characters."));
+
+            $("#Registration").validate({
+                //errorLabelContainer: "#PasswordError",
+                wrapper: "div",
+                rules: {
+                    User_Name: {
+                        required: true,
+                        noSpace: true
+                    },
+                    User_Mail: {
+                        required: true,
+                        email: true
+                    },
+                    User_Age: {
+                        required: true,
+                        digits: true,
+                        range:[14,100]
+                    },
+                    User_Password: {
+                        required: true,
+                        minlength: 6,
+                        maxlength: 20
+                    },
+                    User_Confirm_Password: {
+                        required: true,
+                        minlength: 6,
+                        maxlength: 20
+                    },
+                    User_Address: {
+                        required: true,
+                    },
+                    User_Phone_Number: {
+                        required: true,
+                        exactlength: 10
+                    },
+                    User_Type: {
+                        required: true,
+                        digits: true,
+                        range:[1,2]
+                    }
+                },
+
+                messages: {
+                    User_Name: {
+                        required: "Please provide a User name",
+                        noSpace: "Please don't leave a space"
+                    },
+                    User_Mail: {
+                        required: "Please provide a Email",
+                        email: "Please provide valid email"
+                    },
+                    User_Age: {
+                        required: "Please provide a Age",
+                        digits: "Please provide valid Age",
+                        range: "Please provide valid Age"
+                    },
+                    User_Password: {
+                        required: "Please provide a password",
+                        minlength: "Please provide Password between 6 to 20 characters",
+                        maxlength: "Please provide Password between 6 to 20 characters"
+                    },
+                    User_Confirm_Password: {
+                        required: "Please provide a password",
+                        minlength: "Please provide Password between 6 to 20 characters",
+                        maxlength: "Please provide Password between 6 to 20 characters"
+                    },
+                    User_Address: "Please provide a Address",
+                    User_Phone_Number: {
+                        required: "Please provide a Phone Number",
+                        exactlength: "Please provide valid Phone Number"
+                    },
+                    User_Type: {
+                        required: "Please provide a Type",
+                        digits: "Please provide valid Type",
+                        range: "Please provide valid Type"
+                    }
+                },
+
+                submitHandler: function (form) {
+                    getData();
+                }
+
+            });
+        });
+
+    });
+
+    function getData()
+    {
+
+        var UserRegister = new FormData();
+
+        UserRegister.append("User_Name", $("#User_Name").val());
+        UserRegister.append("User_Mail", $("#User_Mail").val());
+        UserRegister.append("User_Age", $("#User_Age").val());
+        UserRegister.append("User_Password", $("#User_Password").val());
+        UserRegister.append("User_Address", $("#User_Address").val());
+        UserRegister.append("User_Phone_Number", $("#User_Phone_Number").val());
+        UserRegister.append("User_Type", $("#User_Type").val());
+
+        $.ajax({
+                    type: 'POST',
+                    data: UserRegister,
+                    url:'@Url.Action("Registration","Registration")',
+                    dataType: 'json',
+                    contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                    processData: false, // NEEDED, DON'T OMIT THIS
+                    //cache: false,
+                    success: function (data)
+                    {
+
+                        if (data.validation == 0)
+                        {
+                            alert("Registration Sucessful!");
+                            window.location.href = "/Login/Index"
+
+                        }
+                        else if (data.validation == 1)
+                        {
+                            alert("Creation Fail, Already Exist!");
+
+                        }
+
+                    },
+                    error: function (response)
+                    {
+
+                        alert("error!");  //
+
+                    }
+               });
+
+    }
+
+</script>

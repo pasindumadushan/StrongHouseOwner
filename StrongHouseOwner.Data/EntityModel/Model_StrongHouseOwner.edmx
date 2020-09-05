@@ -1,0 +1,829 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StrongHouseDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="HouseDetails">
+          <Key>
+            <PropertyRef Name="HouseId" />
+          </Key>
+          <Property Name="HouseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserRefId" Type="int" />
+          <Property Name="HouseName" Type="nvarchar" MaxLength="50" />
+          <Property Name="HouseAddress" Type="nvarchar" MaxLength="300" />
+          <Property Name="HouseAdditionalInformation" Type="nvarchar(max)" />
+          <Property Name="NumberOfFloors" Type="int" />
+          <Property Name="FloorArea" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="LandArea" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="NumberOfLivingRooms" Type="int" />
+          <Property Name="NumberOfDiningRooms" Type="int" />
+          <Property Name="NumberOfBedRooms" Type="int" />
+          <Property Name="NumberOfWashRooms" Type="int" />
+          <Property Name="NumberOfKitchens" Type="int" />
+          <Property Name="NumberOfStoreRooms" Type="int" />
+          <Property Name="NumberOfGarages" Type="int" />
+          <Property Name="EstimatedValue" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="HouseImagePath" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Plan">
+          <Key>
+            <PropertyRef Name="PlanId" />
+          </Key>
+          <Property Name="PlanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeOfPlan" Type="nvarchar" MaxLength="50" />
+          <Property Name="PlanDetails" Type="nvarchar(max)" />
+          <Property Name="PlanImagePath" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="StoredFlooring">
+          <Key>
+            <PropertyRef Name="FlooringId" />
+          </Key>
+          <Property Name="FlooringId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HouseRefId" Type="int" Nullable="false" />
+          <Property Name="StoredTypeOfFlooringRefId" Type="int" />
+          <Property Name="StoredTypeOfFlooringSampleRefId" Type="int" />
+          <Property Name="FlooringName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FlooringCategory" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FlooringType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TypeOfPartition" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FlooringArea" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="FlooringSampleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FlooringSampleCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="FlooringSampleBrand" Type="nvarchar" MaxLength="50" />
+          <Property Name="FlooringSampleHight" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="FlooringSampleWidth" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="FlooringMililiters" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="FlooringSamplePrice" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="FlooringSampleMinAmount" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="FlooringSampleTotalCost" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="SampleImagePath" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="StoredPlan">
+          <Key>
+            <PropertyRef Name="StoredPlanId" />
+          </Key>
+          <Property Name="StoredPlanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StoredPlanRefId" Type="int" />
+          <Property Name="HouseRefId" Type="int" />
+          <Property Name="TypeOfPlan" Type="nvarchar" MaxLength="50" />
+          <Property Name="PlanName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Scale" Type="nvarchar" MaxLength="50" />
+          <Property Name="DrawnBy" Type="nvarchar(max)" />
+          <Property Name="AdditionalInformation" Type="nvarchar(max)" />
+          <Property Name="StoredPlanImagePath" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TypeOfCeiling">
+          <Key>
+            <PropertyRef Name="CeilingTypeId" />
+          </Key>
+          <Property Name="CeilingTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CeilingTypeCategory" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CeilingType" Type="nvarchar" MaxLength="50" />
+          <Property Name="CeilingTypeDetails" Type="nvarchar(max)" />
+          <Property Name="CeilingTypeDeletion" Type="int" />
+          <Property Name="CeilingTypeAdvantage" Type="nvarchar(max)" />
+          <Property Name="CeilingTypeDisadvantage" Type="nvarchar(max)" />
+          <Property Name="CeilingTypeBestUse" Type="nvarchar(max)" />
+          <Property Name="CeilingTypeReinstall" Type="nvarchar(max)" />
+          <Property Name="CeilingTypeImage" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TypeOfCeilingSample">
+          <Key>
+            <PropertyRef Name="CeilingTypeSampleId" />
+          </Key>
+          <Property Name="CeilingTypeSampleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeOfCeilingRefId" Type="int" Nullable="false" />
+          <Property Name="ShopRefId" Type="int" />
+          <Property Name="CeilingTypeSampleCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="CeilingTypeSampleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CeilingTypeSampleSizeHeight" Type="int" Nullable="false" />
+          <Property Name="CeilingTypeSampleSizeWidth" Type="int" Nullable="false" />
+          <Property Name="CeilingTypeSamplePrice" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="CeilingTypeSampleImagePath" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TypeOfFlooring">
+          <Key>
+            <PropertyRef Name="FlooringTypeId" />
+          </Key>
+          <Property Name="FlooringTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FlooringTypeCategory" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FlooringType" Type="nvarchar" MaxLength="100" />
+          <Property Name="FlooringTypeDetails" Type="nvarchar(max)" />
+          <Property Name="FlooringTypeDeletion" Type="int" />
+          <Property Name="FlooringTypeAdvantage" Type="nvarchar(max)" />
+          <Property Name="FlooringTypeDisadvantage" Type="nvarchar(max)" />
+          <Property Name="FlooringTypeBestUse" Type="nvarchar(max)" />
+          <Property Name="FlooringTypeReinstall" Type="nvarchar(max)" />
+          <Property Name="FlooringTypeImage" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TypeOfFlooringSample">
+          <Key>
+            <PropertyRef Name="FlooringTypeSampleId" />
+          </Key>
+          <Property Name="FlooringTypeSampleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeOfFlooringRefId" Type="int" Nullable="false" />
+          <Property Name="ShopRefId" Type="int" />
+          <Property Name="FlooringTypeSampleCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="FlooringTypeSampleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FlooringTypeSampleSizeHeight" Type="int" Nullable="false" />
+          <Property Name="FlooringTypeSampleSizeWidth" Type="int" Nullable="false" />
+          <Property Name="FlooringTypeSamplePrice" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="FlooringTypeSampleImagePath" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TypeOfWalling">
+          <Key>
+            <PropertyRef Name="WallingTypeId" />
+          </Key>
+          <Property Name="WallingTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WallingTypeCategory" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="WallingType" Type="nvarchar" MaxLength="100" />
+          <Property Name="WallingTypeDetails" Type="nvarchar(max)" />
+          <Property Name="WallingTypeDeletion" Type="int" />
+          <Property Name="WallingTypeAdvantage" Type="nvarchar(max)" />
+          <Property Name="WallingTypeDisadvantage" Type="nvarchar(max)" />
+          <Property Name="WallingTypeBestUse" Type="nvarchar(max)" />
+          <Property Name="WallingTypeReinstall" Type="nvarchar(max)" />
+          <Property Name="WallingTypeImage" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TypeOfWallingSample">
+          <Key>
+            <PropertyRef Name="WallingTypeSampleId" />
+          </Key>
+          <Property Name="WallingTypeSampleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeOfWallingRefId" Type="int" Nullable="false" />
+          <Property Name="ShopRefId" Type="int" />
+          <Property Name="WallingTypeSampleCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="WallingTypeSampleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="WallingTypeBrand" Type="nvarchar" MaxLength="50" />
+          <Property Name="WallingTypeSampleSizeHeight" Type="int" />
+          <Property Name="WallingTypeSampleSizeWidth" Type="int" />
+          <Property Name="WallingMilliliters" Type="int" />
+          <Property Name="WallingTypeSamplePrice" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="WallingTypeSampleImagePath" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="UserRegistration">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="UserMail" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="UserAge" Type="int" Nullable="false" />
+          <Property Name="UserPassword" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="UserAddress" Type="nvarchar(max)" />
+          <Property Name="UserPhoneNumber" Type="nvarchar" MaxLength="10" />
+          <Property Name="UserType" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_HouseRefIdFK_HouseDetailsPK">
+          <End Role="HouseDetails" Type="Self.HouseDetails" Multiplicity="1" />
+          <End Role="StoredFlooring" Type="Self.StoredFlooring" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HouseDetails">
+              <PropertyRef Name="HouseId" />
+            </Principal>
+            <Dependent Role="StoredFlooring">
+              <PropertyRef Name="HouseRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HouseRefIdFK_HouseIdPK">
+          <End Role="HouseDetails" Type="Self.HouseDetails" Multiplicity="0..1" />
+          <End Role="StoredPlan" Type="Self.StoredPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HouseDetails">
+              <PropertyRef Name="HouseId" />
+            </Principal>
+            <Dependent Role="StoredPlan">
+              <PropertyRef Name="HouseRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoredPlanRefIdFK_PlanIdPK">
+          <End Role="Plan" Type="Self.Plan" Multiplicity="0..1" />
+          <End Role="StoredPlan" Type="Self.StoredPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan">
+              <PropertyRef Name="PlanId" />
+            </Principal>
+            <Dependent Role="StoredPlan">
+              <PropertyRef Name="StoredPlanRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeOfCeilingSampleFK_TypeOfCeilingPK">
+          <End Role="TypeOfCeiling" Type="Self.TypeOfCeiling" Multiplicity="1" />
+          <End Role="TypeOfCeilingSample" Type="Self.TypeOfCeilingSample" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfCeiling">
+              <PropertyRef Name="CeilingTypeId" />
+            </Principal>
+            <Dependent Role="TypeOfCeilingSample">
+              <PropertyRef Name="TypeOfCeilingRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeOfFlooringSampleFK_TypeOfFlooringPK">
+          <End Role="TypeOfFlooring" Type="Self.TypeOfFlooring" Multiplicity="1" />
+          <End Role="TypeOfFlooringSample" Type="Self.TypeOfFlooringSample" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfFlooring">
+              <PropertyRef Name="FlooringTypeId" />
+            </Principal>
+            <Dependent Role="TypeOfFlooringSample">
+              <PropertyRef Name="TypeOfFlooringRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeOfWallingSampleFK_TypeOfWallingPK">
+          <End Role="TypeOfWalling" Type="Self.TypeOfWalling" Multiplicity="1" />
+          <End Role="TypeOfWallingSample" Type="Self.TypeOfWallingSample" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfWalling">
+              <PropertyRef Name="WallingTypeId" />
+            </Principal>
+            <Dependent Role="TypeOfWallingSample">
+              <PropertyRef Name="TypeOfWallingRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRefIdFK_UserIdPK">
+          <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="0..1" />
+          <End Role="HouseDetails" Type="Self.HouseDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRegistration">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="HouseDetails">
+              <PropertyRef Name="UserRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StrongHouseDBModelStoreContainer">
+          <EntitySet Name="HouseDetails" EntityType="Self.HouseDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plan" EntityType="Self.Plan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StoredFlooring" EntityType="Self.StoredFlooring" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StoredPlan" EntityType="Self.StoredPlan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfCeiling" EntityType="Self.TypeOfCeiling" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfCeilingSample" EntityType="Self.TypeOfCeilingSample" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfFlooring" EntityType="Self.TypeOfFlooring" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfFlooringSample" EntityType="Self.TypeOfFlooringSample" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfWalling" EntityType="Self.TypeOfWalling" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfWallingSample" EntityType="Self.TypeOfWallingSample" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRegistration" EntityType="Self.UserRegistration" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_HouseRefIdFK_HouseDetailsPK" Association="Self.FK_HouseRefIdFK_HouseDetailsPK">
+            <End Role="HouseDetails" EntitySet="HouseDetails" />
+            <End Role="StoredFlooring" EntitySet="StoredFlooring" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HouseRefIdFK_HouseIdPK" Association="Self.FK_HouseRefIdFK_HouseIdPK">
+            <End Role="HouseDetails" EntitySet="HouseDetails" />
+            <End Role="StoredPlan" EntitySet="StoredPlan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoredPlanRefIdFK_PlanIdPK" Association="Self.FK_StoredPlanRefIdFK_PlanIdPK">
+            <End Role="Plan" EntitySet="Plan" />
+            <End Role="StoredPlan" EntitySet="StoredPlan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeOfCeilingSampleFK_TypeOfCeilingPK" Association="Self.FK_TypeOfCeilingSampleFK_TypeOfCeilingPK">
+            <End Role="TypeOfCeiling" EntitySet="TypeOfCeiling" />
+            <End Role="TypeOfCeilingSample" EntitySet="TypeOfCeilingSample" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeOfFlooringSampleFK_TypeOfFlooringPK" Association="Self.FK_TypeOfFlooringSampleFK_TypeOfFlooringPK">
+            <End Role="TypeOfFlooring" EntitySet="TypeOfFlooring" />
+            <End Role="TypeOfFlooringSample" EntitySet="TypeOfFlooringSample" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeOfWallingSampleFK_TypeOfWallingPK" Association="Self.FK_TypeOfWallingSampleFK_TypeOfWallingPK">
+            <End Role="TypeOfWalling" EntitySet="TypeOfWalling" />
+            <End Role="TypeOfWallingSample" EntitySet="TypeOfWallingSample" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRefIdFK_UserIdPK" Association="Self.FK_UserRefIdFK_UserIdPK">
+            <End Role="UserRegistration" EntitySet="UserRegistration" />
+            <End Role="HouseDetails" EntitySet="HouseDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StrongHouseDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TypeOfFlooring">
+          <Key>
+            <PropertyRef Name="FlooringTypeId" />
+          </Key>
+          <Property Name="FlooringTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FlooringTypeCategory" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FlooringType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FlooringTypeDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TypeOfFlooringSamples" Relationship="Self.FK_TypeOfFlooringSampleFK_TypeOfFlooringPK" FromRole="TypeOfFlooring" ToRole="TypeOfFlooringSample" />
+          <Property Name="FlooringTypeDeletion" Type="Int32" />
+          <Property Name="FlooringTypeAdvantage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FlooringTypeDisadvantage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FlooringTypeBestUse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FlooringTypeReinstall" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FlooringTypeImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TypeOfFlooringSample">
+          <Key>
+            <PropertyRef Name="FlooringTypeSampleId" />
+          </Key>
+          <Property Name="FlooringTypeSampleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeOfFlooringRefId" Type="Int32" Nullable="false" />
+          <Property Name="FlooringTypeSampleCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FlooringTypeSampleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FlooringTypeSampleSizeHeight" Type="Int32" Nullable="false" />
+          <Property Name="FlooringTypeSampleSizeWidth" Type="Int32" Nullable="false" />
+          <Property Name="FlooringTypeSamplePrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="FlooringTypeSampleImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TypeOfFlooring" Relationship="Self.FK_TypeOfFlooringSampleFK_TypeOfFlooringPK" FromRole="TypeOfFlooringSample" ToRole="TypeOfFlooring" />
+          <Property Name="ShopRefId" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_TypeOfFlooringSampleFK_TypeOfFlooringPK">
+          <End Role="TypeOfFlooring" Type="Self.TypeOfFlooring" Multiplicity="1" />
+          <End Role="TypeOfFlooringSample" Type="Self.TypeOfFlooringSample" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfFlooring">
+              <PropertyRef Name="FlooringTypeId" />
+            </Principal>
+            <Dependent Role="TypeOfFlooringSample">
+              <PropertyRef Name="TypeOfFlooringRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StrongHouseDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TypeOfFloorings" EntityType="Self.TypeOfFlooring" />
+          <EntitySet Name="TypeOfFlooringSamples" EntityType="Self.TypeOfFlooringSample" />
+          <AssociationSet Name="FK_TypeOfFlooringSampleFK_TypeOfFlooringPK" Association="Self.FK_TypeOfFlooringSampleFK_TypeOfFlooringPK">
+            <End Role="TypeOfFlooring" EntitySet="TypeOfFloorings" />
+            <End Role="TypeOfFlooringSample" EntitySet="TypeOfFlooringSamples" />
+          </AssociationSet>
+          <EntitySet Name="TypeOfCeilings" EntityType="StrongHouseDBModel.TypeOfCeiling" />
+          <EntitySet Name="TypeOfCeilingSamples" EntityType="StrongHouseDBModel.TypeOfCeilingSample" />
+          <AssociationSet Name="FK_TypeOfCeilingSampleFK_TypeOfCeilingPK" Association="StrongHouseDBModel.FK_TypeOfCeilingSampleFK_TypeOfCeilingPK">
+            <End Role="TypeOfCeiling" EntitySet="TypeOfCeilings" />
+            <End Role="TypeOfCeilingSample" EntitySet="TypeOfCeilingSamples" />
+          </AssociationSet>
+          <EntitySet Name="UserRegistrations" EntityType="StrongHouseDBModel.UserRegistration" />
+          <EntitySet Name="TypeOfWallings" EntityType="StrongHouseDBModel.TypeOfWalling" />
+          <EntitySet Name="TypeOfWallingSamples" EntityType="StrongHouseDBModel.TypeOfWallingSample" />
+          <AssociationSet Name="FK_TypeOfWallingSampleFK_TypeOfWallingPK" Association="StrongHouseDBModel.FK_TypeOfWallingSampleFK_TypeOfWallingPK">
+            <End Role="TypeOfWalling" EntitySet="TypeOfWallings" />
+            <End Role="TypeOfWallingSample" EntitySet="TypeOfWallingSamples" />
+          </AssociationSet>
+          <EntitySet Name="HouseDetails" EntityType="StrongHouseDBModel.HouseDetail" />
+          <EntitySet Name="Plans" EntityType="StrongHouseDBModel.Plan" />
+          <EntitySet Name="StoredPlans" EntityType="StrongHouseDBModel.StoredPlan" />
+          <AssociationSet Name="FK_HouseRefIdFK_HouseIdPK" Association="StrongHouseDBModel.FK_HouseRefIdFK_HouseIdPK">
+            <End Role="HouseDetail" EntitySet="HouseDetails" />
+            <End Role="StoredPlan" EntitySet="StoredPlans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRefIdFK_UserIdPK" Association="StrongHouseDBModel.FK_UserRefIdFK_UserIdPK">
+            <End Role="UserRegistration" EntitySet="UserRegistrations" />
+            <End Role="HouseDetail" EntitySet="HouseDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoredPlanRefIdFK_PlanIdPK" Association="StrongHouseDBModel.FK_StoredPlanRefIdFK_PlanIdPK">
+            <End Role="Plan" EntitySet="Plans" />
+            <End Role="StoredPlan" EntitySet="StoredPlans" />
+          </AssociationSet>
+          <EntitySet Name="StoredFloorings" EntityType="StrongHouseDBModel.StoredFlooring" />
+          <AssociationSet Name="FK_HouseRefIdFK_HouseDetailsPK" Association="StrongHouseDBModel.FK_HouseRefIdFK_HouseDetailsPK">
+            <End Role="HouseDetail" EntitySet="HouseDetails" />
+            <End Role="StoredFlooring" EntitySet="StoredFloorings" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TypeOfCeiling">
+          <Key>
+            <PropertyRef Name="CeilingTypeId" />
+          </Key>
+          <Property Name="CeilingTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CeilingTypeCategory" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CeilingType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CeilingTypeDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CeilingTypeDeletion" Type="Int32" />
+          <NavigationProperty Name="TypeOfCeilingSamples" Relationship="StrongHouseDBModel.FK_TypeOfCeilingSampleFK_TypeOfCeilingPK" FromRole="TypeOfCeiling" ToRole="TypeOfCeilingSample" />
+          <Property Name="CeilingTypeAdvantage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CeilingTypeDisadvantage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CeilingTypeBestUse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CeilingTypeReinstall" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CeilingTypeImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TypeOfCeilingSample">
+          <Key>
+            <PropertyRef Name="CeilingTypeSampleId" />
+          </Key>
+          <Property Name="CeilingTypeSampleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeOfCeilingRefId" Type="Int32" Nullable="false" />
+          <Property Name="ShopRefId" Type="Int32" />
+          <Property Name="CeilingTypeSampleCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CeilingTypeSampleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CeilingTypeSampleSizeHeight" Type="Int32" Nullable="false" />
+          <Property Name="CeilingTypeSampleSizeWidth" Type="Int32" Nullable="false" />
+          <Property Name="CeilingTypeSamplePrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="CeilingTypeSampleImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TypeOfCeiling" Relationship="StrongHouseDBModel.FK_TypeOfCeilingSampleFK_TypeOfCeilingPK" FromRole="TypeOfCeilingSample" ToRole="TypeOfCeiling" />
+        </EntityType>
+        <Association Name="FK_TypeOfCeilingSampleFK_TypeOfCeilingPK">
+          <End Type="StrongHouseDBModel.TypeOfCeiling" Role="TypeOfCeiling" Multiplicity="1" />
+          <End Type="StrongHouseDBModel.TypeOfCeilingSample" Role="TypeOfCeilingSample" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfCeiling">
+              <PropertyRef Name="CeilingTypeId" />
+            </Principal>
+            <Dependent Role="TypeOfCeilingSample">
+              <PropertyRef Name="TypeOfCeilingRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserRegistration">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="UserMail" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="UserAge" Type="Int32" Nullable="false" />
+          <Property Name="UserPassword" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="UserAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserPhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="UserType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HouseDetails" Relationship="StrongHouseDBModel.FK_UserRefIdFK_UserIdPK" FromRole="UserRegistration" ToRole="HouseDetail" />
+        </EntityType>
+        <EntityType Name="TypeOfWalling">
+          <Key>
+            <PropertyRef Name="WallingTypeId" />
+          </Key>
+          <Property Name="WallingTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WallingTypeCategory" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="WallingType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="WallingTypeDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WallingTypeDeletion" Type="Int32" />
+          <Property Name="WallingTypeAdvantage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WallingTypeDisadvantage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WallingTypeBestUse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WallingTypeReinstall" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WallingTypeImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TypeOfWallingSamples" Relationship="StrongHouseDBModel.FK_TypeOfWallingSampleFK_TypeOfWallingPK" FromRole="TypeOfWalling" ToRole="TypeOfWallingSample" />
+        </EntityType>
+        <EntityType Name="TypeOfWallingSample">
+          <Key>
+            <PropertyRef Name="WallingTypeSampleId" />
+          </Key>
+          <Property Name="WallingTypeSampleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeOfWallingRefId" Type="Int32" Nullable="false" />
+          <Property Name="ShopRefId" Type="Int32" />
+          <Property Name="WallingTypeSampleCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WallingTypeSampleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WallingTypeBrand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WallingTypeSampleSizeHeight" Type="Int32" />
+          <Property Name="WallingTypeSampleSizeWidth" Type="Int32" />
+          <Property Name="WallingMilliliters" Type="Int32" />
+          <Property Name="WallingTypeSamplePrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="WallingTypeSampleImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TypeOfWalling" Relationship="StrongHouseDBModel.FK_TypeOfWallingSampleFK_TypeOfWallingPK" FromRole="TypeOfWallingSample" ToRole="TypeOfWalling" />
+        </EntityType>
+        <Association Name="FK_TypeOfWallingSampleFK_TypeOfWallingPK">
+          <End Type="StrongHouseDBModel.TypeOfWalling" Role="TypeOfWalling" Multiplicity="1" />
+          <End Type="StrongHouseDBModel.TypeOfWallingSample" Role="TypeOfWallingSample" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfWalling">
+              <PropertyRef Name="WallingTypeId" />
+            </Principal>
+            <Dependent Role="TypeOfWallingSample">
+              <PropertyRef Name="TypeOfWallingRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HouseDetail">
+          <Key>
+            <PropertyRef Name="HouseId" />
+          </Key>
+          <Property Name="HouseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserRefId" Type="Int32" />
+          <Property Name="HouseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HouseAddress" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="HouseAdditionalInformation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NumberOfFloors" Type="Int32" />
+          <Property Name="FloorArea" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="LandArea" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="NumberOfLivingRooms" Type="Int32" />
+          <Property Name="NumberOfDiningRooms" Type="Int32" />
+          <Property Name="NumberOfBedRooms" Type="Int32" />
+          <Property Name="NumberOfWashRooms" Type="Int32" />
+          <Property Name="NumberOfKitchens" Type="Int32" />
+          <Property Name="NumberOfStoreRooms" Type="Int32" />
+          <Property Name="NumberOfGarages" Type="Int32" />
+          <Property Name="EstimatedValue" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="HouseImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="StoredPlans" Relationship="StrongHouseDBModel.FK_HouseRefIdFK_HouseIdPK" FromRole="HouseDetail" ToRole="StoredPlan" />
+          <NavigationProperty Name="UserRegistration" Relationship="StrongHouseDBModel.FK_UserRefIdFK_UserIdPK" FromRole="HouseDetail" ToRole="UserRegistration" />
+          <NavigationProperty Name="StoredFloorings" Relationship="StrongHouseDBModel.FK_HouseRefIdFK_HouseDetailsPK" FromRole="HouseDetail" ToRole="StoredFlooring" />
+        </EntityType>
+        <EntityType Name="Plan">
+          <Key>
+            <PropertyRef Name="PlanId" />
+          </Key>
+          <Property Name="PlanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeOfPlan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PlanDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PlanImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="StoredPlans" Relationship="StrongHouseDBModel.FK_StoredPlanRefIdFK_PlanIdPK" FromRole="Plan" ToRole="StoredPlan" />
+        </EntityType>
+        <EntityType Name="StoredPlan">
+          <Key>
+            <PropertyRef Name="StoredPlanId" />
+          </Key>
+          <Property Name="StoredPlanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoredPlanRefId" Type="Int32" />
+          <Property Name="HouseRefId" Type="Int32" />
+          <Property Name="TypeOfPlan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PlanName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Scale" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DrawnBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionalInformation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StoredPlanImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HouseDetail" Relationship="StrongHouseDBModel.FK_HouseRefIdFK_HouseIdPK" FromRole="StoredPlan" ToRole="HouseDetail" />
+          <NavigationProperty Name="Plan" Relationship="StrongHouseDBModel.FK_StoredPlanRefIdFK_PlanIdPK" FromRole="StoredPlan" ToRole="Plan" />
+        </EntityType>
+        <Association Name="FK_HouseRefIdFK_HouseIdPK">
+          <End Type="StrongHouseDBModel.HouseDetail" Role="HouseDetail" Multiplicity="0..1" />
+          <End Type="StrongHouseDBModel.StoredPlan" Role="StoredPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HouseDetail">
+              <PropertyRef Name="HouseId" />
+            </Principal>
+            <Dependent Role="StoredPlan">
+              <PropertyRef Name="HouseRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRefIdFK_UserIdPK">
+          <End Type="StrongHouseDBModel.UserRegistration" Role="UserRegistration" Multiplicity="0..1" />
+          <End Type="StrongHouseDBModel.HouseDetail" Role="HouseDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRegistration">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="HouseDetail">
+              <PropertyRef Name="UserRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoredPlanRefIdFK_PlanIdPK">
+          <End Type="StrongHouseDBModel.Plan" Role="Plan" Multiplicity="0..1" />
+          <End Type="StrongHouseDBModel.StoredPlan" Role="StoredPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan">
+              <PropertyRef Name="PlanId" />
+            </Principal>
+            <Dependent Role="StoredPlan">
+              <PropertyRef Name="StoredPlanRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="StoredFlooring">
+          <Key>
+            <PropertyRef Name="FlooringId" />
+          </Key>
+          <Property Name="FlooringId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HouseRefId" Type="Int32" Nullable="false" />
+          <Property Name="StoredTypeOfFlooringRefId" Type="Int32" />
+          <Property Name="StoredTypeOfFlooringSampleRefId" Type="Int32" />
+          <Property Name="FlooringName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FlooringCategory" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FlooringType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FlooringArea" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
+          <Property Name="FlooringSampleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FlooringSampleCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FlooringSampleBrand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FlooringSampleHight" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="FlooringSampleWidth" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="FlooringMililiters" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="FlooringSamplePrice" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="FlooringSampleMinAmount" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="FlooringSampleTotalCost" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="SampleImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HouseDetail" Relationship="StrongHouseDBModel.FK_HouseRefIdFK_HouseDetailsPK" FromRole="StoredFlooring" ToRole="HouseDetail" />
+          <Property Name="TypeOfPartition" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_HouseRefIdFK_HouseDetailsPK">
+          <End Type="StrongHouseDBModel.HouseDetail" Role="HouseDetail" Multiplicity="1" />
+          <End Type="StrongHouseDBModel.StoredFlooring" Role="StoredFlooring" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HouseDetail">
+              <PropertyRef Name="HouseId" />
+            </Principal>
+            <Dependent Role="StoredFlooring">
+              <PropertyRef Name="HouseRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StrongHouseDBModelStoreContainer" CdmEntityContainer="StrongHouseDBEntities">
+          <EntitySetMapping Name="TypeOfFloorings">
+            <EntityTypeMapping TypeName="StrongHouseDBModel.TypeOfFlooring">
+              <MappingFragment StoreEntitySet="TypeOfFlooring">
+                <ScalarProperty Name="FlooringTypeImage" ColumnName="FlooringTypeImage" />
+                <ScalarProperty Name="FlooringTypeReinstall" ColumnName="FlooringTypeReinstall" />
+                <ScalarProperty Name="FlooringTypeBestUse" ColumnName="FlooringTypeBestUse" />
+                <ScalarProperty Name="FlooringTypeDisadvantage" ColumnName="FlooringTypeDisadvantage" />
+                <ScalarProperty Name="FlooringTypeAdvantage" ColumnName="FlooringTypeAdvantage" />
+                <ScalarProperty Name="FlooringTypeDeletion" ColumnName="FlooringTypeDeletion" />
+                <ScalarProperty Name="FlooringTypeId" ColumnName="FlooringTypeId" />
+                <ScalarProperty Name="FlooringTypeCategory" ColumnName="FlooringTypeCategory" />
+                <ScalarProperty Name="FlooringType" ColumnName="FlooringType" />
+                <ScalarProperty Name="FlooringTypeDetails" ColumnName="FlooringTypeDetails" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfFlooringSamples">
+            <EntityTypeMapping TypeName="StrongHouseDBModel.TypeOfFlooringSample">
+              <MappingFragment StoreEntitySet="TypeOfFlooringSample">
+                <ScalarProperty Name="ShopRefId" ColumnName="ShopRefId" />
+                <ScalarProperty Name="FlooringTypeSampleId" ColumnName="FlooringTypeSampleId" />
+                <ScalarProperty Name="TypeOfFlooringRefId" ColumnName="TypeOfFlooringRefId" />
+                <ScalarProperty Name="FlooringTypeSampleCode" ColumnName="FlooringTypeSampleCode" />
+                <ScalarProperty Name="FlooringTypeSampleName" ColumnName="FlooringTypeSampleName" />
+                <ScalarProperty Name="FlooringTypeSampleSizeHeight" ColumnName="FlooringTypeSampleSizeHeight" />
+                <ScalarProperty Name="FlooringTypeSampleSizeWidth" ColumnName="FlooringTypeSampleSizeWidth" />
+                <ScalarProperty Name="FlooringTypeSamplePrice" ColumnName="FlooringTypeSamplePrice" />
+                <ScalarProperty Name="FlooringTypeSampleImagePath" ColumnName="FlooringTypeSampleImagePath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfCeilings">
+            <EntityTypeMapping TypeName="StrongHouseDBModel.TypeOfCeiling">
+              <MappingFragment StoreEntitySet="TypeOfCeiling">
+                <ScalarProperty Name="CeilingTypeImage" ColumnName="CeilingTypeImage" />
+                <ScalarProperty Name="CeilingTypeReinstall" ColumnName="CeilingTypeReinstall" />
+                <ScalarProperty Name="CeilingTypeBestUse" ColumnName="CeilingTypeBestUse" />
+                <ScalarProperty Name="CeilingTypeDisadvantage" ColumnName="CeilingTypeDisadvantage" />
+                <ScalarProperty Name="CeilingTypeAdvantage" ColumnName="CeilingTypeAdvantage" />
+                <ScalarProperty Name="CeilingTypeDeletion" ColumnName="CeilingTypeDeletion" />
+                <ScalarProperty Name="CeilingTypeDetails" ColumnName="CeilingTypeDetails" />
+                <ScalarProperty Name="CeilingType" ColumnName="CeilingType" />
+                <ScalarProperty Name="CeilingTypeCategory" ColumnName="CeilingTypeCategory" />
+                <ScalarProperty Name="CeilingTypeId" ColumnName="CeilingTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfCeilingSamples">
+            <EntityTypeMapping TypeName="StrongHouseDBModel.TypeOfCeilingSample">
+              <MappingFragment StoreEntitySet="TypeOfCeilingSample">
+                <ScalarProperty Name="CeilingTypeSampleImagePath" ColumnName="CeilingTypeSampleImagePath" />
+                <ScalarProperty Name="CeilingTypeSamplePrice" ColumnName="CeilingTypeSamplePrice" />
+                <ScalarProperty Name="CeilingTypeSampleSizeWidth" ColumnName="CeilingTypeSampleSizeWidth" />
+                <ScalarProperty Name="CeilingTypeSampleSizeHeight" ColumnName="CeilingTypeSampleSizeHeight" />
+                <ScalarProperty Name="CeilingTypeSampleName" ColumnName="CeilingTypeSampleName" />
+                <ScalarProperty Name="CeilingTypeSampleCode" ColumnName="CeilingTypeSampleCode" />
+                <ScalarProperty Name="ShopRefId" ColumnName="ShopRefId" />
+                <ScalarProperty Name="TypeOfCeilingRefId" ColumnName="TypeOfCeilingRefId" />
+                <ScalarProperty Name="CeilingTypeSampleId" ColumnName="CeilingTypeSampleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRegistrations">
+            <EntityTypeMapping TypeName="StrongHouseDBModel.UserRegistration">
+              <MappingFragment StoreEntitySet="UserRegistration">
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="UserPhoneNumber" ColumnName="UserPhoneNumber" />
+                <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserAge" ColumnName="UserAge" />
+                <ScalarProperty Name="UserMail" ColumnName="UserMail" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfWallings">
+            <EntityTypeMapping TypeName="StrongHouseDBModel.TypeOfWalling">
+              <MappingFragment StoreEntitySet="TypeOfWalling">
+                <ScalarProperty Name="WallingTypeImage" ColumnName="WallingTypeImage" />
+                <ScalarProperty Name="WallingTypeReinstall" ColumnName="WallingTypeReinstall" />
+                <ScalarProperty Name="WallingTypeBestUse" ColumnName="WallingTypeBestUse" />
+                <ScalarProperty Name="WallingTypeDisadvantage" ColumnName="WallingTypeDisadvantage" />
+                <ScalarProperty Name="WallingTypeAdvantage" ColumnName="WallingTypeAdvantage" />
+                <ScalarProperty Name="WallingTypeDeletion" ColumnName="WallingTypeDeletion" />
+                <ScalarProperty Name="WallingTypeDetails" ColumnName="WallingTypeDetails" />
+                <ScalarProperty Name="WallingType" ColumnName="WallingType" />
+                <ScalarProperty Name="WallingTypeCategory" ColumnName="WallingTypeCategory" />
+                <ScalarProperty Name="WallingTypeId" ColumnName="WallingTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfWallingSamples">
+            <EntityTypeMapping TypeName="StrongHouseDBModel.TypeOfWallingSample">
+              <MappingFragment StoreEntitySet="TypeOfWallingSample">
+                <ScalarProperty Name="WallingTypeSampleImagePath" ColumnName="WallingTypeSampleImagePath" />
+                <ScalarProperty Name="WallingTypeSamplePrice" ColumnName="WallingTypeSamplePrice" />
+                <ScalarProperty Name="WallingMilliliters" ColumnName="WallingMilliliters" />
+                <ScalarProperty Name="WallingTypeSampleSizeWidth" ColumnName="WallingTypeSampleSizeWidth" />
+                <ScalarProperty Name="WallingTypeSampleSizeHeight" ColumnName="WallingTypeSampleSizeHeight" />
+                <ScalarProperty Name="WallingTypeBrand" ColumnName="WallingTypeBrand" />
+                <ScalarProperty Name="WallingTypeSampleName" ColumnName="WallingTypeSampleName" />
+                <ScalarProperty Name="WallingTypeSampleCode" ColumnName="WallingTypeSampleCode" />
+                <ScalarProperty Name="ShopRefId" ColumnName="ShopRefId" />
+                <ScalarProperty Name="TypeOfWallingRefId" ColumnName="TypeOfWallingRefId" />
+                <ScalarProperty Name="WallingTypeSampleId" ColumnName="WallingTypeSampleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HouseDetails">
+            <EntityTypeMapping TypeName="StrongHouseDBModel.HouseDetail">
+              <MappingFragment StoreEntitySet="HouseDetails">
+                <ScalarProperty Name="HouseImagePath" ColumnName="HouseImagePath" />
+                <ScalarProperty Name="EstimatedValue" ColumnName="EstimatedValue" />
+                <ScalarProperty Name="NumberOfGarages" ColumnName="NumberOfGarages" />
+                <ScalarProperty Name="NumberOfStoreRooms" ColumnName="NumberOfStoreRooms" />
+                <ScalarProperty Name="NumberOfKitchens" ColumnName="NumberOfKitchens" />
+                <ScalarProperty Name="NumberOfWashRooms" ColumnName="NumberOfWashRooms" />
+                <ScalarProperty Name="NumberOfBedRooms" ColumnName="NumberOfBedRooms" />
+                <ScalarProperty Name="NumberOfDiningRooms" ColumnName="NumberOfDiningRooms" />
+                <ScalarProperty Name="NumberOfLivingRooms" ColumnName="NumberOfLivingRooms" />
+                <ScalarProperty Name="LandArea" ColumnName="LandArea" />
+                <ScalarProperty Name="FloorArea" ColumnName="FloorArea" />
+                <ScalarProperty Name="NumberOfFloors" ColumnName="NumberOfFloors" />
+                <ScalarProperty Name="HouseAdditionalInformation" ColumnName="HouseAdditionalInformation" />
+                <ScalarProperty Name="HouseAddress" ColumnName="HouseAddress" />
+                <ScalarProperty Name="HouseName" ColumnName="HouseName" />
+                <ScalarProperty Name="UserRefId" ColumnName="UserRefId" />
+                <ScalarProperty Name="HouseId" ColumnName="HouseId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plans">
+            <EntityTypeMapping TypeName="StrongHouseDBModel.Plan">
+              <MappingFragment StoreEntitySet="Plan">
+                <ScalarProperty Name="PlanImagePath" ColumnName="PlanImagePath" />
+                <ScalarProperty Name="PlanDetails" ColumnName="PlanDetails" />
+                <ScalarProperty Name="TypeOfPlan" ColumnName="TypeOfPlan" />
+                <ScalarProperty Name="PlanId" ColumnName="PlanId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoredPlans">
+            <EntityTypeMapping TypeName="StrongHouseDBModel.StoredPlan">
+              <MappingFragment StoreEntitySet="StoredPlan">
+                <ScalarProperty Name="PlanName" ColumnName="PlanName" />
+                <ScalarProperty Name="StoredPlanImagePath" ColumnName="StoredPlanImagePath" />
+                <ScalarProperty Name="AdditionalInformation" ColumnName="AdditionalInformation" />
+                <ScalarProperty Name="DrawnBy" ColumnName="DrawnBy" />
+                <ScalarProperty Name="Scale" ColumnName="Scale" />
+                <ScalarProperty Name="TypeOfPlan" ColumnName="TypeOfPlan" />
+                <ScalarProperty Name="HouseRefId" ColumnName="HouseRefId" />
+                <ScalarProperty Name="StoredPlanRefId" ColumnName="StoredPlanRefId" />
+                <ScalarProperty Name="StoredPlanId" ColumnName="StoredPlanId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoredFloorings">
+            <EntityTypeMapping TypeName="StrongHouseDBModel.StoredFlooring">
+              <MappingFragment StoreEntitySet="StoredFlooring">
+                <ScalarProperty Name="TypeOfPartition" ColumnName="TypeOfPartition" />
+                <ScalarProperty Name="SampleImagePath" ColumnName="SampleImagePath" />
+                <ScalarProperty Name="FlooringSampleTotalCost" ColumnName="FlooringSampleTotalCost" />
+                <ScalarProperty Name="FlooringSampleMinAmount" ColumnName="FlooringSampleMinAmount" />
+                <ScalarProperty Name="FlooringSamplePrice" ColumnName="FlooringSamplePrice" />
+                <ScalarProperty Name="FlooringMililiters" ColumnName="FlooringMililiters" />
+                <ScalarProperty Name="FlooringSampleWidth" ColumnName="FlooringSampleWidth" />
+                <ScalarProperty Name="FlooringSampleHight" ColumnName="FlooringSampleHight" />
+                <ScalarProperty Name="FlooringSampleBrand" ColumnName="FlooringSampleBrand" />
+                <ScalarProperty Name="FlooringSampleCode" ColumnName="FlooringSampleCode" />
+                <ScalarProperty Name="FlooringSampleName" ColumnName="FlooringSampleName" />
+                <ScalarProperty Name="FlooringArea" ColumnName="FlooringArea" />
+                <ScalarProperty Name="FlooringType" ColumnName="FlooringType" />
+                <ScalarProperty Name="FlooringCategory" ColumnName="FlooringCategory" />
+                <ScalarProperty Name="FlooringName" ColumnName="FlooringName" />
+                <ScalarProperty Name="StoredTypeOfFlooringSampleRefId" ColumnName="StoredTypeOfFlooringSampleRefId" />
+                <ScalarProperty Name="StoredTypeOfFlooringRefId" ColumnName="StoredTypeOfFlooringRefId" />
+                <ScalarProperty Name="HouseRefId" ColumnName="HouseRefId" />
+                <ScalarProperty Name="FlooringId" ColumnName="FlooringId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

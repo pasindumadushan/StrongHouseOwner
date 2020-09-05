@@ -1,0 +1,136 @@
+﻿@{
+    ViewBag.Title = "Index";
+
+}
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Custom Theme files -->
+    <link href="~/CssStyles/Registration.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- //Custom Theme files -->
+    <!-- web font -->
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+    <!-- Jquery validation links -->
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+    <!-- //web font -->
+</head>
+<body>
+    <!-- main -->
+    <div class="main-w3layouts wrapper">
+        <h1>Strong House Owner Login</h1>
+        <div class="main-agileinfo">
+            <div class="agileits-top">
+                <form id="Login" novalidate>
+                    <input class="text email" type="text" name="User_Mail" id="User_Mail" placeholder="Username" required>
+                    <input class="text" type="text" name="User_Password" id="User_Password" placeholder="Password" required>
+
+                    <input id="UserLogin" type="submit" value="Login" />
+                </form>
+                <p>Don't have an Account? <a href="@Url.Action("Index", "Registration")"> SignUp Now!</a></p>
+            </div>
+        </div>
+        <!-- copyright -->
+        <div class="colorlibcopy-agile">
+            <p>All copyrights are reserved</p>
+        </div>
+        <!-- //copyright -->
+        <ul class="colorlib-bubbles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <!-- //main -->
+</body>
+</html>
+
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+        $(function () {
+
+            $("#Login").validate({
+                errorLabelContainer: "#PasswordError",
+                rules: {
+                    User_Mail: {
+                        required: true,
+                        email: true
+                    },
+                    User_Password: {
+                        required: true,
+                    }
+                },
+                messages: {
+                    User_Mail: {
+                        required: "Please provide a Email",
+                        email: "Please provide valid email"
+                    },
+                    User_Password: "Please provide a password"
+                   
+                },
+                submitHandler: function (form) {
+                    getData();
+                }
+            });
+        });
+    });
+    function getData()
+    {
+
+        var UserLogin = new FormData();
+
+        UserLogin.append("User_Mail", $("#User_Mail").val());
+        UserLogin.append("User_Password", $("#User_Password").val());
+
+        $.ajax({
+                    type: 'POST',
+                    data: UserLogin,
+                    url:'@Url.Action("Login","Login")',
+                    dataType: 'json',
+                    contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                    processData: false, // NEEDED, DON'T OMIT THIS
+                    //cache: false,
+                    success: function (data)
+                    {
+
+                        if(data.validation == 0)
+                        {
+                            alert("Please Check the Email Address!");
+                        }
+                        else if (data.validation == 1)
+                        {
+                            alert("Please Check the Password!");
+                        }
+                        else
+                        {
+                            window.location.href = "/Home/Home"
+                        }
+                                                
+                    },
+                    error: function (response)
+                    {
+
+                        alert("error!");  //
+
+                    }
+               });
+
+    }
+</script>

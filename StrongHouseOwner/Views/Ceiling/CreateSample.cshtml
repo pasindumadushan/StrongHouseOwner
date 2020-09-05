@@ -1,0 +1,375 @@
+﻿@model StrongHouseOwner.Data.EntityModel.TypeOfCeilingSample
+
+@{
+    ViewBag.Title = "CreateSample";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Business Casual - Start Bootstrap Theme</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/BootstrapStart/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/BootstrapStart/css/business-casual.min.css" rel="stylesheet" />
+    <link href="~/BootstrapStart/css/simple-sidebar.css" rel="stylesheet" />
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+
+    <h1 class="site-heading text-center text-white d-none d-lg-block">
+        <span class="site-heading-upper text-primary mb-3">RENOVATION WHILE KEEPING CONSTRUCTION DETAILS</span>
+        <div class="row">
+            <div class="col-4 col-md-10" style="padding-right: 0px;padding-left: 200px;">
+                <span class="site-heading-lower">Strong House Owner</span>
+            </div>
+            <div class="col-4 col-md-2">
+                @if (Session["User_Name"] == null)
+                {
+
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="color:#fff;font-size:.9rem;"></span>
+                        <img class="img-profile rounded-circle" src="~/Images/User/DefaultImage.png" style="width: 50px; height: 50px;">
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="font-size:12px;">
+                        <a class="dropdown-item" href='@Url.Action("Index","Login")'>
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Login
+                        </a>
+                        <a class="dropdown-item" href='@Url.Action("Index","Registration")'>
+                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Register
+                        </a>
+                        @*<div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>*@
+                    </div>
+
+                }
+                else
+                {
+
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="color:#fff;font-size:.9rem;">@Session["User_Name"]</span>
+                        <img class="img-profile rounded-circle" src="~/Images/User/DefaultImage.png" style="width: 50px; height: 50px;">
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="font-size:12px;">
+                        <a class="dropdown-item" href="#">
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Profile
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href='@Url.Action("LogOut","Login")'>
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </a>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </h1>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Start Bootstrap</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav mx-auto justify-content-center">
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Home", "Home")'>
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Products", "Product")'>Products</a>
+                    </li>
+                    <li class="nav-item active px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Index", "Store")'>Store</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="d-flex" id="wrapper">
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <button class="btn btn-primary" onclick="location.href='@Url.Action("Samples","Ceiling",new { ceilingTypeId = @ViewBag.ViewBagRefceilingTypeId })'">
+                                <i class="fas fa-cart-plus ml-2" aria-hidden="true">Back</i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <hr />
+            <div class="bg-faded p-4 rounded">
+                <div class="container">
+                    @*<p>
+                            @Html.ActionLink("Ceiling Types", "ListOfCeilingTypes")
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            @Html.ActionLink("Ceiling Types", "Samples", new { ceilingTypeId = @ViewBag.ViewBagRefceilingTypeId })
+                        </p>
+                        <hr />*@
+
+                    <form id="Sample" method="post" enctype="application/x-www-form-urlencoded" novalidate>
+                        <div class="form-group">
+                            <label for="Ex_Ceiling_Type_Sample_Code">Sample Code</label>
+                            <input type="text" class="form-control" id="Ceiling_Type_Sample_Code" name="Ceiling_Type_Sample_Code" aria-describedby="Ceiling_Type_Sample_Code_Help" placeholder="">
+                            <small id="Ceiling_Type_Sample_Code_Help" class="form-text text-muted">Ex : C001</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Ex_Ceiling_Type_Sample_Name">Sample Name</label>
+                            <input type="text" class="form-control" id="Ceiling_Type_Sample_Name" name="Ceiling_Type_Sample_Name" aria-describedby="Ceiling_Type_Sample_Name_Help" placeholder="" required>
+                            <small id="Ceiling_Type_Sample_Name_Help" class="form-text text-muted">Ex : Oak</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Ex_Ceiling_Type_Sample_Size">Size</label>
+                            <table>
+                                <tr>
+                                    <td><input type="text" class="form-control" id="Ceiling_Type_Sample_Height" name="Ceiling_Type_Sample_Height" aria-describedby="Ceiling_Type_Sample_Size_Help" placeholder="" required></td>
+                                    <td></td>
+                                    <td><input type="text" class="form-control" id="Ceiling_Type_Sample_Width" name="Ceiling_Type_Sample_Width" aria-describedby="Ceiling_Type_Sample_Size_Help" placeholder="" required></td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                            <small id="Ceiling_Type_Sample_Size_Help" class="form-text text-muted">Ex : 4x4"</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Ex_Ceiling_Type_Sample_Price">Price</label>
+                            <input type="text" class="form-control" id="Ceiling_Type_Sample_Price" name="Ceiling_Type_Sample_Price" data-decimal="2" data-decimal-auto="2" aria-describedby="Ceiling_Type_Sample_Price_Help" placeholder="" required>
+                            <small id="Ceiling_Type_Sample_Price_Help" class="form-text text-muted">Ex : Rs.99</small>
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Sample Image</label>
+
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="file" id="file" name="file">
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <div style="height:200px; width:200px; overflow:auto;">
+                                <img id="img" alt="Sample Image">
+                            </div>
+
+                            <canvas id="canvas" height="5" width="5" style="vertical-align:top;"></canvas>
+
+
+                        </div>
+
+                        <input type="submit" class="btn btn-primary" id="SubmitSample" value="Create" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var imageCropWidth = 0;
+    var imageCropHeight = 0;
+    var cropPointX = 0;
+    var cropPointY = 0;
+    var jcropApi;
+
+    $(document).ready(function ()
+    {
+        $(function () {
+
+            jQuery.validator.addMethod("noSpace", function (value, element)
+            {
+                return value.indexOf(" ") < 0 && value != "";
+            }, "No space please and don't leave it empty");
+
+            jQuery.validator.addMethod("exactlength", function (value, element, param)
+            {
+                return this.optional(element) || value.length == param;
+            }, $.validator.format("Please enter exactly {0} characters."));
+
+            $("#Sample").validate({
+                //errorLabelContainer: "#PasswordError",
+                wrapper: "div",
+                rules: {
+                    Ceiling_Type_Sample_Code: {
+                        maxlength: 6
+                    },
+                    Ceiling_Type_Sample_Name: {
+                        required: true,
+                        maxlength: 10
+                    },
+                    Ceiling_Type_Sample_Height: {
+                        required: true,
+                        digits: true,
+                        maxlength: 3
+                    },
+                    Ceiling_Type_Sample_Width: {
+                        required: true,
+                        digits: true,
+                        maxlength: 3
+                    },
+                    Ceiling_Type_Sample_Price: {
+                        required: true,
+                        number: true,
+                        maxlength: 5
+                    }
+                },
+
+                messages: {
+                    Ceiling_Type_Sample_Code: {
+                        maxlength: "Please don't execeed maximum length 6"
+                    },
+                    Ceiling_Type_Sample_Name: {
+                        required: "Please fill the field",
+                        maxlength: "Please don't execeed maximum length 10"
+                    },
+                    Ceiling_Type_Sample_Height: {
+                        required: "Please fill the field",
+                        digits: "Please use valid input",
+                        maxlength: "Please don't execeed maximum length 3"
+                    },
+                    Ceiling_Type_Sample_Width: {
+                        required: "Please fill the field",
+                        digits: "Please use valid input",
+                        maxlength: "Please don't execeed maximum length 3"
+                    },
+                    Ceiling_Type_Sample_Price: {
+                        required: "Please fill the field",
+                        number: "Numbers only",
+                        maxlength: "Please don't execeed maximum length 5"
+                    }
+                },
+
+                submitHandler: function (form) {
+                    getData();
+                }
+
+            });
+        });
+        $('#file').change(function () {
+            readFile(this);
+            //initCrop();
+        });
+
+    });
+
+    function getData() {
+
+        var file = $('#file').get(0).files;
+
+        var SubmitSample = new FormData();
+
+        SubmitSample.append("Ref_Ceiling_Type_Id", @ViewBag.ViewBagRefceilingTypeId);
+        SubmitSample.append("Ceiling_Type_Sample_Code", $("#Ceiling_Type_Sample_Code").val());
+        SubmitSample.append("Ceiling_Type_Sample_Name", $("#Ceiling_Type_Sample_Name").val());
+        SubmitSample.append("Ceiling_Type_Sample_Height", $("#Ceiling_Type_Sample_Height").val());
+        SubmitSample.append("Ceiling_Type_Sample_Width", $("#Ceiling_Type_Sample_Width").val());
+        SubmitSample.append("Ceiling_Type_Sample_Price", $("#Ceiling_Type_Sample_Price").val());
+        SubmitSample.append("ImageFile", file[0]);
+
+        $.ajax({
+                    type: 'POST',
+                    data: SubmitSample,
+                    url:'@Url.Action("CreateSampleSubmit","Ceiling")',
+                    dataType: 'json',
+                    contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                    processData: false, // NEEDED, DON'T OMIT THIS
+                    //cache: false,
+                    success: function (data)
+                    {
+
+                        if (data.validation == 0)
+                        {
+
+                            alert("Creation Sucessful!");
+                            window.location.href = "/Ceiling/Samples?ceilingTypeId="+@ViewBag.ViewBagRefceilingTypeId
+
+                        }
+                        else if (data.validation == 1)
+                        {
+
+                            // DoSomethingElse()
+                            alert("Creation Fail, Already Exist!");
+
+                        }
+
+                    },
+                    error: function (response)
+                    {
+
+                        alert("error!");  //
+
+                    }
+               });
+
+    }
+    function readFile(input)
+    {
+
+        if (input.files && input.files[0])
+        {
+            var reader = new FileReader();
+
+                /*Destroy jcrop initialization other wise it will hold it previous image in img tag*/
+            if (jcropApi != null)
+            {
+                jcropApi.destroy();
+            }
+            reader.onload = function (e)
+            {
+                $('#img').attr('src', "");
+                var img = $('#img').attr('src', e.target.result);
+
+                    /*Current uploaded image size*/
+                var width = img[0].height;
+                var height = img[0].width;
+                $("#lblWidth").text(width + "px");
+                $("#lblHeight").text(height + "px");
+
+                    //InitCrop must call here otherwise it will not work
+                initCrop();
+            }
+
+                reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+</script>

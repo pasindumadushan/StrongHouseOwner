@@ -1,0 +1,557 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Business Casual - Start Bootstrap Theme</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/BootstrapStart/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/BootstrapStart/css/business-casual.min.css" rel="stylesheet" />
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>About - Flattern Bootstrap Template</title>
+    <meta content="" name="descriptison">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="../../../../HomePage/assets/img/favicon.png" rel="icon">
+    <link href="../../../../HomePage/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Muli:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="../../../../HomePage/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../../HomePage/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="../../../../HomePage/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="../../../../HomePage/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="../../../../HomePage/assets/vendor/venobox/venobox.css" rel="stylesheet">
+    <link href="../../../../HomePage/assets/vendor/owl.carousel/../../HomePage/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../../../../HomePage/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="../../../../HomePage/assets/css/style.css" rel="stylesheet" />
+    <!-- Template Main CSS File -->
+    <!-- =======================================================
+      * Template Name: Flattern - v2.1.0
+      * Template URL: https://bootstrapmade.com/flattern-multipurpose-bootstrap-template/
+      * Author: BootstrapMade.com
+      * License: https://bootstrapmade.com/license/
+
+    <!-- =======================================================
+    * Template Name: Flattern - v2.1.0
+    * Template URL: https://bootstrapmade.com/flattern-multipurpose-bootstrap-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+
+    <h1 class="site-heading text-center text-white d-none d-lg-block">
+        <span class="site-heading-upper text-primary mb-3" style="color:#e6a756!important;">RENOVATION WHILE KEEPING CONSTRUCTION DETAILS</span>
+        <div class="row">
+            <div class="col-4 col-md-10" style="padding-right: 0px;padding-left: 200px;">
+                <span class="site-heading-lower">Strong House Owner</span>
+            </div>
+            <div class="col-4 col-md-2">
+                @if (Session["User_Name"] == null)
+                {
+
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="color:#fff;font-size:.9rem;"></span>
+                        <img class="img-profile rounded-circle" src="~/Images/User/DefaultImage.png" style="width: 50px; height: 50px;">
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="font-size:12px;">
+                        <a class="dropdown-item" href='@Url.Action("Index","Login")'>
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Login
+                        </a>
+                        <a class="dropdown-item" href='@Url.Action("Index","Registration")'>
+                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Register
+                        </a>
+                        @*<div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>*@
+                    </div>
+
+                }
+                else
+                {
+
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="color:#fff;font-size:.9rem;">@Session["User_Name"]</span>
+                        <img class="img-profile rounded-circle" src="~/Images/User/DefaultImage.png" style="width: 50px; height: 50px;">
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="font-size:12px;">
+                        <a class="dropdown-item" href="#">
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Profile
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href='@Url.Action("LogOut","Login")'>
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </a>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </h1>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Start Bootstrap</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item active px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="@Url.Action("Home", "Home")">
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Products", "Product")'>Products</a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Index", "Store")'>Store</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+
+            <div class="carousel-inner" role="listbox">
+
+                <!-- Slide 1 -->
+                <div class="carousel-item active" style="background-image: url(../../Images/BackGroundImage/Slider1.jpg);">
+                    <div class="carousel-container">
+                        <div class="carousel-content animate__animated animate__fadeInUp">
+                            <h2>Welcome to <span>Strong House</span></h2>
+                            <p>Our Web Application is very useful application regarding for all kind of a construction. We help you to give a knowledge about all type of new material and stuff for you to build or renovate with latest and trending designs.</p>
+                            <div class="text-center"><a href="" class="btn-get-started">Read More</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-item" style="background-image: url(../../Images/BackGroundImage/Slider2.jpg);">
+                    <div class="carousel-container">
+                        <div class="carousel-content animate__animated animate__fadeInUp">
+                            <h2>Strong House Store</h2>
+                            <p>House owners and constructors face real trouble which is that they haven't and platform to save the information of constructions. Regarding this matter house we provide unique storage to every member of strong for keep your data.</p>
+                            <div class="text-center"><a href="" class="btn-get-started">Read More</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-item" style="background-image: url(../../Images/BackGroundImage/Slider3.jpg);">
+                    <div class="carousel-container">
+                        <div class="carousel-content animate__animated animate__fadeInUp">
+                            <h2>Products</h2>
+                            <p>You can see latest materials with designs we categorized in to differnet type so you can easily choose what type of a design is most suitable and also which gives your house stuninng look.</p>
+                            <div class="text-center"><a href="" class="btn-get-started">Read More</a></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon bx bx-left-arrow" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+
+            <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon bx bx-right-arrow" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+
+            <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+        </div>
+    </section><!-- End Hero -->
+
+    <main id="main">
+
+        <!-- ======= Cta Section ======= -->
+        <section id="cta" class="cta">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-lg-9 text-center text-lg-left">
+                        <h3>We've more than <span>2000  members.</span></h3>
+                        <p> Join with us, We gives 5GB storage free for registerd user.</p>
+                    </div>
+                    <div class="col-lg-3 cta-btn-container text-center">
+                        <a class="cta-btn align-middle" href='@Url.Action("Index","Registration")'>Join</a>
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End Cta Section -->
+        <!-- ======= Services Section ======= -->
+        <section id="services" class="services">
+            <div class="container">
+                <div class="bg-faded p-5 rounded" style="margin-bottom:30px;">
+                    <div class="section-title" data-aos="fade-up" style="padding-bottom: 0px;">
+                        <h2 style="margin-bottom: 0px;">Check out <strong>our services</strong></h2>
+                    </div>
+                </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="icon-box" data-aos="fade-up">
+                                <div class="icon"><i class="icofont-computer"></i></div>
+                                <h4 class="title"><a href="">Flooring Products</a></h4>
+                                <p class="description">We provide different types of latest flooring methods, Information like advantages, disadvantages, best use, and samples</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+                                <div class="icon"><i class="icofont-chart-bar-graph"></i></div>
+                                <h4 class="title"><a href="">Walling Products</a></h4>
+                                <p class="description">We provide different types of walling methods including wall paints, Information like advantages, disadvantages, best use, and samples</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+                                <div class="icon"><i class="icofont-earth"></i></div>
+                                <h4 class="title"><a href="">Ceiling Products</a></h4>
+                                <p class="description">We provide different types of ceiling methods, Information like advantages, disadvantages, best use, and samples</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            @*<div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+                                <div class="icon"><i class="icofont-image"></i></div>
+                                <h4 class="title"><a href="">Magni Dolores</a></h4>
+                                <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                            </div>*@
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+                                <div class="icon"><i class="icofont-settings"></i></div>
+                                <h4 class="title"><a href="">Strong House store</a></h4>
+                                <p class="description">Strong house keeps all your informations about construction. You can freely update it any time by renovation.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            @*<div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+                                <div class="icon"><i class="icofont-tasks-alt"></i></div>
+                                <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
+                                <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+                            </div>*@
+                        </div>
+                    </div>
+
+                </div>
+</section><!-- End Services Section -->
+        <!-- ======= Portfolio Section ======= -->
+        <section id="portfolio" class="portfolio" style="padding-top: 0px;">
+            <div class="container">
+
+                <div class="bg-faded p-5 rounded" style="margin-bottom:30px;">
+                    <div class="section-title" data-aos="fade-up" style="padding-bottom: 0px;">
+                        <h2 style="margin-bottom: 0px;">Some of our <strong>Latest Desings</strong></h2>
+                    </div>
+                </div>
+                
+                <div class="row" data-aos="fade-up">
+                    <div class="col-lg-12 d-flex justify-content-center">
+                        <ul id="portfolio-flters">
+                            <li data-filter="*" class="filter-active">All</li>
+                            <li data-filter=".filter-app">App</li>
+                            <li data-filter=".filter-card">Card</li>
+                            <li data-filter=".filter-web">Web</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row portfolio-container" data-aos="fade-up">
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                        <img src="../../HomePage/assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>App 1</h4>
+                            <p>App</p>
+                            <a href="../../HomePage/assets/img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+                            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                        <img src="../../HomePage/assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Web 3</h4>
+                            <p>Web</p>
+                            <a href="../../HomePage/assets/img/portfolio/portfolio-2.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
+                            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                        <img src="../../HomePage/assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>App 2</h4>
+                            <p>App</p>
+                            <a href="../../HomePage/assets/img/portfolio/portfolio-3.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
+                            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                        <img src="../../HomePage/assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Card 2</h4>
+                            <p>Card</p>
+                            <a href="../../HomePage/assets/img/portfolio/portfolio-4.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
+                            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                        <img src="../../HomePage/assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Web 2</h4>
+                            <p>Web</p>
+                            <a href="../../HomePage/assets/img/portfolio/portfolio-5.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
+                            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                        <img src="../../HomePage/assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>App 3</h4>
+                            <p>App</p>
+                            <a href="../../HomePage/assets/img/portfolio/portfolio-6.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
+                            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                        <img src="../../HomePage/assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Card 1</h4>
+                            <p>Card</p>
+                            <a href="../../HomePage/assets/img/portfolio/portfolio-7.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
+                            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                        <img src="../../HomePage/assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Card 3</h4>
+                            <p>Card</p>
+                            <a href="../../HomePage/assets/img/portfolio/portfolio-8.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
+                            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                        <img src="../../HomePage/assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Web 3</h4>
+                            <p>Web</p>
+                            <a href="../../HomePage/assets/img/portfolio/portfolio-9.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
+                            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Portfolio Section -->
+        <!-- ======= Our Clients Section ======= -->
+        <section id="clients" class="clients" style="padding-top: 0px;">
+            <div class="container">
+
+                <div class="bg-faded p-5 rounded" style="margin-bottom:30px;">
+                    <div class="section-title" data-aos="fade-up" style="padding-bottom: 0px;">
+                        <h2 style="margin-bottom: 0px;">Our <strong>Clients</strong></h2>
+                        <p>When you visit into our web site, we are dedicated to providing your information with availability, intergrety, reliability and security.</p>
+
+                    </div>
+                </div>
+
+                <div class="row no-gutters clients-wrap clearfix" data-aos="fade-up">
+
+                    <div class="col-lg-3 col-md-4 col-xs-6">
+                        <div class="client-logo">
+                            <img src="../../HomePage/assets/img/clients/client-1.png" class="img-fluid" alt="">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-xs-6">
+                        <div class="client-logo">
+                            <img src="../../HomePage/assets/img/clients/client-2.png" class="img-fluid" alt="">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-xs-6">
+                        <div class="client-logo">
+                            <img src="../../HomePage/assets/img/clients/client-3.png" class="img-fluid" alt="">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-xs-6">
+                        <div class="client-logo">
+                            <img src="../../HomePage/assets/img/clients/client-4.png" class="img-fluid" alt="">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-xs-6">
+                        <div class="client-logo">
+                            <img src="../../HomePage/assets/img/clients/client-5.png" class="img-fluid" alt="">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-xs-6">
+                        <div class="client-logo">
+                            <img src="../../HomePage/assets/img/clients/client-6.png" class="img-fluid" alt="">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-xs-6">
+                        <div class="client-logo">
+                            <img src="../../HomePage/assets/img/clients/client-7.png" class="img-fluid" alt="">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-xs-6">
+                        <div class="client-logo">
+                            <img src="../../HomePage/assets/img/clients/client-8.png" class="img-fluid" alt="">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Our Clients Section -->
+
+    </main><!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <footer id="footer" style="background-color:#14100f00;">
+
+        <div class="footer-top" style="background-color:#301a12ed;">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3>Strong House</h3>
+                        <p>
+                            145/B <br>
+                            Weedagama, Bandaragama<br>
+                            Sri Lanka <br><br>
+                            <strong>Phone:</strong> +9471 033 7486<br>
+                            <strong>Email:</strong> pasindumadushan7@gmail.com<br>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 footer-links">
+                        
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Our Services</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Flooring Products</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Walling Products</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Ceiling Productst</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Strong house store</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 footer-newsletter">
+                        <h4>Join with us</h4>
+                        <p>Protect your valuables</p>
+                        <form action="" method="post">
+                            <input type="email" name="email"><input type="submit" value="Subscribe">
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container d-md-flex py-4" style="background-color:#301a12;">
+
+            <div class="mr-md-auto text-center text-md-left">
+                <div class="copyright">
+                    &copy; Copyright <strong><span>Strong House</span></strong>. All Rights Reserved
+                </div>
+                @*<div class="credits">
+                     All the links in the footer should remain intact. 
+                     You can delete the links only if you purchased the pro version. 
+                     Licensing information: https://bootstrapmade.com/license/ 
+                     Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flattern-multipurpose-bootstrap-template/ 
+                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                </div>*@
+            </div>
+            <div class="social-links text-center text-md-right pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="../../HomePage/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../../HomePage/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../HomePage/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="../../HomePage/assets/vendor/php-email-form/validate.js"></script>
+    <script src="../../HomePage/assets/vendor/jquery-sticky/jquery.sticky.js"></script>
+    <script src="../../HomePage/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="../../HomePage/assets/vendor/venobox/venobox.min.js"></script>
+    <script src="../../HomePage/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+    <script src="../../HomePage/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="../../HomePage/assets/vendor/aos/aos.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="../../HomePage/assets/js/main.js"></script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/BootstrapStart/vendor/jquery/jquery.min.js"></script>
+    <script src="~/BootstrapStart/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

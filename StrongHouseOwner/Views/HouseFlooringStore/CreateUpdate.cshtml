@@ -1,0 +1,622 @@
+﻿@model IEnumerable<StrongHouseOwner.Data.EntityModel.TypeOfFlooringSample>
+@{
+    ViewBag.Title = "CreateUpdate";
+}
+@using System.Web;
+@using System.Web.Script;
+@using System.Web.Script.Serialization;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Business Casual - Start Bootstrap Theme</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/BootstrapStart/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/BootstrapStart/css/business-casual.min.css" rel="stylesheet" />
+    <link href="~/BootstrapStart/css/simple-sidebar.css" rel="stylesheet" />
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <link href="~/gitcdn/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <h1 class="site-heading text-center text-white d-none d-lg-block">
+        <span class="site-heading-upper text-primary mb-3">RENOVATION WHILE KEEPING CONSTRUCTION DETAILS</span>
+        <div class="row">
+            <div class="col-4 col-md-10" style="padding-right: 0px;padding-left: 200px;">
+                <span class="site-heading-lower">Strong House Owner</span>
+            </div>
+            <div class="col-4 col-md-2">
+                @if (Session["User_Name"] == null)
+                {
+
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="color:#fff;font-size:.9rem;"></span>
+                        <img class="img-profile rounded-circle" src="~/Images/User/DefaultImage.png" style="width: 50px; height: 50px;">
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="font-size:12px;">
+                        <a class="dropdown-item" href='@Url.Action("Index","Login")'>
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Login
+                        </a>
+                        <a class="dropdown-item" href='@Url.Action("Index","Registration")'>
+                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Register
+                        </a>
+                        @*<div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>*@
+                    </div>
+
+                }
+                else
+                {
+
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="color:#fff;font-size:.9rem;">@Session["User_Name"]</span>
+                        <img class="img-profile rounded-circle" src="~/Images/User/DefaultImage.png" style="width: 50px; height: 50px;">
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="font-size:12px;">
+                        <a class="dropdown-item" href="#">
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Profile
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href='@Url.Action("LogOut","Login")'>
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </a>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </h1>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Start Bootstrap</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav mx-auto justify-content-center">
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Home", "Home")'>
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Products", "Product")'>Products</a>
+                    </li>
+                    <li class="nav-item active px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Index", "Store")'>Store</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="d-flex" id="wrapper">
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <button class="btn btn-primary" onclick="location.href='@Url.Action("UserPanel","Store")'">
+                                <i class="fas fa-cart-plus ml-2" aria-hidden="true">Back</i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="bg-faded p-4 rounded">
+                <div class="container">
+                    <form id="CreateHouseFlooringForm" method="post" enctype="application/x-www-form-urlencoded" novalidate>
+
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="SelectSample" name="SelectSample" checked data-toggle="toggle" data-on="Select From Products" data-off="Create New" data-onstyle="primary" data-offstyle="info">
+                        </label>
+
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="PaintOrTile" name="SelectSample" checked data-toggle="toggle" data-on="Tile" data-off="Paint" data-onstyle="primary" data-offstyle="info">
+                        </label>
+
+                        <div class="form-group">
+                            <label for="Ex_Flooring_Sample_Name">Sample Name</label>
+                            <div class="form-row">
+                                <select class="custom-select" id="Flooring_Sample_Name1" name="Flooring_Sample_Name1" aria-describedby="Flooring_Sample_Name1_Help" required>
+                                    <option selected value="">Choose Type Of Sample...</option>
+                                    @foreach (var item in Model.Select(s => new { s.FlooringTypeSampleName, s.FlooringTypeSampleCode }).Distinct().ToArray())
+                                    {
+
+                                        if (@item.FlooringTypeSampleCode == "" || @item.FlooringTypeSampleCode == null)
+                                        {
+                                            <option value="@(item.FlooringTypeSampleName)">@item.FlooringTypeSampleName</option>
+                                        }
+                                        else if (@item.FlooringTypeSampleCode != "" || @item.FlooringTypeSampleCode != null)
+                                        {
+                                            <option value="@(item.FlooringTypeSampleName+"-"+item.FlooringTypeSampleCode)">@item.FlooringTypeSampleCode - @item.FlooringTypeSampleName</option>
+                                        }
+
+                                    }
+                                </select>
+                                <input type="text" class="form-control" name="Flooring_Sample_Name2" id="Flooring_Sample_Name2" aria-describedby="Flooring_Sample_Name2_Help" placeholder="" required>
+                                <small id="Flooring_Sample_Name2" class="form-text text-muted" style="padding-left: 10px;">Ex : Oak</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Ex_Flooring_Sample_Code">Code</label>
+                            <input type="text" class="form-control input-lg" name="Flooring_Sample_Code" id="Flooring_Sample_Code" aria-describedby="Flooring_Sample_Code_Help" placeholder="" style="max-width:100%;">
+                            <small id="Flooring_Sample_Code_Help" class="form-text text-muted">Ex : C0203</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Ex_Flooring_Sample_Brand">Brand</label>
+                            <input type="text" class="form-control input-lg" name="Flooring_Sample_Brand" id="Flooring_Sample_Brand" aria-describedby="Flooring_Sample_Brand_Help" placeholder="" style="max-width:100%;" required>
+                            <small id="Flooring_Sample_Brand_Help" class="form-text text-muted">Ex : Macktiles</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Ex_Flooring_Type_Sample_Size">Size</label>
+                            <div class="form-row">
+                                <select class="custom-select" id="Flooring_Type_Sample_Size" name="Flooring_Type_Sample_Size" aria-describedby="Flooring_Type_Sample_Size_Help" required>
+                                    <option selected value="">Choose Type Of Sample...</option>
+                                </select>
+                                <table>
+                                    <tr>
+                                        <td><input type="text" class="form-control" id="Flooring_Type_Sample_Height" name="Flooring_Type_Sample_Height" aria-describedby="Flooring_Type_Sample_Size_Help" placeholder="Height" required></td>
+                                        <td></td>
+                                        <td><input type="text" class="form-control" id="Flooring_Type_Sample_Width" name="Flooring_Type_Sample_Width" aria-describedby="Flooring_Type_Sample_Size_Help" placeholder="Width" required></td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                                <small id="Flooring_Type_Sample_Size_Help" class="form-text text-muted">Ex : 4x4"</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Ex_Flooring_Mililiters">Mililiters</label>
+                            <input type="text" class="form-control input-lg" name="Flooring_Mililiters" id="Flooring_Mililiters" aria-describedby="Flooring_Mililiters_Help" placeholder="" style="max-width:100%;" required>
+                            <small id="Flooring_Mililiters_Help" class="form-text text-muted">Ex : 1000ml</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Ex_Flooring_Sample_Price">Sample Price</label>
+                            <input type="text" class="form-control input-lg" name="Flooring_Sample_Price" id="Flooring_Sample_Price" aria-describedby="Flooring_Sample_Price_Help" placeholder="" style="max-width:100%;" required>
+                            <small id="Flooring_Sample_Price_Help" class="form-text text-muted">Ex : Rs.1350 per 1000ml or Rs.95 per tile</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Ex_Flooring_Sample_Min_Amount">Minimal Amount</label>
+                            <input type="text" class="form-control input-lg" name="Flooring_Sample_Min_Amount" id="Flooring_Sample_Min_Amount" aria-describedby="Flooring_Sample_Min_Amount_Help" placeholder="" style="max-width:100%;" required>
+                            <small id="Flooring_Sample_Min_Amount_Help" class="form-text text-muted">Ex : Fill Number of tiles or mililiter per floor area</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Ex_Flooring_Sample_Total_Cost">Total Cost</label>
+                            <input type="text" class="form-control input-lg" name="Flooring_Sample_Total_Cost" id="Flooring_Sample_Total_Cost" aria-describedby="Flooring_Sample_Total_Cost_Help" placeholder="" style="max-width:100%;" required>
+                            <small id="Flooring_Sample_Total_Cost_Help" class="form-text text-muted">Ex : Total cost</small>
+                        </div>
+
+
+                        <input type="submit" class="btn btn-primary" id="CreateHouseFlooring" value="Create" />
+
+                    </form>
+
+                    <script>
+                        $('#SelectSample').change(function () {
+                            if ($('#SelectSample').is(":checked")) {
+                                $("#Flooring_Sample_Name1").attr("disabled", false);
+                                $("#Flooring_Sample_Name2").attr("disabled", true);
+                                $("#Flooring_Sample_Code").attr("disabled", true);
+                                if ($('#PaintOrTile').is(":checked")) {
+                                    $("#Flooring_Type_Sample_Size").attr("disabled", false);
+                                    $("#Flooring_Type_Sample_Height").attr("disabled", true);
+                                    $("#Flooring_Type_Sample_Width").attr("disabled", true);
+                                }
+                                else {
+                                    $("#Flooring_Type_Sample_Size").attr("disabled", true);
+                                    $("#Flooring_Type_Sample_Height").attr("disabled", true);
+                                    $("#Flooring_Type_Sample_Width").attr("disabled", true);
+                                }
+                            }
+                            else {
+                                $("#Flooring_Sample_Name1").attr("disabled", true);
+                                $("#Flooring_Sample_Name2").attr("disabled", false);
+                                $("#Flooring_Sample_Code").attr("disabled", false);
+                                if ($('#PaintOrTile').is(":checked")) {
+                                    $("#Flooring_Type_Sample_Size").attr("disabled", true);
+                                    $("#Flooring_Type_Sample_Height").attr("disabled", false);
+                                    $("#Flooring_Type_Sample_Width").attr("disabled", false);
+                                }
+                                else {
+                                    $("#Flooring_Type_Sample_Size").attr("disabled", true);
+                                    $("#Flooring_Type_Sample_Height").attr("disabled", true);
+                                    $("#Flooring_Type_Sample_Width").attr("disabled", true);
+                                }
+
+                            }
+                        });
+                        $('#SelectSample').trigger('change');
+
+                        $('#PaintOrTile').change(function () {
+                            if ($('#PaintOrTile').is(":checked")) {
+                                $("#Flooring_Mililiters").attr("disabled", true);
+                                if ($('#SelectSample').is(":checked")) {
+                                    $("#Flooring_Sample_Name1").attr("disabled", false);
+                                    $("#Flooring_Sample_Name2").attr("disabled", true);
+                                    $("#Flooring_Sample_Code").attr("disabled", true);
+                                    $("#Flooring_Type_Sample_Size").attr("disabled", false);
+                                    $("#Flooring_Type_Sample_Height").attr("disabled", true);
+                                    $("#Flooring_Type_Sample_Width").attr("disabled", true);
+                                }
+                                else {
+                                    $("#Flooring_Sample_Name1").attr("disabled", true);
+                                    $("#Flooring_Sample_Name2").attr("disabled", false);
+                                    $("#Flooring_Sample_Code").attr("disabled", false);
+                                    $("#Flooring_Type_Sample_Size").attr("disabled", true);
+                                    $("#Flooring_Type_Sample_Height").attr("disabled", false);
+                                    $("#Flooring_Type_Sample_Width").attr("disabled", false);
+
+                                }
+                            }
+                            else {
+                                $("#Flooring_Mililiters").attr("disabled", false);
+                                $("#Flooring_Type_Sample_Size").attr("disabled", true);
+                                $("#Flooring_Type_Sample_Height").attr("disabled", true);
+                                $("#Flooring_Type_Sample_Width").attr("disabled", true);
+                            }
+                        });
+                        $('#PaintOrTile').trigger('change');
+
+                    </script>
+
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+
+
+
+
+    <!-- Modal: modalQuickView -->
+
+
+
+    <footer class="footer text-faded text-center py-5">
+        <div class="container">
+            <p class="m-0 small">Copyright &copy; Your Website 2019</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var imageCropWidth = 0;
+    var imageCropHeight = 0;
+    var cropPointX = 0;
+    var cropPointY = 0;
+    var jcropApi;
+
+    $(document).ready(function ()
+    {
+        $("#Flooring_Sample_Name1").change(function () {
+
+            var flooringTypeSampleNC = $(this).val().split("-");
+            var flooringTypeId = @ViewBag.ViewBagTypeOfFlooringRefId;
+            $.ajax({
+                    data: { "flooringTypeSampleName": flooringTypeSampleNC[0] ,"flooringTypeSampleCode": flooringTypeSampleNC[1], "flooringTypeId": flooringTypeId},
+                    url: '@Url.Action("PopulateDropDownList","HouseFlooringStore")',
+                    datatype: "json",
+                success: function (data) {
+                    $("#Flooring_Type_Sample_Size").empty();
+                    var size = $('#Flooring_Type_Sample_Size');
+                    $.each(data, function (val, text) {
+                        var sizeAndPrice = text;
+                        var sizeAndPriceArr = sizeAndPrice.split("x");
+                            size.append(
+                                $('<option></option>').val(text).html(sizeAndPriceArr[0]+"x"+sizeAndPriceArr[1])
+                            );
+                        });
+
+                    },
+                })
+
+        });
+
+        $("#Flooring_Type_Sample_Size").change(function () {
+            var flooringTypeSampleSize = $(this).val().split("x");
+            var flooringArea = @ViewBag.ViewBagFlooringArea;
+            $.ajax({
+                    data: { "height": flooringTypeSampleSize[0] ,"width": flooringTypeSampleSize[1], "area": flooringArea},
+                    url: '@Url.Action("MinimalAmountCalculatorForTiles","HouseFlooringStore")',
+                    datatype: "json",
+                    success: function (data) {
+                        $("#Flooring_Sample_Min_Amount").val(data);
+                        $("#Flooring_Sample_Price").val(flooringTypeSampleSize[2]);
+                    },
+                })
+        });
+
+        $("#Flooring_Type_Sample_Width").change(function () {
+            var flooringTypeSampleSizeWidth = $(this).val();
+            var flooringTypeSampleSizeHeight = $('#Flooring_Type_Sample_Height').val();
+            var flooringArea = @ViewBag.ViewBagFlooringArea;
+            $.ajax({
+                    data: { "height": flooringTypeSampleSizeHeight ,"width": flooringTypeSampleSizeWidth, "area": flooringArea},
+                    url: '@Url.Action("MinimalAmountCalculatorForTiles","HouseFlooringStore")',
+                    datatype: "json",
+                    success: function (data) {
+                        $("#Flooring_Sample_Min_Amount").val(data);
+                    },
+                })
+        });
+
+        $("#Flooring_Sample_Price").change(function () {
+            var flooringSampleMinAmount = $('#Flooring_Sample_Min_Amount').val();
+            var flooringSamplePrice = $(this).val();
+            
+            $.ajax({
+                data: { "flooringSampleMinAmount": flooringSampleMinAmount, "flooringSamplePrice": flooringSamplePrice},
+                url: '@Url.Action("TotalCostCalculatorForTiles","HouseFlooringStore")',
+                datatype: "json",
+                success: function (data) {
+                    $("#Flooring_Sample_Total_Cost").val(data);
+                },
+            })
+        });
+
+        $(function () {
+
+            jQuery.validator.addMethod("noSpace", function (value, element) {
+                return value.indexOf(" ") < 0 && value != "";
+            }, "No space please and don't leave it empty");
+
+            jQuery.validator.addMethod("hyphenSeperation", function (value, element) {
+                return value.indexOf("-") > 0  && value != "";
+            }, "Please use only one hypen please and don't leave it empty");
+
+            jQuery.validator.addMethod("exactlength", function (value, element, param) {
+                return this.optional(element) || value.length == param;
+            }, $.validator.format("Please enter exactly {0} characters."));
+
+            $("#CreateHouseFlooringForm").validate({
+                //errorLabelContainer: "#PasswordError",
+                wrapper: "div",
+                rules: {
+                    Flooring_Sample_Name1: {
+                        required: true,
+                        maxlength: 50
+                    },
+                    Flooring_Sample_Name2: {
+                        required: true,
+                        maxlength: 30
+                    },
+                    Flooring_Sample_Code: {
+                        maxlength: 10
+                    },
+                    Flooring_Sample_Brand: {
+                        required: true,
+                        maxlength: 20
+                    },
+                    Flooring_Type_Sample_Size: {
+                        required: true,
+                        maxlength: 10
+                    },
+                    Flooring_Type_Sample_Height: {
+                        required: true,
+                        number: true,
+                        maxlength: 5
+                    },
+                    Flooring_Type_Sample_Width: {
+                        required: true,
+                        number: true,
+                        maxlength: 5
+                    },
+                    Flooring_Mililiters: {
+                        required: true,
+                        number: true,
+                        maxlength: 10
+                    },
+                    Flooring_Sample_Price: {
+                        required: true,
+                        number: true,
+                        maxlength: 10
+                    },
+                    Flooring_Sample_Min_Amount: {
+                        required: true,
+                        number: true,
+                        maxlength: 10
+                    },
+                    Flooring_Sample_Total_Cost: {
+                        required: true,
+                        number: true,
+                        maxlength: 10
+                    }
+                },
+
+                messages: {
+                    Flooring_Sample_Name1: {
+                        required: "Please fill the field",
+                        maxlength: "Please don't execeed maximum length 50"
+                    },
+                    Flooring_Sample_Name2: {
+                        required: "Please fill the field",
+                        maxlength: "Please don't execeed maximum length 30"
+                    },
+                    Flooring_Sample_Code: {
+                        maxlength: "Please don't execeed maximum length 10"
+                    },
+                    Flooring_Sample_Brand: {
+                        required: "Please fill the field",
+                        maxlength: "Please don't execeed maximum length 20"
+                    },
+                    Flooring_Type_Sample_Size: {
+                        required: "Please fill the field",
+                        maxlength: "Please don't execeed maximum length 10"
+                    },
+                    Flooring_Type_Sample_Height: {
+                        required: "Please fill the field",
+                        number: "Numbers only",
+                        maxlength: "Please don't execeed maximum length 5"
+                    },
+                    Flooring_Type_Sample_Width: {
+                        required: "Please fill the field",
+                        number: "Numbers only",
+                        maxlength: "Please don't execeed maximum length 5"
+                    },
+                    Flooring_Mililiters: {
+                        required: "Please fill the field",
+                        number: "Numbers only",
+                        maxlength: "Please don't execeed maximum length 10"
+                    },
+                    Flooring_Sample_Price: {
+                        required: "Please fill the field",
+                        number: "Numbers only",
+                        maxlength: "Please don't execeed maximum length 10"
+                    },
+                    Flooring_Sample_Min_Amount: {
+                        required: "Please fill the field",
+                        number: "Numbers only",
+                        maxlength: "Please don't execeed maximum length 10"
+                    },
+                    Flooring_Sample_Total_Cost: {
+                        required: "Please fill the field",
+                        number: "Numbers only",
+                        maxlength: "Please don't execeed maximum length 10"
+                    }
+                },
+
+                submitHandler: function (form) {
+                    getData();
+                }
+            });
+
+        });
+
+    });
+
+    function getData()
+    {
+
+        var CreateHouseFlooringForm = new FormData();
+        CreateHouseFlooringForm.append("Flooring_Id", @ViewBag.ViewBagStoredFlooringId);
+
+        if ($('#SelectSample').is(":checked")) {
+
+            CreateHouseFlooringForm.append("Flooring_Sample_Brand", $("#Flooring_Sample_Brand").val());
+            CreateHouseFlooringForm.append("Flooring_Sample_Price", $("#Flooring_Sample_Price").val());
+            CreateHouseFlooringForm.append("Flooring_Sample_Min_Amount", $("#Flooring_Sample_Min_Amount").val());
+            CreateHouseFlooringForm.append("Flooring_Sample_Total_Cost", $("#Flooring_Sample_Total_Cost").val());
+
+            var flooringTypeSampleNC = $("#Flooring_Sample_Name1").val().split("-");
+
+            if ($('#PaintOrTile').is(":checked")) {
+                var flooringTypeSampleSize = $("#Flooring_Type_Sample_Size").val().split("x");
+                CreateHouseFlooringForm.append("Flooring_Sample_Name", flooringTypeSampleNC[0]);
+                CreateHouseFlooringForm.append("Flooring_Sample_Code", flooringTypeSampleNC[1]);
+                CreateHouseFlooringForm.append("Flooring_Sample_Height", flooringTypeSampleSize[0]);
+                CreateHouseFlooringForm.append("Flooring_Sample_Width", flooringTypeSampleSize[1]);
+
+            }
+            else {
+                CreateHouseFlooringForm.append("Flooring_Sample_Name", flooringTypeSampleNC[0]);
+                CreateHouseFlooringForm.append("Flooring_Sample_Code", flooringTypeSampleNC[1]);
+                CreateHouseFlooringForm.append("Flooring_Mililiters", $("#Flooring_Mililiters").val());
+            }
+
+        }
+        else {
+
+            CreateHouseFlooringForm.append("Flooring_Sample_Name", $("#Flooring_Sample_Name2").val());
+            CreateHouseFlooringForm.append("Flooring_Sample_Code", $("#Flooring_Sample_Code").val());
+            CreateHouseFlooringForm.append("Flooring_Sample_Brand", $("#Flooring_Sample_Brand").val());
+            CreateHouseFlooringForm.append("Flooring_Sample_Price", $("#Flooring_Sample_Price").val());
+            CreateHouseFlooringForm.append("Flooring_Sample_Min_Amount", $("#Flooring_Sample_Min_Amount").val());
+            CreateHouseFlooringForm.append("Flooring_Sample_Total_Cost", $("#Flooring_Sample_Total_Cost").val());
+
+            if ($('#PaintOrTile').is(":checked")) {
+
+                CreateHouseFlooringForm.append("Flooring_Sample_Height", $("#Flooring_Type_Sample_Height").val());
+                CreateHouseFlooringForm.append("Flooring_Sample_Width", $("#Flooring_Type_Sample_Width").val());
+
+            }
+            else {
+                CreateHouseFlooringForm.append("Flooring_Mililiters", $("#Flooring_Mililiters").val());
+            }
+            
+
+        }
+
+        $.ajax({
+                    type: 'POST',
+                    data: CreateHouseFlooringForm,
+                    url:'@Url.Action("UpdateHouseFlooring","HouseFlooringStore")',
+                    dataType: 'json',
+                    contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                    processData: false, // NEEDED, DON'T OMIT THIS
+                    //cache: false,
+                    success: function (data)
+                    {
+
+                        if (data.validation == 1)
+                        {
+
+                            alert("Creation Sucessful");
+
+                        }
+                        else if (data.validation == 0)
+                        {
+
+                            // DoSomethingElse()
+                            alert("Creation Fail");
+
+                        }
+                        
+
+                    },
+                    error: function (response)
+                    {
+
+                        alert("error!");  //
+
+                    }
+               });
+        
+
+    }
+
+</script>
+

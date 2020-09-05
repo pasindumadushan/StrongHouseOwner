@@ -1,0 +1,399 @@
+﻿@model IEnumerable<StrongHouseOwner.Data.EntityModel.Plan>
+@{
+    ViewBag.Title = "Create";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Business Casual - Start Bootstrap Theme</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/BootstrapStart/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/BootstrapStart/css/business-casual.min.css" rel="stylesheet" />
+    <link href="~/BootstrapStart/css/simple-sidebar.css" rel="stylesheet" />
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+
+    <h1 class="site-heading text-center text-white d-none d-lg-block">
+        <span class="site-heading-upper text-primary mb-3">RENOVATION WHILE KEEPING CONSTRUCTION DETAILS</span>
+        <div class="row">
+            <div class="col-4 col-md-10" style="padding-right: 0px;padding-left: 200px;">
+                <span class="site-heading-lower">Strong House Owner</span>
+            </div>
+            <div class="col-4 col-md-2">
+                @if (Session["User_Name"] == null)
+                {
+
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="color:#fff;font-size:.9rem;"></span>
+                        <img class="img-profile rounded-circle" src="~/Images/User/DefaultImage.png" style="width: 50px; height: 50px;">
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="font-size:12px;">
+                        <a class="dropdown-item" href='@Url.Action("Index","Login")'>
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Login
+                        </a>
+                        <a class="dropdown-item" href='@Url.Action("Index","Registration")'>
+                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Register
+                        </a>
+                        @*<div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </a>*@
+                    </div>
+
+                }
+                else
+                {
+
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="color:#fff;font-size:.9rem;">@Session["User_Name"]</span>
+                        <img class="img-profile rounded-circle" src="~/Images/User/DefaultImage.png" style="width: 50px; height: 50px;">
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="font-size:12px;">
+                        <a class="dropdown-item" href="#">
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Profile
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href='@Url.Action("LogOut","Login")'>
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </a>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </h1>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Start Bootstrap</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav mx-auto justify-content-center">
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Home", "Home")'>
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Products", "Product")'>Products</a>
+                    </li>
+                    <li class="nav-item active px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Index", "Store")'>Store</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="d-flex" id="wrapper">
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <button class="btn btn-primary" onclick="location.href='@Url.Action("UserPanel","Store")'">
+                                <i class="fas fa-cart-plus ml-2" aria-hidden="true">Back</i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="bg-faded p-4 rounded">
+                <div class="container">
+                    <form id="CreateHousePlanForm" method="post" enctype="application/x-www-form-urlencoded" novalidate>
+
+                        <div class="form-group">
+                            <label for="Ex_Plan_Name">Plan Name</label>
+                            <input type="text" class="form-control" name="Plan_Name" id="Plan_Name" aria-describedby="Plan_Name_Help" placeholder="" required>
+                            <small id="Plan_Name_Help" class="form-text text-muted">Ex : Section A</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Ex_Type_Of_Plan">Type Of Plan</label>
+                            <div class="form-row">
+                                <select class="custom-select" id="Type_Of_Plan" name="Type_Of_Plan" aria-describedby="Type_Of_Plan_Help" required>
+                                    <option selected value="">Choose Type Of Plan...</option>
+                                    @foreach (var item in Model)
+                                    {
+                                        <option value="@(item.TypeOfPlan+"-"+item.PlanId)">@item.TypeOfPlan</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="Ex_Scale">Scale</label>
+                            <div class="form-row">
+                                <div class="col-md-1">
+                                    <input type="text" class="form-control" name="Scale1" id="Scale1" aria-describedby="Scale1_Help" required>
+                                </div>
+                                :
+                                <div class="col-md-1">
+                                    <input type="text" class="form-control" name="Scale2" id="Scale2" aria-describedby="Scale2_Help" required>
+                                </div>
+                            </div>
+                            <small id="Scale_Help" class="form-text text-muted">Ex : 1:16</small>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="Ex_Drawn_By">Drawn By</label>
+                            <input type="text" class="form-control input-lg" name="Drawn_By" id="Drawn_By" aria-describedby="Drawn_By_Help" placeholder="" style="max-width:100%;">
+                            <small id="Drawn_By_Help" class="form-text text-muted">Ex : Name of the person</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Ex_Additional_Information">Additional Information</label>
+                            <input type="text" class="form-control" name="Additional_Information" id="Additional_Information" aria-describedby="Additional_Information_Help" placeholder="">
+                            <small id="Additional_Information_Help" class="form-text text-muted"></small>
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Plan Image</label>
+
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="file" id="file" name="file">
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <div style="height:200px; width:200px; overflow:auto;">
+                                <img id="img" alt="Plan Image">
+                            </div>
+
+                            <canvas id="canvas" height="5" width="5" style="vertical-align:top;"></canvas>
+
+
+                        </div>
+
+                        <input type="submit" class="btn btn-primary" id="CreateHousePlan" value="Create" />
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+
+
+
+
+    <!-- Modal: modalQuickView -->
+
+
+
+    <footer class="footer text-faded text-center py-5">
+        <div class="container">
+            <p class="m-0 small">Copyright &copy; Your Website 2019</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var imageCropWidth = 0;
+    var imageCropHeight = 0;
+    var cropPointX = 0;
+    var cropPointY = 0;
+    var jcropApi;
+
+    $(document).ready(function ()
+    {
+
+         $(function () {
+
+            jQuery.validator.addMethod("noSpace", function (value, element)
+            {
+                return value.indexOf(" ") < 0 && value != "";
+            }, "No space please and don't leave it empty");
+
+            jQuery.validator.addMethod("exactlength", function (value, element, param)
+            {
+                return this.optional(element) || value.length == param;
+            }, $.validator.format("Please enter exactly {0} characters."));
+
+            $("#CreateHousePlanForm").validate({
+                //errorLabelContainer: "#PasswordError",
+                wrapper: "div",
+                rules: {
+                    Plan_Name: {
+                        required: true
+                    },
+                    Type_Of_Plan: {
+                        required: true
+                    },
+                    Scale1: {
+                        required: true,
+                        digits: true
+                    },
+                    Scale2: {
+                        required: true,
+                        digits: true
+                    },
+                    Additional_Information: {
+                        maxlength: 500
+                    }
+                },
+
+                messages: {
+                    Plan_Name: {
+                        required: "Please provide a name"
+                    },
+                    Type_Of_Plan: {
+                        required: "Please select a type of plan"
+                    },
+                    Scale1: {
+                        required: "Please scale",
+                        digits: "Please use valid input"
+                    },
+                    Scale2: {
+                        required: "Please scale",
+                        digits: "Please use valid input"
+                    },
+                    Additional_Information: {
+                        maxlength: "Please don't execeed maximum length 500"
+                    }
+                },
+
+                submitHandler: function (form) {
+                    getData();
+                }
+
+            });
+        });
+        $('#file').change(function () {
+            readFile(this);
+            //initCrop();
+        });
+    });
+
+    function getData()
+    {
+
+        var CreateHousePlanForm = new FormData();
+
+        var file = $('#file').get(0).files;
+        var Scale = $("#Scale1").val() + ":" + $("#Scale2").val();
+        var TypeOfPlanArr = $("#Type_Of_Plan").val().split("-");
+
+        CreateHousePlanForm.append("House_Ref_Id", @ViewBag.ViewBagHouseRefId);
+        CreateHousePlanForm.append("Stored_Plan_Ref_Id", TypeOfPlanArr[1]);
+        CreateHousePlanForm.append("Plan_Name", $("#Plan_Name").val());
+        CreateHousePlanForm.append("Type_Of_Plan", TypeOfPlanArr[0]);
+        CreateHousePlanForm.append("Scale", Scale);
+        CreateHousePlanForm.append("Drawn_By", $("#Drawn_By").val());
+        CreateHousePlanForm.append("Additional_Information", $("#Additional_Information").val());
+
+        CreateHousePlanForm.append("ImageFile", file[0]);
+
+        $.ajax({
+                    type: 'POST',
+                    data: CreateHousePlanForm,
+                    url:'@Url.Action("CreateHousePlan","HousePlanStore")',
+                    dataType: 'json',
+                    contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                    processData: false, // NEEDED, DON'T OMIT THIS
+                    //cache: false,
+                    success: function (data)
+                    {
+
+                        if (data.validation != 0)
+                        {
+
+                            alert("Creation Sucessful!");
+                            window.location.href = "/HousePlanStore?houseId="+ @ViewBag.ViewBagHouseRefId
+
+                        }
+                        else
+                        {
+
+                            // DoSomethingElse()
+                            alert("Creation Fail, Already Exist!");
+
+                        }
+
+                    },
+                    error: function (response)
+                    {
+
+                        alert("error!");  //
+
+                    }
+               });
+
+    }
+
+    function readFile(input)
+    {
+
+        if (input.files && input.files[0])
+        {
+            var reader = new FileReader();
+
+                /*Destroy jcrop initialization other wise it will hold it previous image in img tag*/
+            if (jcropApi != null)
+            {
+                jcropApi.destroy();
+            }
+            reader.onload = function (e)
+            {
+                $('#img').attr('src', "");
+                var img = $('#img').attr('src', e.target.result);
+
+                    /*Current uploaded image size*/
+                var width = img[0].height;
+                var height = img[0].width;
+                $("#lblWidth").text(width + "px");
+                $("#lblHeight").text(height + "px");
+
+                    //InitCrop must call here otherwise it will not work
+                initCrop();
+            }
+
+                reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
