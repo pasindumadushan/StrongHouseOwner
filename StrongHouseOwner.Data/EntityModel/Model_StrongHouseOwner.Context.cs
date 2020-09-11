@@ -36,5 +36,7 @@ namespace StrongHouseOwner.Data.EntityModel
         public virtual DbSet<Plan> Plans { get; set; }
         public virtual DbSet<StoredPlan> StoredPlans { get; set; }
         public virtual DbSet<StoredFlooring> StoredFloorings { get; set; }
+        public virtual DbSet<StoredWalling> StoredWallings { get; set; }
+        public virtual DbSet<StoredCeiling> StoredCeilings { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<StrongHouseOwner.Data.EntityModel.TypeOfFlooringSample>
+﻿@model IEnumerable<StrongHouseOwner.Data.EntityModel.TypeOfWallingSample>
 @{
     ViewBag.Title = "CreateUpdate";
 }
@@ -128,7 +128,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
-                            <button class="btn btn-primary" onclick="location.href='@Url.Action("Index","HouseFlooringStore", new { houseId = @ViewBag.ViewBagHouseRefId})'">
+                            <button class="btn btn-primary" onclick="location.href='@Url.Action("Index","HouseWallingStore", new { houseId = @ViewBag.ViewBagHouseRefId})'">
                                 <i class="fas fa-cart-plus ml-2" aria-hidden="true">Back</i>
                             </button>
                         </li>
@@ -138,7 +138,7 @@
 
             <div class="bg-faded p-4 rounded">
                 <div class="container">
-                    <form id="CreateHouseFlooringForm" method="post" enctype="application/x-www-form-urlencoded" novalidate>
+                    <form id="CreateHouseWallingForm" method="post" enctype="application/x-www-form-urlencoded" novalidate>
 
                         <label class="checkbox-inline">
                             <input type="checkbox" id="SelectSample" name="SelectSample" checked data-toggle="toggle" data-on="Select From Products" data-off="Create New" data-onstyle="primary" data-offstyle="info">
@@ -149,118 +149,124 @@
                         </label>
 
                         <div class="form-group">
-                            <label for="Ex_Flooring_Sample_Name">Sample Name</label>
+                            <label for="Ex_Walling_Sample_Name">Sample Name</label>
                             <div class="form-row">
-                                <select class="custom-select" id="Flooring_Sample_Name1" name="Flooring_Sample_Name1" aria-describedby="Flooring_Sample_Name1_Help" required>
+                                <select class="custom-select" id="Walling_Sample_Name1" name="Walling_Sample_Name1" aria-describedby="Walling_Sample_Name1_Help" required>
                                     <option selected value="">Choose Type Of Sample...</option>
-                                    @foreach (var item in Model.Select(s => new { s.FlooringTypeSampleName, s.FlooringTypeSampleCode }).Distinct().ToArray())
+                                    @foreach (var item in Model.Select(s => new { s.WallingTypeSampleName, s.WallingTypeSampleCode }).Distinct().ToArray())
                                     {
 
-                                        if (@item.FlooringTypeSampleCode == "" || @item.FlooringTypeSampleCode == null)
+                                        if (@item.WallingTypeSampleCode == "" || @item.WallingTypeSampleCode == null)
                                         {
-                                            <option value="@(item.FlooringTypeSampleName)">@item.FlooringTypeSampleName</option>
+                                            <option value="@(item.WallingTypeSampleName)">@item.WallingTypeSampleName</option>
                                         }
-                                        else if (@item.FlooringTypeSampleCode != "" || @item.FlooringTypeSampleCode != null)
+                                        else if (@item.WallingTypeSampleCode != "" || @item.WallingTypeSampleCode != null)
                                         {
-                                            <option value="@(item.FlooringTypeSampleName+"-"+item.FlooringTypeSampleCode)">@item.FlooringTypeSampleCode - @item.FlooringTypeSampleName</option>
+                                            <option value="@(item.WallingTypeSampleName+"-"+item.WallingTypeSampleCode)">@item.WallingTypeSampleCode - @item.WallingTypeSampleName</option>
                                         }
 
                                     }
                                 </select>
-                                <input type="text" class="form-control" name="Flooring_Sample_Name2" id="Flooring_Sample_Name2" aria-describedby="Flooring_Sample_Name2_Help" placeholder="" required>
-                                <small id="Flooring_Sample_Name2" class="form-text text-muted" style="padding-left: 10px;">Ex : Oak</small>
+                                <input type="text" class="form-control" name="Walling_Sample_Name2" id="Walling_Sample_Name2" aria-describedby="Walling_Sample_Name2_Help" placeholder="" required>
+                                <small id="Walling_Sample_Name2" class="form-text text-muted" style="padding-left: 10px;">Ex : Oak</small>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="Ex_Flooring_Sample_Code">Code</label>
-                            <input type="text" class="form-control input-lg" name="Flooring_Sample_Code" id="Flooring_Sample_Code" aria-describedby="Flooring_Sample_Code_Help" placeholder="" style="max-width:100%;">
-                            <small id="Flooring_Sample_Code_Help" class="form-text text-muted">Ex : C0203</small>
+                            <label for="Ex_Walling_Sample_Code">Code</label>
+                            <input type="text" class="form-control input-lg" name="Walling_Sample_Code" id="Walling_Sample_Code" aria-describedby="Walling_Sample_Code_Help" placeholder="" style="max-width:100%;">
+                            <small id="Walling_Sample_Code_Help" class="form-text text-muted">Ex : C0203</small>
                         </div>
 
                         <div class="form-group">
-                            <label for="Ex_Flooring_Sample_Brand">Brand</label>
-                            <input type="text" class="form-control input-lg" name="Flooring_Sample_Brand" id="Flooring_Sample_Brand" aria-describedby="Flooring_Sample_Brand_Help" placeholder="" style="max-width:100%;" required>
-                            <small id="Flooring_Sample_Brand_Help" class="form-text text-muted">Ex : Macktiles</small>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="Ex_Flooring_Type_Sample_Size">Size</label>
+                            <label for="Ex_Walling_Sample_Brand">Brand</label>
                             <div class="form-row">
-                                <select class="custom-select" id="Flooring_Type_Sample_Size" name="Flooring_Type_Sample_Size" aria-describedby="Flooring_Type_Sample_Size_Help" required>
+                                <select class="custom-select" id="Walling_Sample_Brand" name="Walling_Sample_Brand" aria-describedby="Walling_Sample_Brand_Help" required>
+                                    <option selected value="">Choose Type Of Sample...</option>
+                                    
+                                </select>
+                                <input type="text" class="form-control" name="Walling_Sample_Brand2" id="Walling_Sample_Brand2" aria-describedby="Walling_Sample_Brand2_Help" placeholder="" required>
+                                <small id="Walling_Sample_Brand2" class="form-text text-muted" style="padding-left: 10px;">Ex : Nippolac</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Ex_Walling_Type_Sample_Size">Size</label>
+                            <div class="form-row">
+                                <select class="custom-select" id="Walling_Type_Sample_Size" name="Walling_Type_Sample_Size" aria-describedby="Walling_Type_Sample_Size_Help" required>
                                     <option selected value="">Choose Type Of Sample...</option>
                                 </select>
                                 <table>
                                     <tr>
-                                        <td><input type="text" class="form-control" id="Flooring_Type_Sample_Height" name="Flooring_Type_Sample_Height" aria-describedby="Flooring_Type_Sample_Size_Help" placeholder="Height" required></td>
+                                        <td><input type="text" class="form-control" id="Walling_Type_Sample_Height" name="Walling_Type_Sample_Height" aria-describedby="Walling_Type_Sample_Size_Help" placeholder="Height" required></td>
                                         <td></td>
-                                        <td><input type="text" class="form-control" id="Flooring_Type_Sample_Width" name="Flooring_Type_Sample_Width" aria-describedby="Flooring_Type_Sample_Size_Help" placeholder="Width" required></td>
+                                        <td><input type="text" class="form-control" id="Walling_Type_Sample_Width" name="Walling_Type_Sample_Width" aria-describedby="Walling_Type_Sample_Size_Help" placeholder="Width" required></td>
                                         <td></td>
                                     </tr>
                                 </table>
-                                <small id="Flooring_Type_Sample_Size_Help" class="form-text text-muted">Ex : 4x4"</small>
+                                <small id="Walling_Type_Sample_Size_Help" class="form-text text-muted">Ex : 4x4"</small>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="Ex_Flooring_Mililiters">Mililiters</label>
-                            <input type="text" class="form-control input-lg" name="Flooring_Mililiters" id="Flooring_Mililiters" aria-describedby="Flooring_Mililiters_Help" placeholder="" style="max-width:100%;" required>
-                            <small id="Flooring_Mililiters_Help" class="form-text text-muted">Ex : 1000ml</small>
+                            <label for="Ex_Walling_Mililiters">Mililiters</label>
+                            <input type="text" class="form-control input-lg" name="Walling_Mililiters" id="Walling_Mililiters" aria-describedby="Walling_Mililiters_Help" placeholder="" style="max-width:100%;" required>
+                            <small id="Walling_Mililiters_Help" class="form-text text-muted">Ex : 1000ml</small>
                         </div>
 
                         <div class="form-group">
-                            <label for="Ex_Flooring_Sample_Price">Sample Price</label>
-                            <input type="text" class="form-control input-lg" name="Flooring_Sample_Price" id="Flooring_Sample_Price" aria-describedby="Flooring_Sample_Price_Help" placeholder="" style="max-width:100%;" required>
-                            <small id="Flooring_Sample_Price_Help" class="form-text text-muted">Ex : Rs.1350 per 1000ml or Rs.95 per tile</small>
+                            <label for="Ex_Walling_Sample_Price">Sample Price</label>
+                            <input type="text" class="form-control input-lg" name="Walling_Sample_Price" id="Walling_Sample_Price" aria-describedby="Walling_Sample_Price_Help" placeholder="" style="max-width:100%;" required>
+                            <small id="Walling_Sample_Price_Help" class="form-text text-muted">Ex : Rs.1350 per 1000ml or Rs.95 per tile</small>
                         </div>
 
                         <div class="form-group">
-                            <label for="Ex_Flooring_Sample_Min_Amount">Minimal Amount</label>
-                            <input type="text" class="form-control input-lg" name="Flooring_Sample_Min_Amount" id="Flooring_Sample_Min_Amount" aria-describedby="Flooring_Sample_Min_Amount_Help" placeholder="" style="max-width:100%;" required>
-                            <small id="Flooring_Sample_Min_Amount_Help" class="form-text text-muted">Ex : Fill Number of tiles or mililiter per floor area</small>
+                            <label for="Ex_Walling_Sample_Min_Amount">Minimal Amount</label>
+                            <input type="text" class="form-control input-lg" name="Walling_Sample_Min_Amount" id="Walling_Sample_Min_Amount" aria-describedby="Walling_Sample_Min_Amount_Help" placeholder="" style="max-width:100%;" required>
+                            <small id="Walling_Sample_Min_Amount_Help" class="form-text text-muted">Ex : Fill Number of tiles or mililiter per floor area</small>
                         </div>
 
                         <div class="form-group">
-                            <label for="Ex_Flooring_Sample_Total_Cost">Total Cost</label>
-                            <input type="text" class="form-control input-lg" name="Flooring_Sample_Total_Cost" id="Flooring_Sample_Total_Cost" aria-describedby="Flooring_Sample_Total_Cost_Help" placeholder="" style="max-width:100%;" required>
-                            <small id="Flooring_Sample_Total_Cost_Help" class="form-text text-muted">Ex : Total cost</small>
+                            <label for="Ex_Walling_Sample_Total_Cost">Total Cost</label>
+                            <input type="text" class="form-control input-lg" name="Walling_Sample_Total_Cost" id="Walling_Sample_Total_Cost" aria-describedby="Walling_Sample_Total_Cost_Help" placeholder="" style="max-width:100%;" required>
+                            <small id="Walling_Sample_Total_Cost_Help" class="form-text text-muted">Ex : Total cost</small>
                         </div>
 
 
-                        <input type="submit" class="btn btn-primary" id="CreateHouseFlooring" value="Create" />
+                        <input type="submit" class="btn btn-primary" id="CreateHouseWalling" value="Create" />
 
                     </form>
 
                     <script>
                         $('#SelectSample').change(function () {
                             if ($('#SelectSample').is(":checked")) {
-                                $("#Flooring_Sample_Name1").attr("disabled", false);
-                                $("#Flooring_Sample_Name2").attr("disabled", true);
-                                $("#Flooring_Sample_Code").attr("disabled", true);
+                                $("#Walling_Sample_Name1").attr("disabled", false);
+                                $("#Walling_Sample_Name2").attr("disabled", true);
+                                $("#Walling_Sample_Code").attr("disabled", true);
                                 if ($('#PaintOrTile').is(":checked")) {
-                                    $("#Flooring_Type_Sample_Size").attr("disabled", false);
-                                    $("#Flooring_Type_Sample_Height").attr("disabled", true);
-                                    $("#Flooring_Type_Sample_Width").attr("disabled", true);
+                                    $("#Walling_Type_Sample_Size").attr("disabled", false);
+                                    $("#Walling_Type_Sample_Height").attr("disabled", true);
+                                    $("#Walling_Type_Sample_Width").attr("disabled", true);
                                 }
                                 else {
-                                    $("#Flooring_Type_Sample_Size").attr("disabled", true);
-                                    $("#Flooring_Type_Sample_Height").attr("disabled", true);
-                                    $("#Flooring_Type_Sample_Width").attr("disabled", true);
+                                    $("#Walling_Type_Sample_Size").attr("disabled", true);
+                                    $("#Walling_Type_Sample_Height").attr("disabled", true);
+                                    $("#Walling_Type_Sample_Width").attr("disabled", true);
                                 }
                             }
                             else {
-                                $("#Flooring_Sample_Name1").attr("disabled", true);
-                                $("#Flooring_Sample_Name2").attr("disabled", false);
-                                $("#Flooring_Sample_Code").attr("disabled", false);
+                                $("#Walling_Sample_Name1").attr("disabled", true);
+                                $("#Walling_Sample_Name2").attr("disabled", false);
+                                $("#Walling_Sample_Code").attr("disabled", false);
                                 if ($('#PaintOrTile').is(":checked")) {
-                                    $("#Flooring_Type_Sample_Size").attr("disabled", true);
-                                    $("#Flooring_Type_Sample_Height").attr("disabled", false);
-                                    $("#Flooring_Type_Sample_Width").attr("disabled", false);
+                                    $("#Walling_Type_Sample_Size").attr("disabled", true);
+                                    $("#Walling_Type_Sample_Height").attr("disabled", false);
+                                    $("#Walling_Type_Sample_Width").attr("disabled", false);
                                 }
                                 else {
-                                    $("#Flooring_Type_Sample_Size").attr("disabled", true);
-                                    $("#Flooring_Type_Sample_Height").attr("disabled", true);
-                                    $("#Flooring_Type_Sample_Width").attr("disabled", true);
+                                    $("#Walling_Type_Sample_Size").attr("disabled", true);
+                                    $("#Walling_Type_Sample_Height").attr("disabled", true);
+                                    $("#Walling_Type_Sample_Width").attr("disabled", true);
                                 }
 
                             }
@@ -269,30 +275,30 @@
 
                         $('#PaintOrTile').change(function () {
                             if ($('#PaintOrTile').is(":checked")) {
-                                $("#Flooring_Mililiters").attr("disabled", true);
+                                $("#Walling_Mililiters").attr("disabled", true);
                                 if ($('#SelectSample').is(":checked")) {
-                                    $("#Flooring_Sample_Name1").attr("disabled", false);
-                                    $("#Flooring_Sample_Name2").attr("disabled", true);
-                                    $("#Flooring_Sample_Code").attr("disabled", true);
-                                    $("#Flooring_Type_Sample_Size").attr("disabled", false);
-                                    $("#Flooring_Type_Sample_Height").attr("disabled", true);
-                                    $("#Flooring_Type_Sample_Width").attr("disabled", true);
+                                    $("#Walling_Sample_Name1").attr("disabled", false);
+                                    $("#Walling_Sample_Name2").attr("disabled", true);
+                                    $("#Walling_Sample_Code").attr("disabled", true);
+                                    $("#Walling_Type_Sample_Size").attr("disabled", false);
+                                    $("#Walling_Type_Sample_Height").attr("disabled", true);
+                                    $("#Walling_Type_Sample_Width").attr("disabled", true);
                                 }
                                 else {
-                                    $("#Flooring_Sample_Name1").attr("disabled", true);
-                                    $("#Flooring_Sample_Name2").attr("disabled", false);
-                                    $("#Flooring_Sample_Code").attr("disabled", false);
-                                    $("#Flooring_Type_Sample_Size").attr("disabled", true);
-                                    $("#Flooring_Type_Sample_Height").attr("disabled", false);
-                                    $("#Flooring_Type_Sample_Width").attr("disabled", false);
+                                    $("#Walling_Sample_Name1").attr("disabled", true);
+                                    $("#Walling_Sample_Name2").attr("disabled", false);
+                                    $("#Walling_Sample_Code").attr("disabled", false);
+                                    $("#Walling_Type_Sample_Size").attr("disabled", true);
+                                    $("#Walling_Type_Sample_Height").attr("disabled", false);
+                                    $("#Walling_Type_Sample_Width").attr("disabled", false);
 
                                 }
                             }
                             else {
-                                $("#Flooring_Mililiters").attr("disabled", false);
-                                $("#Flooring_Type_Sample_Size").attr("disabled", true);
-                                $("#Flooring_Type_Sample_Height").attr("disabled", true);
-                                $("#Flooring_Type_Sample_Width").attr("disabled", true);
+                                $("#Walling_Mililiters").attr("disabled", false);
+                                $("#Walling_Type_Sample_Size").attr("disabled", true);
+                                $("#Walling_Type_Sample_Height").attr("disabled", true);
+                                $("#Walling_Type_Sample_Width").attr("disabled", true);
                             }
                         });
                         $('#PaintOrTile').trigger('change');
@@ -332,22 +338,25 @@
 
     $(document).ready(function ()
     {
-        $("#Flooring_Sample_Name1").change(function () {
+        $("#Walling_Sample_Name1").change(function () {
 
-            var flooringTypeSampleNC = $(this).val().split("-");
-            var flooringTypeId = @ViewBag.ViewBagTypeOfFlooringRefId;
+            var wallingTypeSampleNC = $(this).val().split("-");
+            var wallingTypeId = @ViewBag.ViewBagTypeOfWallingRefId;
             $.ajax({
-                    data: { "flooringTypeSampleName": flooringTypeSampleNC[0] ,"flooringTypeSampleCode": flooringTypeSampleNC[1], "flooringTypeId": flooringTypeId},
-                    url: '@Url.Action("PopulateDropDownList","HouseFlooringStore")',
+                    data: { "wallingTypeSampleName": wallingTypeSampleNC[0] ,"wallingTypeSampleCode": wallingTypeSampleNC[1], "wallingTypeId": wallingTypeId},
+                    url: '@Url.Action("PopulateDropDownList","HouseWallingStore")',
                     datatype: "json",
                 success: function (data) {
-                    $("#Flooring_Type_Sample_Size").empty();
-                    var size = $('#Flooring_Type_Sample_Size');
+                    $("#Walling_Mililiters").empty();
+                    $("#Walling_Sample_Brand").empty();
+                    var size = $('#Walling_Mililiters');
+                    var brand = $('#Walling_Sample_Brand'); 
                     $.each(data, function (val, text) {
-                        var sizeAndPrice = text;
-                        var sizeAndPriceArr = sizeAndPrice.split("x");
-                            size.append(
-                                $('<option></option>').val(text).html(sizeAndPriceArr[0]+"x"+sizeAndPriceArr[1])
+                        var litersAndPrice = text;
+                        var litersAndPriceArr = litersAndPrice.split("*");
+                            
+                            brand.append(
+                                $('<option></option>').val(text).html(litersAndPriceArr[0]+" - "+litersAndPriceArr[1] +" ml")
                             );
                         });
 
@@ -356,44 +365,57 @@
 
         });
 
-        $("#Flooring_Type_Sample_Size").change(function () {
-            var flooringTypeSampleSize = $(this).val().split("x");
-            var flooringArea = @ViewBag.ViewBagFlooringArea;
+        $("#Walling_Sample_Brand").change(function () {
+            alert("here");
+            var wallingTypeSampleBLR =  $('#Walling_Sample_Brand').val().split("*");
+            var wallingTypeId = @ViewBag.ViewBagTypeOfWallingRefId;
+
+            $("#Walling_Mililiters").empty();
+            $("#Walling_Sample_Price").empty();
+            $('#Walling_Mililiters').val(wallingTypeSampleBLR[1]);
+            $("#Walling_Sample_Price").val(wallingTypeSampleBLR[2]);
+            
+
+        });
+
+        $("#Walling_Type_Sample_Size").change(function () {
+            var wallingTypeSampleSize = $(this).val().split("x");
+            var wallingArea = @ViewBag.ViewBagWallingArea;
             $.ajax({
-                    data: { "height": flooringTypeSampleSize[0] ,"width": flooringTypeSampleSize[1], "area": flooringArea},
-                    url: '@Url.Action("MinimalAmountCalculatorForTiles","HouseFlooringStore")',
+                    data: { "height": wallingTypeSampleSize[0] ,"width": wallingTypeSampleSize[1], "area": wallingArea},
+                    url: '@Url.Action("MinimalAmountCalculatorForTiles","HouseWallingStore")',
                     datatype: "json",
                     success: function (data) {
-                        $("#Flooring_Sample_Min_Amount").val(data);
-                        $("#Flooring_Sample_Price").val(flooringTypeSampleSize[2]);
+                        $("#Walling_Sample_Min_Amount").val(data);
+                        $("#Walling_Sample_Price").val(wallingTypeSampleSize[2]);
                     },
                 })
         });
 
-        $("#Flooring_Type_Sample_Width").change(function () {
-            var flooringTypeSampleSizeWidth = $(this).val();
-            var flooringTypeSampleSizeHeight = $('#Flooring_Type_Sample_Height').val();
-            var flooringArea = @ViewBag.ViewBagFlooringArea;
+        $("#Walling_Type_Sample_Width").change(function () {
+            var wallingTypeSampleSizeWidth = $(this).val();
+            var wallingTypeSampleSizeHeight = $('#Walling_Type_Sample_Height').val();
+            var wallingArea = @ViewBag.ViewBagWallingArea;
             $.ajax({
-                    data: { "height": flooringTypeSampleSizeHeight ,"width": flooringTypeSampleSizeWidth, "area": flooringArea},
-                    url: '@Url.Action("MinimalAmountCalculatorForTiles","HouseFlooringStore")',
+                    data: { "height": wallingTypeSampleSizeHeight ,"width": wallingTypeSampleSizeWidth, "area": wallingArea},
+                    url: '@Url.Action("MinimalAmountCalculatorForTiles","HouseWallingStore")',
                     datatype: "json",
                     success: function (data) {
-                        $("#Flooring_Sample_Min_Amount").val(data);
+                        $("#Walling_Sample_Min_Amount").val(data);
                     },
                 })
         });
 
-        $("#Flooring_Sample_Price").change(function () {
-            var flooringSampleMinAmount = $('#Flooring_Sample_Min_Amount').val();
-            var flooringSamplePrice = $(this).val();
+        $("#Walling_Sample_Price").change(function () {
+            var wallingSampleMinAmount = $('#Walling_Sample_Min_Amount').val();
+            var wallingSamplePrice = $(this).val();
             
             $.ajax({
-                data: { "flooringSampleMinAmount": flooringSampleMinAmount, "flooringSamplePrice": flooringSamplePrice},
-                url: '@Url.Action("TotalCostCalculatorForTiles","HouseFlooringStore")',
+                data: { "wallingSampleMinAmount": wallingSampleMinAmount, "wallingSamplePrice": wallingSamplePrice},
+                url: '@Url.Action("TotalCostCalculatorForTiles","HouseWallingStore")',
                 datatype: "json",
                 success: function (data) {
-                    $("#Flooring_Sample_Total_Cost").val(data);
+                    $("#Walling_Sample_Total_Cost").val(data);
                 },
             })
         });
@@ -412,55 +434,55 @@
                 return this.optional(element) || value.length == param;
             }, $.validator.format("Please enter exactly {0} characters."));
 
-            $("#CreateHouseFlooringForm").validate({
+            $("#CreateHouseWallingForm").validate({
                 //errorLabelContainer: "#PasswordError",
                 wrapper: "div",
                 rules: {
-                    Flooring_Sample_Name1: {
+                    Walling_Sample_Name1: {
                         required: true,
                         maxlength: 50
                     },
-                    Flooring_Sample_Name2: {
+                    Walling_Sample_Name2: {
                         required: true,
                         maxlength: 30
                     },
-                    Flooring_Sample_Code: {
+                    Walling_Sample_Code: {
                         maxlength: 10
                     },
-                    Flooring_Sample_Brand: {
+                    Walling_Sample_Brand: {
                         required: true,
                         maxlength: 20
                     },
-                    Flooring_Type_Sample_Size: {
+                    Walling_Type_Sample_Size: {
                         required: true,
                         maxlength: 10
                     },
-                    Flooring_Type_Sample_Height: {
+                    Walling_Type_Sample_Height: {
                         required: true,
                         number: true,
                         maxlength: 5
                     },
-                    Flooring_Type_Sample_Width: {
+                    Walling_Type_Sample_Width: {
                         required: true,
                         number: true,
                         maxlength: 5
                     },
-                    Flooring_Mililiters: {
+                    Walling_Mililiters: {
                         required: true,
                         number: true,
                         maxlength: 10
                     },
-                    Flooring_Sample_Price: {
+                    Walling_Sample_Price: {
                         required: true,
                         number: true,
                         maxlength: 10
                     },
-                    Flooring_Sample_Min_Amount: {
+                    Walling_Sample_Min_Amount: {
                         required: true,
                         number: true,
                         maxlength: 10
                     },
-                    Flooring_Sample_Total_Cost: {
+                    Walling_Sample_Total_Cost: {
                         required: true,
                         number: true,
                         maxlength: 10
@@ -468,51 +490,51 @@
                 },
 
                 messages: {
-                    Flooring_Sample_Name1: {
+                    Walling_Sample_Name1: {
                         required: "Please fill the field",
                         maxlength: "Please don't execeed maximum length 50"
                     },
-                    Flooring_Sample_Name2: {
+                    Walling_Sample_Name2: {
                         required: "Please fill the field",
                         maxlength: "Please don't execeed maximum length 30"
                     },
-                    Flooring_Sample_Code: {
+                    Walling_Sample_Code: {
                         maxlength: "Please don't execeed maximum length 10"
                     },
-                    Flooring_Sample_Brand: {
+                    Walling_Sample_Brand: {
                         required: "Please fill the field",
                         maxlength: "Please don't execeed maximum length 20"
                     },
-                    Flooring_Type_Sample_Size: {
+                    Walling_Type_Sample_Size: {
                         required: "Please fill the field",
                         maxlength: "Please don't execeed maximum length 10"
                     },
-                    Flooring_Type_Sample_Height: {
+                    Walling_Type_Sample_Height: {
                         required: "Please fill the field",
                         number: "Numbers only",
                         maxlength: "Please don't execeed maximum length 5"
                     },
-                    Flooring_Type_Sample_Width: {
+                    Walling_Type_Sample_Width: {
                         required: "Please fill the field",
                         number: "Numbers only",
                         maxlength: "Please don't execeed maximum length 5"
                     },
-                    Flooring_Mililiters: {
+                    Walling_Mililiters: {
                         required: "Please fill the field",
                         number: "Numbers only",
                         maxlength: "Please don't execeed maximum length 10"
                     },
-                    Flooring_Sample_Price: {
+                    Walling_Sample_Price: {
                         required: "Please fill the field",
                         number: "Numbers only",
                         maxlength: "Please don't execeed maximum length 10"
                     },
-                    Flooring_Sample_Min_Amount: {
+                    Walling_Sample_Min_Amount: {
                         required: "Please fill the field",
                         number: "Numbers only",
                         maxlength: "Please don't execeed maximum length 10"
                     },
-                    Flooring_Sample_Total_Cost: {
+                    Walling_Sample_Total_Cost: {
                         required: "Please fill the field",
                         number: "Numbers only",
                         maxlength: "Please don't execeed maximum length 10"
@@ -531,50 +553,50 @@
     function getData()
     {
 
-        var CreateHouseFlooringForm = new FormData();
-        CreateHouseFlooringForm.append("Flooring_Id", @ViewBag.ViewBagStoredFlooringId);
+        var CreateHouseWallingForm = new FormData();
+        CreateHouseWallingForm.append("Walling_Id", @ViewBag.ViewBagStoredWallingId);
 
         if ($('#SelectSample').is(":checked")) {
 
-            CreateHouseFlooringForm.append("Flooring_Sample_Brand", $("#Flooring_Sample_Brand").val());
-            CreateHouseFlooringForm.append("Flooring_Sample_Price", $("#Flooring_Sample_Price").val());
-            CreateHouseFlooringForm.append("Flooring_Sample_Min_Amount", $("#Flooring_Sample_Min_Amount").val());
-            CreateHouseFlooringForm.append("Flooring_Sample_Total_Cost", $("#Flooring_Sample_Total_Cost").val());
+            CreateHouseWallingForm.append("Walling_Sample_Brand", $("#Walling_Sample_Brand").val());
+            CreateHouseWallingForm.append("Walling_Sample_Price", $("#Walling_Sample_Price").val());
+            CreateHouseWallingForm.append("Walling_Sample_Min_Amount", $("#Walling_Sample_Min_Amount").val());
+            CreateHouseWallingForm.append("Walling_Sample_Total_Cost", $("#Walling_Sample_Total_Cost").val());
 
-            var flooringTypeSampleNC = $("#Flooring_Sample_Name1").val().split("-");
+            var wallingTypeSampleNC = $("#Walling_Sample_Name1").val().split("-");
 
             if ($('#PaintOrTile').is(":checked")) {
-                var flooringTypeSampleSize = $("#Flooring_Type_Sample_Size").val().split("x");
-                CreateHouseFlooringForm.append("Flooring_Sample_Name", flooringTypeSampleNC[0]);
-                CreateHouseFlooringForm.append("Flooring_Sample_Code", flooringTypeSampleNC[1]);
-                CreateHouseFlooringForm.append("Flooring_Sample_Height", flooringTypeSampleSize[0]);
-                CreateHouseFlooringForm.append("Flooring_Sample_Width", flooringTypeSampleSize[1]);
+                var wallingTypeSampleSize = $("#Walling_Type_Sample_Size").val().split("x");
+                CreateHouseWallingForm.append("Walling_Sample_Name", wallingTypeSampleNC[0]);
+                CreateHouseWallingForm.append("Walling_Sample_Code", wallingTypeSampleNC[1]);
+                CreateHouseWallingForm.append("Walling_Sample_Height", wallingTypeSampleSize[0]);
+                CreateHouseWallingForm.append("Walling_Sample_Width", wallingTypeSampleSize[1]);
 
             }
             else {
-                CreateHouseFlooringForm.append("Flooring_Sample_Name", flooringTypeSampleNC[0]);
-                CreateHouseFlooringForm.append("Flooring_Sample_Code", flooringTypeSampleNC[1]);
-                CreateHouseFlooringForm.append("Flooring_Mililiters", $("#Flooring_Mililiters").val());
+                CreateHouseWallingForm.append("Walling_Sample_Name", wallingTypeSampleNC[0]);
+                CreateHouseWallingForm.append("Walling_Sample_Code", wallingTypeSampleNC[1]);
+                CreateHouseWallingForm.append("Walling_Mililiters", $("#Walling_Mililiters").val());
             }
 
         }
         else {
 
-            CreateHouseFlooringForm.append("Flooring_Sample_Name", $("#Flooring_Sample_Name2").val());
-            CreateHouseFlooringForm.append("Flooring_Sample_Code", $("#Flooring_Sample_Code").val());
-            CreateHouseFlooringForm.append("Flooring_Sample_Brand", $("#Flooring_Sample_Brand").val());
-            CreateHouseFlooringForm.append("Flooring_Sample_Price", $("#Flooring_Sample_Price").val());
-            CreateHouseFlooringForm.append("Flooring_Sample_Min_Amount", $("#Flooring_Sample_Min_Amount").val());
-            CreateHouseFlooringForm.append("Flooring_Sample_Total_Cost", $("#Flooring_Sample_Total_Cost").val());
+            CreateHouseWallingForm.append("Walling_Sample_Name", $("#Walling_Sample_Name2").val());
+            CreateHouseWallingForm.append("Walling_Sample_Code", $("#Walling_Sample_Code").val());
+            CreateHouseWallingForm.append("Walling_Sample_Brand", $("#Walling_Sample_Brand").val());
+            CreateHouseWallingForm.append("Walling_Sample_Price", $("#Walling_Sample_Price").val());
+            CreateHouseWallingForm.append("Walling_Sample_Min_Amount", $("#Walling_Sample_Min_Amount").val());
+            CreateHouseWallingForm.append("Walling_Sample_Total_Cost", $("#Walling_Sample_Total_Cost").val());
 
             if ($('#PaintOrTile').is(":checked")) {
 
-                CreateHouseFlooringForm.append("Flooring_Sample_Height", $("#Flooring_Type_Sample_Height").val());
-                CreateHouseFlooringForm.append("Flooring_Sample_Width", $("#Flooring_Type_Sample_Width").val());
+                CreateHouseWallingForm.append("Walling_Sample_Height", $("#Walling_Type_Sample_Height").val());
+                CreateHouseWallingForm.append("Walling_Sample_Width", $("#Walling_Type_Sample_Width").val());
 
             }
             else {
-                CreateHouseFlooringForm.append("Flooring_Mililiters", $("#Flooring_Mililiters").val());
+                CreateHouseWallingForm.append("Walling_Mililiters", $("#Walling_Mililiters").val());
             }
             
 
@@ -582,8 +604,8 @@
 
         $.ajax({
                     type: 'POST',
-                    data: CreateHouseFlooringForm,
-                    url:'@Url.Action("UpdateHouseFlooring","HouseFlooringStore")',
+                    data: CreateHouseWallingForm,
+                    url:'@Url.Action("UpdateHouseWalling","HouseWallingStore")',
                     dataType: 'json',
                     contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
                     processData: false, // NEEDED, DON'T OMIT THIS

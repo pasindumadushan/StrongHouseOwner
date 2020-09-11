@@ -19,6 +19,8 @@ namespace StrongHouseOwner.Data.EntityModel
         {
             this.StoredPlans = new HashSet<StoredPlan>();
             this.StoredFloorings = new HashSet<StoredFlooring>();
+            this.StoredWallings = new HashSet<StoredWalling>();
+            this.StoredCeilings = new HashSet<StoredCeiling>();
         }
     
         public int HouseId { get; set; }
@@ -44,5 +46,9 @@ namespace StrongHouseOwner.Data.EntityModel
         public virtual UserRegistration UserRegistration { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StoredFlooring> StoredFloorings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StoredWalling> StoredWallings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StoredCeiling> StoredCeilings { get; set; }
     }
 }

@@ -110,10 +110,16 @@
     <Compile Include="EntityModel\Plan.cs">
       <DependentUpon>Model_StrongHouseOwner.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityModel\StoredCeiling.cs">
+      <DependentUpon>Model_StrongHouseOwner.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityModel\StoredFlooring.cs">
       <DependentUpon>Model_StrongHouseOwner.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\StoredPlan.cs">
+      <DependentUpon>Model_StrongHouseOwner.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\StoredWalling.cs">
       <DependentUpon>Model_StrongHouseOwner.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\TypeOfCeiling.cs">
@@ -138,9 +144,11 @@
       <DependentUpon>Model_StrongHouseOwner.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\HouseCeilingStoreRepository.cs" />
     <Compile Include="Repository\HouseDetailRepository.cs" />
     <Compile Include="Repository\HouseFlooringStoreRepository.cs" />
     <Compile Include="Repository\HousePlanRepository.cs" />
+    <Compile Include="Repository\HouseWallingStoreRepository.cs" />
     <Compile Include="Repository\RegistrationRepository.cs" />
     <Compile Include="Repository\WallingRepository.cs" />
     <Compile Include="Repository\CeilingRepository.cs" />

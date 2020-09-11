@@ -71,9 +71,11 @@ namespace StrongHouseOwner.Controllers
             houseFlooringStoreRepository = new HouseFlooringStoreRepository();
             var objResult = houseFlooringStoreRepository.GetStoredFlooring(storedFlooringId);
             List<TypeOfFlooringSample> objListResult = null;
+
             ViewBag.ViewBagTypeOfFlooringRefId = objResult.StoredTypeOfFlooringRefId;
             ViewBag.ViewBagFlooringArea = objResult.FlooringArea;
             ViewBag.ViewBagStoredFlooringId = storedFlooringId;
+            ViewBag.ViewBagHouseRefId = Convert.ToInt32(objResult.HouseRefId);
 
             if (objResult != null)
             {

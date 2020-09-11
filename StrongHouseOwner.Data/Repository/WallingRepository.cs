@@ -188,6 +188,27 @@ namespace StrongHouseOwner.Data.Repository
 
         }
 
+        public TypeOfWallingSample SamplesUsingNameRP(string wallingTypeSampleName, string wallingTypeSampleCode, int wallingTypeSampleSizeHeight, int wallingTypeSampleSizewidth)
+        {
+
+            try
+            {
+
+                objEntity = new StrongHouseDBEntities();
+                var objResult = objEntity.TypeOfWallingSamples.Where(x => x.WallingTypeSampleName == wallingTypeSampleName && x.WallingTypeSampleSizeHeight == wallingTypeSampleSizeHeight && x.WallingTypeSampleSizeWidth == wallingTypeSampleSizewidth).FirstOrDefault();
+
+                return objResult;
+
+            }
+            catch (Exception)
+            {
+
+                return null;
+
+            }
+
+        }
+
         public List<TypeOfWallingSample> SameSamplesRP(string wallingTypeSampleName, string wallingTypeSampleCode, int wallingTypeId)
         {
 

@@ -352,6 +352,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HouseFlooringStoreController.cs" />
     <Compile Include="Controllers\HousePlanStoreController.cs" />
+    <Compile Include="Controllers\HouseCeilingStoreController.cs" />
+    <Compile Include="Controllers\HouseWallingStoreController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
@@ -413,6 +415,12 @@
     <Content Include="Views\HouseFlooringStore\Index.cshtml" />
     <Content Include="Views\HouseFlooringStore\Create.cshtml" />
     <Content Include="Views\HouseFlooringStore\CreateUpdate.cshtml" />
+    <Content Include="Views\HouseCeilingStore\Create.cshtml" />
+    <Content Include="Views\HouseCeilingStore\CreateUpdate.cshtml" />
+    <Content Include="Views\HouseCeilingStore\Index.cshtml" />
+    <Content Include="Views\HouseWallingStore\Create.cshtml" />
+    <Content Include="Views\HouseWallingStore\CreateUpdate.cshtml" />
+    <Content Include="Views\HouseWallingStore\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

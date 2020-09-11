@@ -1,4 +1,4 @@
-﻿@model IEnumerable<StrongHouseOwner.Data.EntityModel.TypeOfFlooring>
+﻿@model IEnumerable<StrongHouseOwner.Data.EntityModel.TypeOfCeiling>
 @{
     ViewBag.Title = "Create";
 }
@@ -125,7 +125,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
-                            <button class="btn btn-primary" onclick="location.href='@Url.Action("Index","HouseFlooringStore", new { houseId = @ViewBag.ViewBagHouseRefId})'">
+                            <button class="btn btn-primary" onclick="location.href='@Url.Action("Index","HouseCeilingStore", new { houseId = @ViewBag.ViewBagHouseRefId})'">
                                 <i class="fas fa-cart-plus ml-2" aria-hidden="true">Back</i>
                             </button>
                         </li>
@@ -135,12 +135,12 @@
 
             <div class="bg-faded p-4 rounded">
                 <div class="container">
-                    <form id="CreateHouseFlooringForm" method="post" enctype="application/x-www-form-urlencoded" novalidate>
+                    <form id="CreateHouseCeilingForm" method="post" enctype="application/x-www-form-urlencoded" novalidate>
 
                         <div class="form-group">
-                            <label for="Ex_Flooring_Name">Flooring Name</label>
-                            <input type="text" class="form-control" name="Flooring_Name" id="Flooring_Name" aria-describedby="Flooring_Name_Help" placeholder="" required>
-                            <small id="Flooring_Name_Help" class="form-text text-muted">Ex : Living Room Section A</small>
+                            <label for="Ex_Ceiling_Name">Ceiling Name</label>
+                            <input type="text" class="form-control" name="Ceiling_Name" id="Ceiling_Name" aria-describedby="Ceiling_Name_Help" placeholder="" required>
+                            <small id="Ceiling_Name_Help" class="form-text text-muted">Ex : Living Room Section A</small>
                         </div>
 
                         <div class="form-group">
@@ -164,41 +164,41 @@
                         </label>
 
                         <div class="form-group">
-                            <label for="Ex_Flooring_Category">Category</label>
+                            <label for="Ex_Ceiling_Category">Category</label>
                             <div class="form-row">
-                                <select class="custom-select" id="Flooring_Category1" name="Flooring_Category1" aria-describedby="Flooring_Category1_Help" required>
+                                <select class="custom-select" id="Ceiling_Category1" name="Ceiling_Category1" aria-describedby="Ceiling_Category1_Help" required>
                                     <option selected value="">Choose Type Of Category...</option>
                                     @foreach (var item in Model)
                                     {
-                                        <option value="@(item.FlooringTypeId+"-"+item.FlooringTypeCategory+"-"+item.FlooringType)">@item.FlooringTypeCategory - @item.FlooringType</option>
+                                        <option value="@(item.CeilingTypeId+"-"+item.CeilingTypeCategory+"-"+item.CeilingType)">@item.CeilingTypeCategory - @item.CeilingType</option>
                                     }
                                 </select>
-                                <input type="text" class="form-control" name="Flooring_Category2" id="Flooring_Category2" aria-describedby="Flooring_Category2_Help" placeholder="" required>
-                                <small id="Flooring_Category2" class="form-text text-muted" style="padding-left: 10px;">Ex : Seperate category and type with "-"  (Porcelain and Ceramic - Granite) .</small>
+                                <input type="text" class="form-control" name="Ceiling_Category2" id="Ceiling_Category2" aria-describedby="Ceiling_Category2_Help" placeholder="" required>
+                                <small id="Ceiling_Category2" class="form-text text-muted" style="padding-left: 10px;">Ex : Seperate category and type with "-"  (Porcelain and Ceramic - Granite) .</small>
                             </div>
                         </div>
 
 
 
                         <div class="form-group">
-                            <label for="Ex_Flooring_Area">Flooring Area</label>
-                            <input type="text" class="form-control input-lg" name="Flooring_Area" id="Flooring_Area" aria-describedby="Flooring_Area_Help" placeholder="" style="max-width:100%;">
-                            <small id="Flooring_Area_Help" class="form-text text-muted">Ex : 20000 sq.ft</small>
+                            <label for="Ex_Ceiling_Area">Ceiling Area</label>
+                            <input type="text" class="form-control input-lg" name="Ceiling_Area" id="Ceiling_Area" aria-describedby="Ceiling_Area_Help" placeholder="" style="max-width:100%;">
+                            <small id="Ceiling_Area_Help" class="form-text text-muted">Ex : 20000 sq.ft</small>
                         </div>
 
-                        <input type="submit" class="btn btn-primary" id="CreateHouseFlooring" value="Create" />
+                        <input type="submit" class="btn btn-primary" id="CreateHouseCeiling" value="Create" />
 
                     </form>
 
                     <script>
                         $('#SelectCategory').change(function () {
                             if ($('#SelectCategory').is(":checked")) {
-                                $("#Flooring_Category1").attr("disabled", false);
-                                $("#Flooring_Category2").attr("disabled", true);
+                                $("#Ceiling_Category1").attr("disabled", false);
+                                $("#Ceiling_Category2").attr("disabled", true);
                             }
                             else {
-                                $("#Flooring_Category1").attr("disabled", true);
-                                $("#Flooring_Category2").attr("disabled", false);
+                                $("#Ceiling_Category1").attr("disabled", true);
+                                $("#Ceiling_Category2").attr("disabled", false);
 
                             }
                         });
@@ -253,11 +253,11 @@
                 return this.optional(element) || value.length == param;
             }, $.validator.format("Please enter exactly {0} characters."));
 
-            $("#CreateHouseFlooringForm").validate({
+            $("#CreateHouseCeilingForm").validate({
                 //errorLabelContainer: "#PasswordError",
                 wrapper: "div",
                 rules: {
-                    Flooring_Name: {
+                    Ceiling_Name: {
                         required: true,
                         maxlength: 20
                     },
@@ -265,16 +265,16 @@
                         required: true,
                         maxlength: 15
                     },
-                    Flooring_Category1: {
+                    Ceiling_Category1: {
                         required: true,
                         maxlength: 50
                     },
-                    Flooring_Category2: {
+                    Ceiling_Category2: {
                         required: true,
                         hyphenSeperation: true,
                         maxlength: 50
                     },
-                    Flooring_Area: {
+                    Ceiling_Area: {
                         required: true,
                         number: true,
                         maxlength: 10
@@ -282,7 +282,7 @@
                 },
 
                 messages: {
-                    Flooring_Name: {
+                    Ceiling_Name: {
                         required: "Please fill the field",
                         maxlength: "Please don't execeed maximum length 20"
                     },
@@ -290,16 +290,16 @@
                         required: "Please fill the field",
                         maxlength: "Please don't execeed maximum length 15"
                     },
-                    Flooring_Category1: {
+                    Ceiling_Category1: {
                         required: "Please fill the field",
                         maxlength: "Please don't execeed maximum length 50"
                     },
-                    Flooring_Category2: {
+                    Ceiling_Category2: {
                         required: "Please fill the field",
                         hyphenSeperation: "Please use only one hypen please and don't leave it empty",
                         maxlength: "Please don't execeed maximum length 50"
                     },
-                    Flooring_Area: {
+                    Ceiling_Area: {
                         required: "Please fill the field",
                         number: "Numbers only",
                         maxlength: "Please don't execeed maximum length 10"
@@ -316,36 +316,36 @@
 
     function getData()
     {
-        var CreateHouseFlooringForm = new FormData();
+        var CreateHouseCeilingForm = new FormData();
 
 
 
 
         if ($('#SelectCategory').is(":checked")) {
-            var CategorySplit = $("#Flooring_Category1").val().split("-");
+            var CategorySplit = $("#Ceiling_Category1").val().split("-");
 
-            CreateHouseFlooringForm.append("Stored_Type_Of_Flooring_Ref_Id", CategorySplit[0]);
-            CreateHouseFlooringForm.append("Flooring_Category", CategorySplit[1]);
-            CreateHouseFlooringForm.append("Flooring_Type", CategorySplit[2]);
+            CreateHouseCeilingForm.append("Stored_Type_Of_Ceiling_Ref_Id", CategorySplit[0]);
+            CreateHouseCeilingForm.append("Ceiling_Category", CategorySplit[1]);
+            CreateHouseCeilingForm.append("Ceiling_Type", CategorySplit[2]);
         }
         else {
-            var CategorySplit = $("#Flooring_Category2").val().split("-");
+            var CategorySplit = $("#Ceiling_Category2").val().split("-");
 
-            CreateHouseFlooringForm.append("Flooring_Category", CategorySplit[0]);
-            CreateHouseFlooringForm.append("Flooring_Type", CategorySplit[1]);
+            CreateHouseCeilingForm.append("Ceiling_Category", CategorySplit[0]);
+            CreateHouseCeilingForm.append("Ceiling_Type", CategorySplit[1]);
 
         }
 
 
-        CreateHouseFlooringForm.append("House_Ref_Id", @ViewBag.ViewBagHouseRefId);
-        CreateHouseFlooringForm.append("Flooring_Name", $("#Flooring_Name").val());
-        CreateHouseFlooringForm.append("Type_Of_Partition", $("#Type_Of_Partition").val());
-        CreateHouseFlooringForm.append("Flooring_Area", $("#Flooring_Area").val());
+        CreateHouseCeilingForm.append("House_Ref_Id", @ViewBag.ViewBagHouseRefId);
+        CreateHouseCeilingForm.append("Ceiling_Name", $("#Ceiling_Name").val());
+        CreateHouseCeilingForm.append("Type_Of_Partition", $("#Type_Of_Partition").val());
+        CreateHouseCeilingForm.append("Ceiling_Area", $("#Ceiling_Area").val());
 
         $.ajax({
                     type: 'POST',
-                    data: CreateHouseFlooringForm,
-                    url:'@Url.Action("CreateHouseFlooring","HouseFlooringStore")',
+                    data: CreateHouseCeilingForm,
+                    url:'@Url.Action("CreateHouseCeiling","HouseCeilingStore")',
                     dataType: 'json',
                     contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
                     processData: false, // NEEDED, DON'T OMIT THIS
@@ -357,7 +357,7 @@
                         {
 
                             alert("Creation Sucessful");
-                            window.location.href = "/HouseFlooringStore/CreateUpdate?storedFlooringId="+ data.storedFlooringId
+                            window.location.href = "/HouseCeilingStore/CreateUpdate?storedCeilingId="+ data.storedCeilingId
 
                         }
                         else if (data.validation == 0)

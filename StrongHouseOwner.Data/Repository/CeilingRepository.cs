@@ -176,6 +176,27 @@ namespace StrongHouseOwner.Data.Repository
 
         }
 
+        public TypeOfCeilingSample SamplesUsingNameRP(string ceilingTypeSampleName, string ceilingTypeSampleCode, int ceilingTypeSampleSizeHeight, int ceilingTypeSampleSizewidth)
+        {
+
+            try
+            {
+
+                objEntity = new StrongHouseDBEntities();
+                var objResult = objEntity.TypeOfCeilingSamples.Where(x => x.CeilingTypeSampleName == ceilingTypeSampleName && x.CeilingTypeSampleSizeHeight == ceilingTypeSampleSizeHeight && x.CeilingTypeSampleSizeWidth == ceilingTypeSampleSizewidth).FirstOrDefault();
+
+                return objResult;
+
+            }
+            catch (Exception)
+            {
+
+                return null;
+
+            }
+
+        }
+
         public List<TypeOfCeilingSample> SameSamplesRP(string ceilingTypeSampleName, string ceilingTypeSampleCode, int ceilingTypeId)
         {
 

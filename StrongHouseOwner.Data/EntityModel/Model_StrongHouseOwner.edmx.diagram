@@ -23,6 +23,10 @@
         <AssociationConnector Association="StrongHouseDBModel.FK_StoredPlanRefIdFK_PlanIdPK" />
         <EntityTypeShape EntityType="StrongHouseDBModel.StoredFlooring" Width="1.5" PointX="12" PointY="0.875" />
         <AssociationConnector Association="StrongHouseDBModel.FK_HouseRefIdFK_HouseDetailsPK" />
+        <EntityTypeShape EntityType="StrongHouseDBModel.StoredWalling" Width="1.5" PointX="9.875" PointY="10.875" />
+        <AssociationConnector Association="StrongHouseDBModel.FK_StoredWallingFK_HouseDetailsPK" />
+        <EntityTypeShape EntityType="StrongHouseDBModel.StoredCeiling" Width="1.5" PointX="9.875" PointY="17" />
+        <AssociationConnector Association="StrongHouseDBModel.FK_StoredCeilingFK_HouseDetailsPK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
