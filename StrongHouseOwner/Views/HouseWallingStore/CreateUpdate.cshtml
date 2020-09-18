@@ -178,12 +178,15 @@
                             <small id="Walling_Sample_Code_Help" class="form-text text-muted">Ex : C0203</small>
                         </div>
 
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="SelectBrand" name="SelectBrand" checked data-toggle="toggle" data-on="Select From Brands" data-off="Create Brand" data-onstyle="primary" data-offstyle="info">
+                        </label>
+
                         <div class="form-group">
-                            <label for="Ex_Walling_Sample_Brand">Brand</label>
+                            <label for="Ex_Walling_Sample_Brand1">Brand</label>
                             <div class="form-row">
-                                <select class="custom-select" id="Walling_Sample_Brand" name="Walling_Sample_Brand" aria-describedby="Walling_Sample_Brand_Help" required>
+                                <select class="custom-select" id="Walling_Sample_Brand1" name="Walling_Sample_Brand1" aria-describedby="Walling_Sample_Brand1_Help" required>
                                     <option selected value="">Choose Type Of Sample...</option>
-                                    
                                 </select>
                                 <input type="text" class="form-control" name="Walling_Sample_Brand2" id="Walling_Sample_Brand2" aria-describedby="Walling_Sample_Brand2_Help" placeholder="" required>
                                 <small id="Walling_Sample_Brand2" class="form-text text-muted" style="padding-left: 10px;">Ex : Nippolac</small>
@@ -244,7 +247,7 @@
                                 $("#Walling_Sample_Name2").attr("disabled", true);
                                 $("#Walling_Sample_Code").attr("disabled", true);
                                 if ($('#PaintOrTile').is(":checked")) {
-                                    $("#Walling_Type_Sample_Size").attr("disabled", false);
+                                    $("#Walling_Type_Sample_Size").attr("disabled", true);
                                     $("#Walling_Type_Sample_Height").attr("disabled", true);
                                     $("#Walling_Type_Sample_Width").attr("disabled", true);
                                 }
@@ -280,9 +283,9 @@
                                     $("#Walling_Sample_Name1").attr("disabled", false);
                                     $("#Walling_Sample_Name2").attr("disabled", true);
                                     $("#Walling_Sample_Code").attr("disabled", true);
-                                    $("#Walling_Type_Sample_Size").attr("disabled", false);
-                                    $("#Walling_Type_Sample_Height").attr("disabled", true);
-                                    $("#Walling_Type_Sample_Width").attr("disabled", true);
+                                    $("#Walling_Type_Sample_Size").attr("disabled", true);
+                                    $("#Walling_Type_Sample_Height").attr("disabled", false);
+                                    $("#Walling_Type_Sample_Width").attr("disabled", false);
                                 }
                                 else {
                                     $("#Walling_Sample_Name1").attr("disabled", true);
@@ -302,6 +305,19 @@
                             }
                         });
                         $('#PaintOrTile').trigger('change');
+
+                        $('#SelectBrand').change(function () {
+                            if ($('#SelectBrand').is(":checked"))
+                            {
+                                $("#Walling_Sample_Brand1").attr("disabled", false);
+                                $("#Walling_Sample_Brand2").attr("disabled", true);
+                            }
+                            else {
+                                $("#Walling_Sample_Brand1").attr("disabled", true);
+                                $("#Walling_Sample_Brand2").attr("disabled", false);
+                            }
+                        });
+                        $('#SelectBrand').trigger('change');
 
                     </script>
 
@@ -348,16 +364,22 @@
                     datatype: "json",
                 success: function (data) {
                     $("#Walling_Mililiters").empty();
-                    $("#Walling_Sample_Brand").empty();
+                    $("#Walling_Sample_Brand1").empty();
                     var size = $('#Walling_Mililiters');
-                    var brand = $('#Walling_Sample_Brand'); 
+                    var brand = $('#Walling_Sample_Brand1'); 
+
+                    brand.append(
+                                $('<option></option>').val("Choose Type Of Sample...").html("Choose Type Of Sample...")
+                    );
+
                     $.each(data, function (val, text) {
                         var litersAndPrice = text;
                         var litersAndPriceArr = litersAndPrice.split("*");
                             
                             brand.append(
-                                $('<option></option>').val(text).html(litersAndPriceArr[0]+" - "+litersAndPriceArr[1] +" ml")
+                                $('<option></option>').val(text).html(litersAndPriceArr[0] + " - " + litersAndPriceArr[1] + " ml")
                             );
+                        
                         });
 
                     },
@@ -365,9 +387,8 @@
 
         });
 
-        $("#Walling_Sample_Brand").change(function () {
-            alert("here");
-            var wallingTypeSampleBLR =  $('#Walling_Sample_Brand').val().split("*");
+        $("#Walling_Sample_Brand1").change(function () {
+            var wallingTypeSampleBLR =  $('#Walling_Sample_Brand1').val().split("*");
             var wallingTypeId = @ViewBag.ViewBagTypeOfWallingRefId;
 
             $("#Walling_Mililiters").empty();
@@ -378,47 +399,6 @@
 
         });
 
-        $("#Walling_Type_Sample_Size").change(function () {
-            var wallingTypeSampleSize = $(this).val().split("x");
-            var wallingArea = @ViewBag.ViewBagWallingArea;
-            $.ajax({
-                    data: { "height": wallingTypeSampleSize[0] ,"width": wallingTypeSampleSize[1], "area": wallingArea},
-                    url: '@Url.Action("MinimalAmountCalculatorForTiles","HouseWallingStore")',
-                    datatype: "json",
-                    success: function (data) {
-                        $("#Walling_Sample_Min_Amount").val(data);
-                        $("#Walling_Sample_Price").val(wallingTypeSampleSize[2]);
-                    },
-                })
-        });
-
-        $("#Walling_Type_Sample_Width").change(function () {
-            var wallingTypeSampleSizeWidth = $(this).val();
-            var wallingTypeSampleSizeHeight = $('#Walling_Type_Sample_Height').val();
-            var wallingArea = @ViewBag.ViewBagWallingArea;
-            $.ajax({
-                    data: { "height": wallingTypeSampleSizeHeight ,"width": wallingTypeSampleSizeWidth, "area": wallingArea},
-                    url: '@Url.Action("MinimalAmountCalculatorForTiles","HouseWallingStore")',
-                    datatype: "json",
-                    success: function (data) {
-                        $("#Walling_Sample_Min_Amount").val(data);
-                    },
-                })
-        });
-
-        $("#Walling_Sample_Price").change(function () {
-            var wallingSampleMinAmount = $('#Walling_Sample_Min_Amount').val();
-            var wallingSamplePrice = $(this).val();
-            
-            $.ajax({
-                data: { "wallingSampleMinAmount": wallingSampleMinAmount, "wallingSamplePrice": wallingSamplePrice},
-                url: '@Url.Action("TotalCostCalculatorForTiles","HouseWallingStore")',
-                datatype: "json",
-                success: function (data) {
-                    $("#Walling_Sample_Total_Cost").val(data);
-                },
-            })
-        });
 
         $(function () {
 
@@ -449,13 +429,13 @@
                     Walling_Sample_Code: {
                         maxlength: 10
                     },
-                    Walling_Sample_Brand: {
+                    Walling_Sample_Brand1: {
                         required: true,
                         maxlength: 20
                     },
-                    Walling_Type_Sample_Size: {
+                    Walling_Sample_Brand2: {
                         required: true,
-                        maxlength: 10
+                        maxlength: 20
                     },
                     Walling_Type_Sample_Height: {
                         required: true,
@@ -501,13 +481,13 @@
                     Walling_Sample_Code: {
                         maxlength: "Please don't execeed maximum length 10"
                     },
-                    Walling_Sample_Brand: {
+                    Walling_Sample_Brand1: {
                         required: "Please fill the field",
                         maxlength: "Please don't execeed maximum length 20"
                     },
-                    Walling_Type_Sample_Size: {
+                    Walling_Sample_Brand2: {
                         required: "Please fill the field",
-                        maxlength: "Please don't execeed maximum length 10"
+                        maxlength: "Please don't execeed maximum length 20"
                     },
                     Walling_Type_Sample_Height: {
                         required: "Please fill the field",
@@ -558,19 +538,26 @@
 
         if ($('#SelectSample').is(":checked")) {
 
-            CreateHouseWallingForm.append("Walling_Sample_Brand", $("#Walling_Sample_Brand").val());
             CreateHouseWallingForm.append("Walling_Sample_Price", $("#Walling_Sample_Price").val());
             CreateHouseWallingForm.append("Walling_Sample_Min_Amount", $("#Walling_Sample_Min_Amount").val());
             CreateHouseWallingForm.append("Walling_Sample_Total_Cost", $("#Walling_Sample_Total_Cost").val());
 
             var wallingTypeSampleNC = $("#Walling_Sample_Name1").val().split("-");
 
+            if ($('#SelectBrand').is(":checked")) {
+                var wallingTypeSampleBLR =  $('#Walling_Sample_Brand1').val().split("*");
+                CreateHouseWallingForm.append("Walling_Sample_Brand", wallingTypeSampleBLR[1]);
+
+            }
+            else {
+                CreateHouseWallingForm.append("Walling_Sample_Brand", $("#Walling_Sample_Brand2").val());
+            }
+
             if ($('#PaintOrTile').is(":checked")) {
-                var wallingTypeSampleSize = $("#Walling_Type_Sample_Size").val().split("x");
                 CreateHouseWallingForm.append("Walling_Sample_Name", wallingTypeSampleNC[0]);
                 CreateHouseWallingForm.append("Walling_Sample_Code", wallingTypeSampleNC[1]);
-                CreateHouseWallingForm.append("Walling_Sample_Height", wallingTypeSampleSize[0]);
-                CreateHouseWallingForm.append("Walling_Sample_Width", wallingTypeSampleSize[1]);
+                CreateHouseWallingForm.append("Walling_Sample_Height", $("#Walling_Sample_Height").val());
+                CreateHouseWallingForm.append("Walling_Sample_Width", $("#Walling_Sample_Width").val());
 
             }
             else {
@@ -584,10 +571,18 @@
 
             CreateHouseWallingForm.append("Walling_Sample_Name", $("#Walling_Sample_Name2").val());
             CreateHouseWallingForm.append("Walling_Sample_Code", $("#Walling_Sample_Code").val());
-            CreateHouseWallingForm.append("Walling_Sample_Brand", $("#Walling_Sample_Brand").val());
             CreateHouseWallingForm.append("Walling_Sample_Price", $("#Walling_Sample_Price").val());
             CreateHouseWallingForm.append("Walling_Sample_Min_Amount", $("#Walling_Sample_Min_Amount").val());
             CreateHouseWallingForm.append("Walling_Sample_Total_Cost", $("#Walling_Sample_Total_Cost").val());
+
+            if ($('#SelectBrand').is(":checked")) {
+                CreateHouseWallingForm.append("Walling_Sample_Brand", $("#Walling_Sample_Brand1").val());
+                CreateHouseWallingForm.append("Walling_Sample_Brand", wallingTypeSampleBLR[1]);
+
+            }
+            else {
+                CreateHouseWallingForm.append("Walling_Sample_Brand", $("#Walling_Sample_Brand2").val());
+            }
 
             if ($('#PaintOrTile').is(":checked")) {
 
@@ -601,6 +596,11 @@
             
 
         }
+
+
+        alert(CreateHouseWallingForm.Walling_Id);
+        alert(CreateHouseWallingForm.Walling_Sample_Name);
+
 
         $.ajax({
                     type: 'POST',

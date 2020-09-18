@@ -16,9 +16,12 @@ namespace StrongHouseOwner.Controllers
         // GET: HouseFloorStore
         public ActionResult Index(int houseId)
         {
+            houseCeilingStoreRepository = new HouseCeilingStoreRepository();
             ViewBag.ViewBagHouseRefId = houseId;
 
-            return View();
+            var objResult = houseCeilingStoreRepository.GetHouseStoredCeilingListRP(houseId);
+
+            return View(objResult);
         }
 
         public ActionResult Create(int houseId)
@@ -184,6 +187,15 @@ namespace StrongHouseOwner.Controllers
             return Json(totalCost, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Delete(int ceilingId)
+        {
+            houseCeilingStoreRepository = new HouseCeilingStoreRepository();
+
+            var houseRefId = houseCeilingStoreRepository.GetStoredCeiling(ceilingId).HouseRefId;
+            var objResult = houseCeilingStoreRepository.DeleteStoredCeilingRP(ceilingId);
+
+            return RedirectToAction("Index", new { houseId = houseRefId });
+        }
     }
 
 

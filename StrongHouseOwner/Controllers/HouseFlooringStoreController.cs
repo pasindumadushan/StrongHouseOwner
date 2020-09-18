@@ -16,9 +16,12 @@ namespace StrongHouseOwner.Controllers
         // GET: HouseFloorStore
         public ActionResult Index(int houseId)
         {
+            houseFlooringStoreRepository = new HouseFlooringStoreRepository();
             ViewBag.ViewBagHouseRefId = houseId;
 
-            return View();
+            var objResult = houseFlooringStoreRepository.GetHouseStoredFlooringListRP(houseId);
+            
+            return View(objResult);
         }
 
         public ActionResult Create(int houseId)
@@ -182,6 +185,16 @@ namespace StrongHouseOwner.Controllers
             var totalCost = flooringSampleMinAmount * flooringSamplePrice;
 
             return Json(totalCost, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Delete(int flooringId)
+        {
+            houseFlooringStoreRepository = new HouseFlooringStoreRepository();
+
+            var houseRefId = houseFlooringStoreRepository.GetStoredFlooring(flooringId).HouseRefId;
+            var objResult = houseFlooringStoreRepository.DeleteStoredFlooringRP(flooringId);
+
+            return RedirectToAction("Index", new { houseId = houseRefId });
         }
 
     }

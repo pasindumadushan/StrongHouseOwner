@@ -16,9 +16,12 @@ namespace StrongHouseOwner.Controllers
         // GET: HouseFloorStore
         public ActionResult Index(int houseId)
         {
+            houseWallingStoreRepository = new HouseWallingStoreRepository();
             ViewBag.ViewBagHouseRefId = houseId;
 
-            return View();
+            var objResult = houseWallingStoreRepository.GetHouseStoredWallingListRP(houseId);
+
+            return View(objResult);
         }
 
         public ActionResult Create(int houseId)
@@ -181,6 +184,16 @@ namespace StrongHouseOwner.Controllers
             var totalCost = wallingSampleMinAmount * wallingSamplePrice;
 
             return Json(totalCost, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Delete(int wallingId)
+        {
+            houseWallingStoreRepository = new HouseWallingStoreRepository();
+
+            var houseRefId = houseWallingStoreRepository.GetStoredWalling(wallingId).HouseRefId;
+            var objResult = houseWallingStoreRepository.DeleteStoredWallingRP(wallingId);
+
+            return RedirectToAction("Index", new { houseId = houseRefId });
         }
 
     }

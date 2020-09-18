@@ -32,6 +32,27 @@ namespace StrongHouseOwner.Data.Repository
 
         }
 
+
+        public List<StoredFlooring> GetHouseStoredFlooringListRP(int houseId)
+        {
+            try
+            {
+
+                objEntity = new StrongHouseDBEntities();
+                var objResult = objEntity.StoredFloorings.Where(x => x.HouseRefId == houseId).ToList();
+
+                return objResult;
+
+            }
+            catch (Exception)
+            {
+
+                return null;
+
+            }
+
+        }
+
         public StoredFlooring SaveStoredFlooringRP(StoredFlooring storedFlooring)
         {
 
@@ -81,6 +102,29 @@ namespace StrongHouseOwner.Data.Repository
 
             
 
+        }
+
+        public StoredFlooring DeleteStoredFlooringRP(int flooringId)
+        {
+            try
+            {
+
+                objEntity = new StrongHouseDBEntities();
+
+                StoredFlooring sf = objEntity.StoredFloorings.Find(Convert.ToInt32(flooringId));
+
+                objEntity.StoredFloorings.Remove(sf);
+                objEntity.SaveChanges();
+
+                return sf;
+
+            }
+            catch (Exception)
+            {
+
+                return null;
+
+            }
         }
     }
 }

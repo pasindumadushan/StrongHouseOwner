@@ -32,6 +32,26 @@ namespace StrongHouseOwner.Data.Repository
 
         }
 
+        public List<StoredWalling> GetHouseStoredWallingListRP(int houseId)
+        {
+            try
+            {
+
+                objEntity = new StrongHouseDBEntities();
+                var objResult = objEntity.StoredWallings.Where(x => x.HouseRefId == houseId).ToList();
+
+                return objResult;
+
+            }
+            catch (Exception)
+            {
+
+                return null;
+
+            }
+
+        }
+
         public StoredWalling SaveStoredWallingRP(StoredWalling storedWalling)
         {
 
@@ -81,6 +101,29 @@ namespace StrongHouseOwner.Data.Repository
 
 
 
+        }
+
+        public StoredWalling DeleteStoredWallingRP(int wallingId)
+        {
+            try
+            {
+
+                objEntity = new StrongHouseDBEntities();
+
+                StoredWalling sw = objEntity.StoredWallings.Find(Convert.ToInt32(wallingId));
+
+                objEntity.StoredWallings.Remove(sw);
+                objEntity.SaveChanges();
+
+                return sw;
+
+            }
+            catch (Exception)
+            {
+
+                return null;
+
+            }
         }
     }
 }

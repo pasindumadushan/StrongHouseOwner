@@ -32,6 +32,26 @@ namespace StrongHouseOwner.Data.Repository
 
         }
 
+        public List<StoredCeiling> GetHouseStoredCeilingListRP(int houseId)
+        {
+            try
+            {
+
+                objEntity = new StrongHouseDBEntities();
+                var objResult = objEntity.StoredCeilings.Where(x => x.HouseRefId == houseId).ToList();
+
+                return objResult;
+
+            }
+            catch (Exception)
+            {
+
+                return null;
+
+            }
+
+        }
+
         public StoredCeiling SaveStoredCeilingRP(StoredCeiling storedCeiling)
         {
 
@@ -81,6 +101,29 @@ namespace StrongHouseOwner.Data.Repository
 
 
 
+        }
+
+        public StoredCeiling DeleteStoredCeilingRP(int ceilingId)
+        {
+            try
+            {
+
+                objEntity = new StrongHouseDBEntities();
+
+                StoredCeiling sc = objEntity.StoredCeilings.Find(Convert.ToInt32(ceilingId));
+
+                objEntity.StoredCeilings.Remove(sc);
+                objEntity.SaveChanges();
+
+                return sc;
+
+            }
+            catch (Exception)
+            {
+
+                return null;
+
+            }
         }
     }
 }
