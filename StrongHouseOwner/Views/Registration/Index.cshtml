@@ -37,7 +37,7 @@
                     <input class="text" type="text" name="User_Type" id="User_Type" placeholder="As a ShopOwner or HouseOwner" required>
                     <div class="wthree-text">
                         <label class="anim">
-                            <input type="checkbox" class="checkbox">
+                            <input type="checkbox" name="Agree" id="Agree" class="checkbox">
                             <span>I Agree To The Terms & Conditions</span>
                         </label>
                         <div class="clear"> </div>
@@ -110,20 +110,24 @@
                     },
                     User_Confirm_Password: {
                         required: true,
-                        minlength: 6,
-                        maxlength: 20
+                        equalTo: "#User_Password"
+
                     },
                     User_Address: {
                         required: true,
                     },
                     User_Phone_Number: {
                         required: true,
+                        digits: true,
                         exactlength: 10
                     },
                     User_Type: {
                         required: true,
                         digits: true,
                         range:[1,2]
+                    },
+                    Agree: {
+                        required: true
                     }
                 },
 
@@ -148,18 +152,21 @@
                     },
                     User_Confirm_Password: {
                         required: "Please provide a password",
-                        minlength: "Please provide Password between 6 to 20 characters",
-                        maxlength: "Please provide Password between 6 to 20 characters"
+                        equalTo: "Password not match"
                     },
                     User_Address: "Please provide a Address",
                     User_Phone_Number: {
                         required: "Please provide a Phone Number",
+                        digits: "Please provide valid Phone Number",
                         exactlength: "Please provide valid Phone Number"
                     },
                     User_Type: {
                         required: "Please provide a Type",
                         digits: "Please provide valid Type",
                         range: "Please provide valid Type"
+                    },
+                    Agree: {
+                        required: "Please agree to terms and condition"
                     }
                 },
 
@@ -204,7 +211,7 @@
                         }
                         else if (data.validation == 1)
                         {
-                            alert("Creation Fail, Already Exist!");
+                            alert("Creation Fail, Email already Registered!");
 
                         }
 

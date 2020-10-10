@@ -358,6 +358,7 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
+    <Compile Include="Controllers\ValidateUserController.cs" />
     <Compile Include="Controllers\WallingController.cs" />
     <Compile Include="Controllers\CeilingController.cs" />
     <Compile Include="Controllers\FlooringController.cs" />
@@ -421,6 +422,8 @@
     <Content Include="Views\HouseWallingStore\Create.cshtml" />
     <Content Include="Views\HouseWallingStore\CreateUpdate.cshtml" />
     <Content Include="Views\HouseWallingStore\Index.cshtml" />
+    <Content Include="Views\ValidateUser\Index.cshtml" />
+    <Content Include="Views\ValidateUser\UpdatePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
