@@ -1,6 +1,7 @@
 ﻿using StrongHouseOwner.Data.EntityModel;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -27,6 +28,34 @@ namespace StrongHouseOwner.Data.Repository
             objEntity.SaveChanges();
 
             return objRegistration;
+        }
+
+        public UserRegistration UpdatePassword(string userMail, string userPassword)
+        {
+
+            try
+            {
+
+                objEntity = new StrongHouseDBEntities();
+
+                objEntity = new StrongHouseDBEntities();
+                var objResult = objEntity.UserRegistrations.Where(x => x.UserMail.ToUpper() == userMail.ToUpper()).FirstOrDefault();
+
+                objResult.UserPassword = userPassword;
+
+                objEntity.Entry(objResult).State = EntityState.Modified;
+                objEntity.SaveChanges();
+
+                return objResult;
+
+            }
+            catch (Exception)
+            {
+
+                return null;
+
+            }
+
         }
 
     }

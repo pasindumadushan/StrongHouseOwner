@@ -45,7 +45,7 @@ namespace StrongHouseOwner.Controllers
                       <H2>Here's your new recovery code</H2>
                       <p>If you ever need a recovery access to your account, this code use for tempary password. We strongly recommended to update your password with new one.</p>
                       <p>If you previously had a recovery code, it is no longer valid. Use this new code instead</br></p>
-                      <p>Your new code is "+code+@"<b></b></p>  
+                      <p>Your new code is <b>" + code+@"</b></p>  
                       <p>Thank you!</br></p>
                       </body>
                       </html>
@@ -79,5 +79,27 @@ namespace StrongHouseOwner.Controllers
             return View();
         }
 
+        public ActionResult SavePassword()
+        {
+            var validation = 0;
+            registrationRepository = new RegistrationRepository();
+
+            var UserMail = Request.Form["User_Mail"];
+            var UserPassword = Request.Form["User_Password"];
+
+            var objResult = registrationRepository.UpdatePassword(UserMail, UserPassword);
+
+            if (objResult != null)
+            {
+                validation = 1;
+            }
+            else
+            {
+                validation = 0;
+            }
+
+            var result = new { validation };
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }
