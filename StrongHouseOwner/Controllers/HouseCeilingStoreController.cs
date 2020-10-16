@@ -2,6 +2,7 @@
 using StrongHouseOwner.Data.Repository;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -43,6 +44,9 @@ namespace StrongHouseOwner.Controllers
             var validation = 0;
             var storedCeilingId = 0;
 
+            HttpPostedFileBase ImageFile;
+            ImageFile = Request.Files["ImageFile"];
+
             storedCeiling.HouseRefId = Convert.ToInt32(Request.Form["House_Ref_Id"]);
             storedCeiling.StoredTypeOfCeilingRefId = Convert.ToInt32(Request.Form["Stored_Type_Of_Ceiling_Ref_Id"]);
             storedCeiling.CeilingCategory = Request.Form["Ceiling_Category"];
@@ -57,6 +61,18 @@ namespace StrongHouseOwner.Controllers
 
             if (editStoredCeiling != null)
             {
+                if (ImageFile != null)
+                {
+
+                    string extension = Path.GetExtension(ImageFile.FileName);
+                    var fileName = editStoredCeiling.CeilingId + "-" + editStoredCeiling.HouseRefId + extension;
+                    editStoredCeiling.SampleImagePath = "~/Images/Store/Ceiling/" + fileName;
+
+                    ImageFile.SaveAs(System.Web.HttpContext.Current.Server.MapPath("~/Images/Store/Ceiling/" + fileName));
+
+                }
+                houseCeilingStoreRepository.EditStoredCeilingRP(editStoredCeiling);
+
                 storedCeilingId = editStoredCeiling.CeilingId;
                 validation = 1;
             }

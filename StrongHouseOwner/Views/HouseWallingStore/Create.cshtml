@@ -177,13 +177,31 @@
                                 <small id="Walling_Category2" class="form-text text-muted" style="padding-left: 10px;">Ex : Seperate category and type with "-"  (Porcelain and Ceramic - Granite) .</small>
                             </div>
                         </div>
-
-
-
+                                               
                         <div class="form-group">
                             <label for="Ex_Walling_Area">Walling Area</label>
                             <input type="text" class="form-control input-lg" name="Walling_Area" id="Walling_Area" aria-describedby="Walling_Area_Help" placeholder="" style="max-width:100%;">
                             <small id="Walling_Area_Help" class="form-text text-muted">Ex : 20000 sq.ft</small>
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Walling Image</label>
+
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="file" id="file" name="file">
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <div style="height:200px; width:200px; overflow:auto;">
+                                <img id="img" alt="Walling Image">
+                            </div>
+
+                            <canvas id="canvas" height="5" width="5" style="vertical-align:top;"></canvas>
+
                         </div>
 
                         <input type="submit" class="btn btn-primary" id="CreateHouseWalling" value="Create" />
@@ -312,12 +330,16 @@
             });
 
         });
+        $('#file').change(function () {
+            readFile(this);
+            //initCrop();
+        });
     });
 
     function getData()
     {
         var CreateHouseWallingForm = new FormData();
-
+        var file = $('#file').get(0).files;
 
 
 
@@ -341,6 +363,8 @@
         CreateHouseWallingForm.append("Walling_Name", $("#Walling_Name").val());
         CreateHouseWallingForm.append("Type_Of_Partition", $("#Type_Of_Partition").val());
         CreateHouseWallingForm.append("Walling_Area", $("#Walling_Area").val());
+        CreateHouseWallingForm.append("ImageFile", file[0]); 
+
 
         $.ajax({
                     type: 'POST',
@@ -377,6 +401,37 @@
 
                     }
                });
+    }
+
+    function readFile(input)
+    {
+
+        if (input.files && input.files[0])
+        {
+            var reader = new FileReader();
+
+                /*Destroy jcrop initialization other wise it will hold it previous image in img tag*/
+            if (jcropApi != null)
+            {
+                jcropApi.destroy();
+            }
+            reader.onload = function (e)
+            {
+                $('#img').attr('src', "");
+                var img = $('#img').attr('src', e.target.result);
+
+                    /*Current uploaded image size*/
+                var width = img[0].height;
+                var height = img[0].width;
+                $("#lblWidth").text(width + "px");
+                $("#lblHeight").text(height + "px");
+
+                    //InitCrop must call here otherwise it will not work
+                initCrop();
+            }
+
+                reader.readAsDataURL(input.files[0]);
+        }
     }
 
 </script>

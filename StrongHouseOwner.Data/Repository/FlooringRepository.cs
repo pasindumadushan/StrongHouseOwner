@@ -198,7 +198,7 @@ namespace StrongHouseOwner.Data.Repository
 
         }
 
-            public List<TypeOfFlooringSample> SameSamplesRP(string flooringTypeSampleName, string flooringTypeSampleCode, int flooringTypeId)
+        public List<TypeOfFlooringSample> SameSamplesRP(string flooringTypeSampleName, string flooringTypeSampleCode, int flooringTypeId)
         {
 
             try
@@ -317,5 +317,28 @@ namespace StrongHouseOwner.Data.Repository
 
         }
 
+        public List<TypeOfFlooring> GetFlooringLatestListTypesRP()
+        {
+
+            try
+            {
+
+                objEntity = new StrongHouseDBEntities();
+                var objResult = objEntity.TypeOfFloorings.Where(x => x.FlooringTypeDeletion != 1).OrderByDescending(c => c.FlooringTypeId).Take(5).ToList();
+
+                return objResult;
+
+            }
+            catch (Exception)
+            {
+
+                return null;
+
+            }
+
+        }
+
     }
+
+    
 }

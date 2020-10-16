@@ -57,7 +57,7 @@ namespace StrongHouseOwner.Controllers
 
 
             var editStoredPlan = housePlanRepository.SaveStoredPlanRP(storedPlan);
-            //need to get house id. only way is save record in table then get house id
+            //need to get house id. only way is save record in table then get StoredPlanId
 
             if (editStoredPlan != null)
             {

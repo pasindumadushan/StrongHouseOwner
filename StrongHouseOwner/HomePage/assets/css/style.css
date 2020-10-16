@@ -13,14 +13,6 @@ body {
   color: #4d4643;
 }
 
-a {
-  color: #f03c02;
-}
-
-a:hover {
-  color: #fd5c28;
-  text-decoration: none;
-}
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Muli", sans-serif;

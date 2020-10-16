@@ -186,6 +186,27 @@
                             <small id="Ceiling_Area_Help" class="form-text text-muted">Ex : 20000 sq.ft</small>
                         </div>
 
+                        <div class="form-group">
+
+                            <label>Ceiling Image</label>
+
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="file" id="file" name="file">
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <div style="height:200px; width:200px; overflow:auto;">
+                                <img id="img" alt="Ceiling Image">
+                            </div>
+
+                            <canvas id="canvas" height="5" width="5" style="vertical-align:top;"></canvas>
+
+
+                        </div>
+
                         <input type="submit" class="btn btn-primary" id="CreateHouseCeiling" value="Create" />
 
                     </form>
@@ -312,11 +333,16 @@
             });
 
         });
+        $('#file').change(function () {
+            readFile(this);
+            //initCrop();
+        });
     });
 
     function getData()
     {
         var CreateHouseCeilingForm = new FormData();
+        var file = $('#file').get(0).files;
 
 
 
@@ -341,6 +367,7 @@
         CreateHouseCeilingForm.append("Ceiling_Name", $("#Ceiling_Name").val());
         CreateHouseCeilingForm.append("Type_Of_Partition", $("#Type_Of_Partition").val());
         CreateHouseCeilingForm.append("Ceiling_Area", $("#Ceiling_Area").val());
+        CreateHouseCeilingForm.append("ImageFile", file[0]);
 
         $.ajax({
                     type: 'POST',
@@ -377,6 +404,37 @@
 
                     }
                });
+    }
+
+    function readFile(input)
+    {
+
+        if (input.files && input.files[0])
+        {
+            var reader = new FileReader();
+
+                /*Destroy jcrop initialization other wise it will hold it previous image in img tag*/
+            if (jcropApi != null)
+            {
+                jcropApi.destroy();
+            }
+            reader.onload = function (e)
+            {
+                $('#img').attr('src', "");
+                var img = $('#img').attr('src', e.target.result);
+
+                    /*Current uploaded image size*/
+                var width = img[0].height;
+                var height = img[0].width;
+                $("#lblWidth").text(width + "px");
+                $("#lblHeight").text(height + "px");
+
+                    //InitCrop must call here otherwise it will not work
+                initCrop();
+            }
+
+                reader.readAsDataURL(input.files[0]);
+        }
     }
 
 </script>

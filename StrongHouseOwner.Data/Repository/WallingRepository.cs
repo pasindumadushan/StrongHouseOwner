@@ -325,6 +325,28 @@ namespace StrongHouseOwner.Data.Repository
             }
 
         }
+        
+        public List<TypeOfWalling> GetWallingLatestListTypesRP()
+        {
 
+            try
+            {
+
+                objEntity = new StrongHouseDBEntities();
+                var objResult = objEntity.TypeOfWallings.Where(x => x.WallingTypeDeletion != 1).OrderByDescending(c => c.WallingTypeId).Take(5).ToList();
+
+                return objResult;
+
+            }
+            catch (Exception)
+            {
+
+                return null;
+
+            }
+
+        }
     }
+
+    
 }

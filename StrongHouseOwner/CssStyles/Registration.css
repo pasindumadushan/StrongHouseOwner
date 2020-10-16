@@ -10,7 +10,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     padding: 0;
     border: 0;
     font-size: 100%;
-    font: inherit;
+    font: Raleway;
     vertical-align: baseline;
 }
 
@@ -114,10 +114,10 @@ body {
     background: -webkit-linear-gradient(to top, #6699ff, #3377ff);
     background: -moz-linear-gradient(to top, #6699ff, #3377ff);
     background: -o-linear-gradient(to top, #6699ff, #3377ff);
-    background: linear-gradient(to top, #6699ff, #3377ff);
+    background: linear-gradient(rgba(76,35,21,0.15),rgba(62,37,37,54%)),url('../../Images/BackGroundImage/Background.jpg');
     background-size: cover;
     background-attachment: fixed;
-    font-family: 'Roboto', sans-serif;
+    font-family: Raleway;
 }
 
 h1 {
@@ -125,9 +125,9 @@ h1 {
     text-align: center;
     color: #fff;
     font-weight: 100;
-    text-transform: capitalize;
-    letter-spacing: 4px;
-    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    /*letter-spacing: 4px;*/
+    font-family: Raleway;
 }
 
 /*-- main --*/
@@ -163,11 +163,14 @@ input[type="text"], input[type="email"], input[type="number"], input[type="passw
     background-size: 100%;
     background-repeat: no-repeat;
     color: #fff;
-    font-family: 'Roboto', sans-serif;
+    font-family: Raleway;
 }
 
 input.email, input.text, input.number, input.text.w3lpass {
-    margin: 2em 0;
+    margin-top: 2em;
+    margin-right: 0px;
+    margin-bottom: 0em;
+    margin-left: 0px;
 }
 
 .text:focus, .text:valid {
@@ -217,7 +220,7 @@ input[type="submit"] {
     -webkit-appearance: none;
     width: 100%;
     margin: 2em 0;
-    letter-spacing: 4px;
+    /*letter-spacing: 4px;*/
 }
 
     input[type="submit"]:hover {
@@ -684,7 +687,7 @@ input.checkbox {
 
     input[type="submit"] {
         margin: 2em 0 1.5em;
-        letter-spacing: 3px;
+        /*letter-spacing: 3px;*/
     }
 
     input[type="submit"] {

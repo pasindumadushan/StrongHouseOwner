@@ -185,11 +185,11 @@
                                 <div class="media">
                                     @if (item.StoredPlanImagePath == null || item.StoredPlanImagePath == "")
                                     {
-                                        <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
+                                        <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;" data-toggle="modal" data-target="#@("modalQuickViewImg"+i)"> </a>
                                     }
                                     else
                                     {
-                                        <a class="thumbnail pull-left" href="#"> <img class="media-object" src="@Url.Content(@item.StoredPlanImagePath)" style="width: 72px; height: 72px;"> </a>
+                                        <a class="thumbnail pull-left" href="#"> <img class="media-object" src="@Url.Content(@item.StoredPlanImagePath)" style="width: 72px; height: 72px;" data-toggle="modal" data-target="#@("modalQuickViewImg"+i)"> </a>
                                     }
 
                                     <div class="media-body col-sm-1 col-md-6">

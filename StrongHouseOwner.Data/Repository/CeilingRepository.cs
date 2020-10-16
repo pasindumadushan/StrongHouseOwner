@@ -314,5 +314,26 @@ namespace StrongHouseOwner.Data.Repository
 
         }
 
+        public List<TypeOfCeiling> GetCeilingLatestListTypesRP()
+        {
+
+            try
+            {
+
+                objEntity = new StrongHouseDBEntities();
+                var objResult = objEntity.TypeOfCeilings.Where(x => x.CeilingTypeDeletion != 1).OrderByDescending(c => c.CeilingTypeId).Take(5).ToList();
+
+                return objResult;
+
+            }
+            catch (Exception)
+            {
+
+                return null;
+
+            }
+
+        }
+
     }
 }

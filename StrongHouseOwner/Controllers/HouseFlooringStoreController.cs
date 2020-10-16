@@ -2,6 +2,7 @@
 using StrongHouseOwner.Data.Repository;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -43,6 +44,9 @@ namespace StrongHouseOwner.Controllers
             var validation = 0;
             var storedFlooringId = 0;
 
+            HttpPostedFileBase ImageFile;
+            ImageFile = Request.Files["ImageFile"];
+
             storedFlooring.HouseRefId = Convert.ToInt32(Request.Form["House_Ref_Id"]);
             storedFlooring.StoredTypeOfFlooringRefId = Convert.ToInt32(Request.Form["Stored_Type_Of_Flooring_Ref_Id"]);
             storedFlooring.FlooringCategory = Request.Form["Flooring_Category"];
@@ -57,6 +61,18 @@ namespace StrongHouseOwner.Controllers
 
             if (editStoredFlooring != null)
             {
+                if (ImageFile != null)
+                {
+
+                    string extension = Path.GetExtension(ImageFile.FileName);
+                    var fileName = editStoredFlooring.FlooringId + "-" + editStoredFlooring.HouseRefId + extension;
+                    editStoredFlooring.SampleImagePath = "~/Images/Store/Flooring/" + fileName;
+
+                    ImageFile.SaveAs(System.Web.HttpContext.Current.Server.MapPath("~/Images/Store/Flooring/" + fileName));
+
+                }
+                houseFlooringStoreRepository.EditStoredFlooringRP(editStoredFlooring);
+
                 storedFlooringId = editStoredFlooring.FlooringId;
                 validation = 1;
             }

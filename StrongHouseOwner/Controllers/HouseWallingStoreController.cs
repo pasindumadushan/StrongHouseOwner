@@ -2,6 +2,7 @@
 using StrongHouseOwner.Data.Repository;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -43,6 +44,9 @@ namespace StrongHouseOwner.Controllers
             var validation = 0;
             var storedWallingId = 0;
 
+            HttpPostedFileBase ImageFile;
+            ImageFile = Request.Files["ImageFile"];
+
             storedWalling.HouseRefId = Convert.ToInt32(Request.Form["House_Ref_Id"]);
             storedWalling.StoredTypeOfWallingRefId = Convert.ToInt32(Request.Form["Stored_Type_Of_Walling_Ref_Id"]);
             storedWalling.WallingCategory = Request.Form["Walling_Category"];
@@ -57,6 +61,18 @@ namespace StrongHouseOwner.Controllers
 
             if (editStoredWalling != null)
             {
+                if (ImageFile != null)
+                {
+
+                    string extension = Path.GetExtension(ImageFile.FileName);
+                    var fileName = editStoredWalling.WallingId + "-" + editStoredWalling.HouseRefId + extension;
+                    editStoredWalling.SampleImagePath = "~/Images/Store/Walling/" + fileName;
+
+                    ImageFile.SaveAs(System.Web.HttpContext.Current.Server.MapPath("~/Images/Store/Walling/" + fileName));
+
+                }
+                houseWallingStoreRepository.EditStoredWallingRP(editStoredWalling);
+
                 storedWallingId = editStoredWalling.WallingId;
                 validation = 1;
             }
