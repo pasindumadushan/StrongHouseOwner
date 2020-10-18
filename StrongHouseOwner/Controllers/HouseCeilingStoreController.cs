@@ -122,7 +122,7 @@ namespace StrongHouseOwner.Controllers
             storedCeiling.CeilingName = objEntity.CeilingName;
             storedCeiling.TypeOfPartition = objEntity.TypeOfPartition;
             storedCeiling.CeilingArea = objEntity.CeilingArea;
-
+            storedCeiling.SampleImagePath = objEntity.SampleImagePath;
 
             storedCeiling.CeilingSampleName = Request.Form["Ceiling_Sample_Name"];
             storedCeiling.CeilingSampleCode = Request.Form["Ceiling_Sample_Code"];

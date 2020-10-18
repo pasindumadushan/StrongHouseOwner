@@ -122,6 +122,7 @@ namespace StrongHouseOwner.Controllers
             storedWalling.WallingName = objEntity.WallingName;
             storedWalling.TypeOfPartition = objEntity.TypeOfPartition;
             storedWalling.WallingArea = objEntity.WallingArea;
+            storedWalling.SampleImagePath = objEntity.SampleImagePath;
 
 
             storedWalling.WallingSampleName = Request.Form["Walling_Sample_Name"];

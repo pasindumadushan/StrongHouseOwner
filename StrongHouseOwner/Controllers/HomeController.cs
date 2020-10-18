@@ -51,7 +51,7 @@ namespace StrongHouseOwner.Controllers
             wallingRepository = new WallingRepository();
             var objResult = wallingRepository.GetWallingLatestListTypesRP();
 
-            System.Diagnostics.Debug.WriteLine("Flooring - " + objResult);
+            System.Diagnostics.Debug.WriteLine("Walling - " + objResult);
 
             string output = JsonConvert.SerializeObject(objResult, Formatting.None,
             new JsonSerializerSettings()
@@ -70,7 +70,7 @@ namespace StrongHouseOwner.Controllers
             ceilingRepository = new CeilingRepository();
             var objResult = ceilingRepository.GetCeilingLatestListTypesRP();
 
-            System.Diagnostics.Debug.WriteLine("Flooring - " + objResult);
+            System.Diagnostics.Debug.WriteLine("Ceiling - " + objResult);
 
             string output = JsonConvert.SerializeObject(objResult, Formatting.None,
             new JsonSerializerSettings()

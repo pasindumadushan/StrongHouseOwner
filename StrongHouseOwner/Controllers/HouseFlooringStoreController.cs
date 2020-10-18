@@ -122,7 +122,7 @@ namespace StrongHouseOwner.Controllers
             storedFlooring.FlooringName = objEntity.FlooringName;
             storedFlooring.TypeOfPartition = objEntity.TypeOfPartition;
             storedFlooring.FlooringArea = objEntity.FlooringArea;
-
+            storedFlooring.SampleImagePath = objEntity.SampleImagePath;
 
             storedFlooring.FlooringSampleName = Request.Form["Flooring_Sample_Name"];
             storedFlooring.FlooringSampleCode = Request.Form["Flooring_Sample_Code"];
