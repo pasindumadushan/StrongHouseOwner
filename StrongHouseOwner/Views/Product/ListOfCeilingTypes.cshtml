@@ -13,10 +13,12 @@
     <meta name="author" content="">
 
     <title>Business Casual - Start Bootstrap Theme</title>
-
+    <!-- Bootstrap Table CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <!-- Bootstrap core CSS -->
-    <link href="~/BootstrapStart/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="~/Types/bootstrap.min.css" rel="stylesheet" />
     <!-- Custom fonts for this template -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
@@ -138,6 +140,50 @@
                             <div class="product-item-description d-flex ml-auto">
                                 <div class="bg-faded p-5 rounded">
                                     <p class="mb-0">@item.CeilingTypeDetails</p>
+
+                                    <!-- More Details -->
+
+                                    <div class="row" style="padding-left:2%;padding-right:2%;padding-bottom: 2%;width:100%;">
+                                        <div class="card" style="width:100%;">
+
+                                            <!-- Card header -->
+                                            <div class="card-header" role="tab" id="headingOne1">
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#@("accordionEx"+i)" href="#@("collapseOne1"+i)"
+                                                   aria-expanded="false" aria-controls="collapseOne1">
+                                                    <h5 class="mb-0">
+                                                        Read<i class="fas fa-angle-down rotate-icon"></i>
+                                                    </h5>
+                                                </a>
+                                            </div>
+
+                                            <!-- Card body -->
+                                            <div id="@("collapseOne1"+i)" class="collapse" role="tabpanel" aria-labelledby="headingOne1"
+                                                 data-parent="#@("accordionEx"+i)">
+                                                <div class="card-body">
+                                                    <table>
+                                                        <thead></thead>
+                                                        <thead></thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">Advantages :  </td>
+                                                                <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">@item.CeilingTypeAdvantage</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">Disadvantages :  </td>
+                                                                <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">@item.CeilingTypeDisadvantage</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">Best use :  </td>
+                                                                <td style="padding-top:20px;padding-bottom:20px;padding-right:20px"> @item.CeilingTypeBestUse</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                 </div>
                             </div>
                         </div>
@@ -164,6 +210,49 @@
                             <div class="product-item-description d-flex mr-auto">
                                 <div class="bg-faded p-5 rounded">
                                     <p class="mb-0">@item.CeilingTypeDetails</p>
+
+                                    <!-- More Details -->
+
+                                    <div class="row" style="padding-left:2%;padding-right:2%;padding-bottom: 2%;width:100%;">
+                                        <div class="card" style="width:100%;">
+
+                                            <!-- Card header -->
+                                            <div class="card-header" role="tab" id="headingOne1">
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#@("accordionEx"+i)" href="#@("collapseOne1"+i)"
+                                                   aria-expanded="false" aria-controls="collapseOne1">
+                                                    <h5 class="mb-0">
+                                                        Read<i class="fas fa-angle-down rotate-icon"></i>
+                                                    </h5>
+                                                </a>
+                                            </div>
+
+                                            <!-- Card body -->
+                                            <div id="@("collapseOne1"+i)" class="collapse" role="tabpanel" aria-labelledby="headingOne1"
+                                                 data-parent="#@("accordionEx"+i)">
+                                                <div class="card-body">
+                                                    <table>
+                                                        <thead></thead>
+                                                        <thead></thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">Advantages :  </td>
+                                                                <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">@item.CeilingTypeAdvantage</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">Disadvantages :  </td>
+                                                                <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">@item.CeilingTypeDisadvantage</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">Best use :  </td>
+                                                                <td style="padding-top:20px;padding-bottom:20px;padding-right:20px"> @item.CeilingTypeBestUse</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -200,11 +289,24 @@
         </div>
     </footer>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="~/BootstrapStart/vendor/jquery/jquery.min.js"></script>
-    <script src="~/BootstrapStart/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 </body>
 
 </html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+
+        $('.mdb-select').materialSelect();
+
+    });
+
+
+</script>
 
