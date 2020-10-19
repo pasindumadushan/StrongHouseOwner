@@ -76,9 +76,9 @@
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="font-size:12px;">
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href='@Url.Action("ListOfFlooringTypes", "Flooring")'>
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Profile
+                            User Panel
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href='@Url.Action("LogOut","Login")'>
@@ -130,8 +130,9 @@
             <div class="list-group list-group-flush">
                 <a href="#" class="list-group-item list-group-item-action bg-light">Plans</a>
                 <a href='@Url.Action("ListOfFlooringTypes", "Flooring")' class="list-group-item list-group-item-action bg-light">Flooring Details</a>
-                <a href='@Url.Action("ListOfWallingTypes", "Walling")' class="list-group-item list-group-item-action bg-light"  style="z-index:2;color:#007bff;background-color:#555;border-color:#ddd">Walling Details</a>
+                <a href='@Url.Action("ListOfWallingTypes", "Walling")' class="list-group-item list-group-item-action bg-light" style="z-index:2;color:#007bff;background-color:#555;border-color:#ddd">Walling Details</a>
                 <a href='@Url.Action("ListOfCeilingTypes", "Ceiling")' class="list-group-item list-group-item-action bg-light">Ceiling Details</a>
+                <a href='@Url.Action("Index", "User")' class="list-group-item list-group-item-action bg-light">Profiles</a>
             </div>
         </div>
 

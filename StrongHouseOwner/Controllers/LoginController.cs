@@ -4,6 +4,8 @@ using StrongHouseOwner.Data.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -29,7 +31,13 @@ namespace StrongHouseOwner.Controllers
             registrationServices = new RegistrationServices();
 
             userLogin.UserMail = Request.Form["User_Mail"];
-            userLogin.UserPassword = Request.Form["User_Password"];
+
+            MD5 md5 = new MD5CryptoServiceProvider();
+            Byte[] originalBytes = ASCIIEncoding.Default.GetBytes(Request.Form["User_Password"]);
+            Byte[] encodedBytes = md5.ComputeHash(originalBytes);
+            var hashPassword = BitConverter.ToString(encodedBytes).Replace("-", "").ToLower();
+
+            userLogin.UserPassword = hashPassword;
 
             var objResult = registrationServices.ExistUser(userLogin);
 

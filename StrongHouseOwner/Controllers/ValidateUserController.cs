@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -61,21 +63,22 @@ namespace StrongHouseOwner.Controllers
                 smtpMailObj.EnableSsl = true;
                 smtpMailObj.Send(Mail);
 
-                validation = code;
+                validation = 1;
+                Session["recovery code"] = code;
             }
             else
             {
                 validation = 0;
             }
 
-            var result = new { validation };
+            var result = new { validation};
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult UpdatePassword(string userMail, string recoveryCode)
+        public ActionResult UpdatePassword(string userMail)
         {
             ViewBag.ViewBagUserMail = userMail;
-            ViewBag.ViewBagRecoveryCode = recoveryCode;
+            ViewBag.ViewBagRecoveryCode = Session["recovery code"];
             return View();
         }
 
@@ -85,7 +88,14 @@ namespace StrongHouseOwner.Controllers
             registrationRepository = new RegistrationRepository();
 
             var UserMail = Request.Form["User_Mail"];
-            var UserPassword = Request.Form["User_Password"];
+
+            MD5 md5 = new MD5CryptoServiceProvider();
+            Byte[] originalBytes = ASCIIEncoding.Default.GetBytes(Request.Form["User_Password"]);
+            Byte[] encodedBytes = md5.ComputeHash(originalBytes);
+            var hashPassword = BitConverter.ToString(encodedBytes).Replace("-", "").ToLower();
+
+            var UserPassword = hashPassword;
+
 
             var objResult = registrationRepository.UpdatePassword(UserMail, UserPassword);
 

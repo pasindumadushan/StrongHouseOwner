@@ -349,7 +349,6 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HouseFlooringStoreController.cs" />
     <Compile Include="Controllers\HousePlanStoreController.cs" />
@@ -359,6 +358,7 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValidateUserController.cs" />
     <Compile Include="Controllers\WallingController.cs" />
     <Compile Include="Controllers\CeilingController.cs" />
@@ -413,7 +413,6 @@
     <Content Include="Views\Store\Edit.cshtml" />
     <Content Include="Views\HousePlanStore\Index.cshtml" />
     <Content Include="Views\HousePlanStore\Create.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\HouseFlooringStore\Index.cshtml" />
     <Content Include="Views\HouseFlooringStore\Create.cshtml" />
     <Content Include="Views\HouseFlooringStore\CreateUpdate.cshtml" />
@@ -425,6 +424,9 @@
     <Content Include="Views\HouseWallingStore\Index.cshtml" />
     <Content Include="Views\ValidateUser\Index.cshtml" />
     <Content Include="Views\ValidateUser\UpdatePassword.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
