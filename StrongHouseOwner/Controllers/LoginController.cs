@@ -51,8 +51,9 @@ namespace StrongHouseOwner.Controllers
 
                 Session["User_Name"] = objResult.UserName;
                 Session["User_Id"] = objResult.UserId;
-                Session["User_Mail"] = userLogin.UserMail;
-                Session["User_Password"] = userLogin.UserPassword;
+                Session["User_Mail"] = objResult.UserMail;
+                Session["User_Password"] = objResult.UserPassword;
+                Session["User_Type"] = objResult.UserType;
             }
             else
             {
@@ -69,8 +70,7 @@ namespace StrongHouseOwner.Controllers
             Session["User_Id"] = null;
             Session["User_Mail"] = null;
             Session["User_Password"] = null;
-
-            System.Diagnostics.Debug.WriteLine("here");
+            Session["User_Type"] = null;
 
             return RedirectToAction("Home", "Home");
         }

@@ -135,11 +135,19 @@ namespace StrongHouseOwner.Controllers
 
         public ActionResult ListOfFlooringTypes()
         {
+            if (Convert.ToInt32(Session["User_Type"]) == 1 || Convert.ToInt32(Session["User_Type"]) == 3)
+            {
+                flooringRepository = new FlooringRepository();
+                var objResult = flooringRepository.GetFlooringListTypesRP();
 
-            flooringRepository = new FlooringRepository();
-            var objResult = flooringRepository.GetFlooringListTypesRP();
+                return View(objResult);
+            }
+            else
+            {
+                return RedirectToAction("UserProfile", "Customer");
+            }
 
-            return View(objResult);
+            
         }
 
         public ActionResult Samples(int flooringTypeId)
