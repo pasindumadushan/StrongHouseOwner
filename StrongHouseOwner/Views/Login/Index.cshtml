@@ -14,6 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href="~/BootstrapStart/css/business-casual.min.css" rel="stylesheet">
+    <link href="~/BootstrapStart/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom Theme files -->
     <link href="~/CssStyles/Registration.css" rel="stylesheet" type="text/css" media="all" />
     <!-- //Custom Theme files -->
@@ -25,9 +27,24 @@
     <!-- //web font -->
 </head>
 <body>
+    <h1 class="site-heading text-center text-white d-none d-lg-block">Strong House Owner Login</h1>
+    
+    <div id="page-content-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <button class="btn btn-primary m-0" onclick="location.href='@Url.Action("Home","Home")'">
+                            <a class="fas fa-cart-plus" aria-hidden="true">Back to Home</a>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
     <!-- main -->
     <div class="main-w3layouts wrapper">
-        <h1>Strong House Owner Login</h1>
         <div class="main-agileinfo">
             <div class="agileits-top">
                 <form id="Login" novalidate>
@@ -41,9 +58,6 @@
             </div>
         </div>
         <!-- copyright -->
-        <div class="colorlibcopy-agile">
-            <p>All copyrights are reserved</p>
-        </div>
         <!-- //copyright -->
         <ul class="colorlib-bubbles">
             <li></li>
@@ -58,6 +72,11 @@
             <li></li>
         </ul>
     </div>
+    <footer class="footer text-faded text-center" style="padding-top: 30px;padding-bottom: 30px;">
+        <div class="container">
+            <p class="m-0 small" style="font-size: 60%; font-weight: 400;">Copyright &copy; Your Website 2019</p>
+        </div>
+    </footer>
     <!-- //main -->
 </body>
 </html>

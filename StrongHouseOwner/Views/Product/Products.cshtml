@@ -52,10 +52,10 @@
                             <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Register
                         </a>
                         @*<div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Logout
-                        </a>*@
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>*@
                     </div>
 
                 }
@@ -114,55 +114,62 @@
     </nav>
 
 
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                    </ul>
+                </div>
+            </nav>
 
-    <section class="page-section">
-        @*<img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="~/BootstrapStart/img/products-02.jpg" alt="">*@
-        <div class="product-item-description d-flex justify-content-center ml-auto">
-            <div class="bg-faded p-5 rounded">
-                <p class="mb-0">Choose You Want To See!</p>
-                <section class="page-section">
-                    <a class="btn btn-primary w-100 btn-xl" href='@Url.Action("ListOfFlooringTypes", "Product")'>
-                        <div class="container align-content-md-center">
-                            <div class="product-item">
-                                <div class="product-item-title d-flex justify-content-center">
-                                    <h2 class="section-heading mb-4">
-                                        <span class="section-heading-upper">What's more important in a new floor: durability or style?</span>
-                                        <span class="section-heading-lower">Flooring</span>
-                                    </h2>
+            <div class="bg-faded p-4 rounded">
+                <section class="page-section" style="margin-top: 30px;margin-bottom: 50px;margin-right: 15px;margin-left: 15px;">
+                    <p class="mb-0">Do you have an account?</p>
+
+                    <section class="page-section" style="margin-top: 20px;margin-bottom: 30px;">
+                        <p>What's more important in a new floor: durability or style?</p>
+                        <a class="btn btn-primary" style="width: 115px;" href='@Url.Action("ListOfFlooringTypes", "Product")'>
+                            <div class="container align-content-md-center">
+                                <div class="product-item">
+                                    <div class="cta-btn-container text-center">
+                                        <span class="cta-btn align-middle" style="font-size:large;">Flooring</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                </section>
-                <section class="page-section">
-                    <a class="btn btn-primary w-100 btn-xl" href='@Url.Action("ListOfWallingTypes", "Product")'>
-                        <div class="product-item align-content-md-center">
-                            <div class="product-item-title d-flex justify-content-center">
-                                <h2 class="section-heading mb-4">
-                                    <span class="section-heading-upper">Do Want to see more and more exciting wall finish options on the market?</span>
-                                    <span class="section-heading-lower">Walling</span>
-                                </h2>
-                            </div>
-                        </div>
-                    </a>
-                </section>
-                <section class="page-section">
-                    <a class="btn btn-primary w-100 btn-xl" href='@Url.Action("ListOfCeilingTypes", "Product")'>
-                        <div class="container align-content-md-center">
-                            <div class="product-item">
-                                <div class="product-item-title d-flex justify-content-center">
-                                    <h2 class="section-heading mb-4">
-                                        <span class="section-heading-upper">Learn all about the most popular ceiling styles to decide what's right for you.</span>
-                                        <span class="section-heading-lower">Ceiling</span>
-                                    </h2>
+                        </a>
+                    </section>
+
+                    <section class="page-section" style="margin-top: 0px;margin-bottom: 30px;">
+                        <p>Do Want to see more and more exciting wall finish options on the market?</p>
+                        <a class="btn btn-primary" style="width: 115px;" href='@Url.Action("ListOfWallingTypes", "Product")'>
+                            <div class="container align-content-md-center">
+                                <div class="product-item">
+                                    <div class="cta-btn-container text-center">
+                                        <span class="cta-btn align-middle" style="font-size:large;">Walling</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </section>
+
+                    <section class="page-section" style="margin-top: 0px;margin-bottom: 30px;">
+                        <p>Learn all about the most popular ceiling styles to decide what's right for you.</p>
+                        <a class="btn btn-primary" style="width: 115px;" href='@Url.Action("ListOfCeilingTypes", "Product")'>
+                            <div class="container align-content-md-center">
+                                <div class="product-item">
+                                    <div class="cta-btn-container text-center">
+                                        <span class="cta-btn align-middle" style="font-size:large;">Ceiling</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </section>
+
                 </section>
             </div>
-        </div>
-    </section>
+    </div>
+
+    
 
     <footer class="footer text-faded text-center py-5">
         <div class="container">

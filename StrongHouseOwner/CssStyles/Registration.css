@@ -115,6 +115,7 @@ body {
     background: linear-gradient(rgba(76,35,21,0.15),rgba(62,37,37,54%)),url('../../Images/BackGroundImage/Background.jpg');
     background-size: cover;
     background-attachment: fixed;
+    background-position: center;
 }
 
 h1 {
