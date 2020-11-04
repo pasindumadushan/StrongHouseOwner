@@ -1,0 +1,298 @@
+﻿@model StrongHouseOwner.Data.EntityModel.UserRegistration
+
+@{
+    ViewBag.Title = "UserRegistration";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Business Casual - Start Bootstrap Theme</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/BootstrapStart/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/BootstrapStart/css/business-casual.min.css" rel="stylesheet" />
+    <link href="~/BootstrapStart/css/simple-sidebar.css" rel="stylesheet" />
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+
+    <h1 class="site-heading text-center text-white d-none d-lg-block">
+        <span class="site-heading-upper text-primary mb-3">RENOVATION WHILE KEEPING CONSTRUCTION DETAILS</span>
+        <div class="row">
+            <div class="col-4 col-md-10" style="padding-right: 0px;padding-left: 200px;">
+                <span class="site-heading-lower">Strong House Owner</span>
+            </div>
+            <div class="col-4 col-md-2">
+                @if (Session["User_Name"] == null)
+                {
+
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="color:#fff;font-size:.9rem;"></span>
+                        <img class="img-profile rounded-circle" src="~/Images/User/DefaultImage.png" style="width: 50px; height: 50px;">
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="font-size:12px;">
+                        <a class="dropdown-item" href='@Url.Action("Index","Login")'>
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Login
+                        </a>
+                        <a class="dropdown-item" href='@Url.Action("Index","Registration")'>
+                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Register
+                        </a>
+                        @*<div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>*@
+                    </div>
+
+                }
+                else
+                {
+
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="color:#fff;font-size:.9rem;">@Session["User_Name"]</span>
+                        <img class="img-profile rounded-circle" src="~/Images/User/DefaultImage.png" style="width: 50px; height: 50px;">
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="font-size:12px;">
+                        <a class="dropdown-item" href='@Url.Action("ListOfFlooringTypes", "Flooring")'>
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            User Panel
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href='@Url.Action("LogOut","Login")'>
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </a>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </h1>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Start Bootstrap</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav mx-auto justify-content-center">
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Home", "Home")'>
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Products", "Product")'>Products</a>
+                    </li>
+                    <li class="nav-item active px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Index", "Store")'>Store</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="d-flex" id="wrapper">
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <button class="btn btn-primary" onclick="location.href='@Url.Action("UserProfile","Customer")'">
+                                <i class="fas fa-cart-plus ml-2" aria-hidden="true">Back</i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <hr />
+            <div class="bg-faded p-4 rounded">
+                <div class="container">
+                    <form id="Edit" method="post" enctype="application/x-www-form-urlencoded" novalidate>
+
+                        <div class="form-group">
+                            <label for="Ex_User_Name">User Name</label>
+                            <input type="text" class="form-control" id="User_Name" name="User_Name" aria-describedby="User_Name_Help" placeholder="" value=@Model.UserName required>
+                            <small id="User_Name_Help" class="form-text text-muted"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Ex_Age">Age</label>
+                            <input type="text" class="form-control" id="User_Age" name="User_Age" aria-describedby="Age_Help" placeholder="" value=@Model.UserAge required>
+                            <small id="Age_Help" class="form-text text-muted"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Ex_User_Address">Address</label>
+                            <textarea class="form-control" rows="2" id="User_Address" name="User_Address" aria-describedby="User_Address_Help" style="max-width:100%;" placeholder="" required>@Model.UserAddress</textarea>
+                            <small id="User_Address_Help" class="form-text text-muted"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Ex_User_Phone_Number">Phone Number</label>
+                            <input type="text" class="form-control" id="User_Phone_Number" name="User_Phone_Number" aria-describedby="Age_Help" placeholder="" value=@Model.UserPhoneNumber required>
+                            <small id="User_Phone_Number_Help" class="form-text text-muted"></small>
+                        </div>
+
+                        <input type="submit" class="btn btn-primary" id="EditUser" value="Edit" />
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function ()
+    {
+        $(function () {
+
+            jQuery.validator.addMethod("noSpace", function (value, element)
+            {
+                return value.indexOf(" ") < 0 && value != "";
+            }, "No space please and don't leave it empty");
+
+            jQuery.validator.addMethod("exactlength", function (value, element, param)
+            {
+                return this.optional(element) || value.length == param;
+            }, $.validator.format("Please enter exactly {0} characters."));
+
+            $("#Edit").validate({
+                //errorLabelContainer: "#PasswordError",
+                wrapper: "div",
+                rules: {
+                    User_Name: {
+                        required: true,
+                        noSpace: true
+                    },
+                   User_Age: {
+                        required: true,
+                        digits: true,
+                        range:[14,100]
+                    },
+                    User_Address: {
+                        required: true,
+                    },
+                    User_Phone_Number: {
+                        required: true,
+                        digits: true,
+                        exactlength: 10
+                    }
+                },
+
+                messages: {
+                    User_Name: {
+                        required: "Please provide a User name",
+                        noSpace: "Please don't leave a space"
+                    },
+                    User_Age: {
+                        required: "Please provide a Age",
+                        digits: "Please provide valid Age",
+                        range: "Please provide valid Age"
+                    },
+                    User_Address: "Please provide a Address",
+                    User_Phone_Number: {
+                        required: "Please provide a Phone Number",
+                        digits: "Please provide valid Phone Number",
+                        exactlength: "Please provide valid Phone Number"
+                    }
+                },
+
+                submitHandler: function (form) {
+                    getData();
+                }
+
+            });
+        });
+
+    });
+
+    function getData()
+    {
+        var UserEditForm = new FormData();
+
+        UserEditForm.append("User_Id", "@Model.UserId");
+        UserEditForm.append("User_Name", $("#User_Name").val());
+        UserEditForm.append("User_Mail", "@Model.UserMail");
+        UserEditForm.append("User_Password", "@Model.UserPassword");
+        UserEditForm.append("User_Age", $("#User_Age").val());
+        UserEditForm.append("User_Address", $("#User_Address").val());
+        UserEditForm.append("User_Phone_Number", $("#User_Phone_Number").val());
+        UserEditForm.append("User_Type", "@Model.UserType");
+
+        $.ajax({
+                    type: 'POST',
+                    data: UserEditForm,
+                    url:'@Url.Action("EditUser","Customer")',
+                    dataType: 'json',
+                    contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                    processData: false, // NEEDED, DON'T OMIT THIS
+                    //cache: false,
+                    success: function (data)
+                    {
+
+                        if (data.validation == 1)
+                        {
+
+                            alert("Edit Sucessful!");
+                            if (@Session["User_Type"] != 1) {
+                                window.location.href = "/Customer/UserProfile"
+                            }
+                            else
+                            {
+                                window.location.href = "/user"
+                            }
+
+                        }
+                        else if (data.validation == 0)
+                        {
+
+                            // DoSomethingElse()
+                            alert("Creation Fail, Already Exist!");
+
+                        }
+
+                    },
+                    error: function (response)
+                    {
+
+                        alert("error!");  //
+
+                    }
+               });
+
+    }
+
+</script>
+

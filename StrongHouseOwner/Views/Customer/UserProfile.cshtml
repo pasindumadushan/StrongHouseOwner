@@ -145,8 +145,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
-                            <button class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Ceiling")'">
-                                <i class="fas fa-cart-plus ml-2" aria-hidden="true">Edit Details</i>
+                            <button class="btn btn-primary" onclick="location.href='@Url.Action("Edit", "Customer", new { userId =  Model.UserId})'">
+                                <i class="fas fa-cart-plus ml-2" aria-hidden="true">Edit My Details</i>
                             </button>
                         </li>
                     </ul>
@@ -188,10 +188,10 @@
                                                 <td>Age</td>
                                                 <td>@Html.DisplayFor(m => @Model.UserAge)</td>
                                             </tr>
-                                            <tr>
+                                            @*<tr>
                                                 <td>Password</td>
                                                 <td>@Html.DisplayFor(m => @Model.UserPassword)</td>
-                                            </tr>
+                                            </tr>*@
                                             <tr>
                                                 <td>Address</td>
                                                 <td>@Html.DisplayFor(m => @Model.UserAddress)</td>
@@ -202,22 +202,23 @@
                                             </tr>
                                             <tr>
                                                 <td>Type</td>
-                                                @if (Model.UserType == 1)
-                                                {
-                                                    <td>Administrator</td>
-                                                }
-                                                else if (Model.UserType == 2)
-                                                {
-                                                    <td>Customer</td>
-                                                }
-                                                else if (Model.UserType == 3)
-                                                {
-                                                    <td>Shop Owner</td>
-                                                }
-                                                else
-                                                {
-                                                    <td>None</td>
-                                                }
+
+                                                    @if (Model.UserType == 1)
+                                                    {
+                                                        <td>Administrator</td>
+                                                    }
+                                                    else if (Model.UserType == 2)
+                                                    {
+                                                        <td>Customer</td>
+                                                    }
+                                                    else if (Model.UserType == 3)
+                                                    {
+                                                        <td>Shop Owner</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>None</td>
+                                                    }
                                             </tr>
                                         </tbody>
 

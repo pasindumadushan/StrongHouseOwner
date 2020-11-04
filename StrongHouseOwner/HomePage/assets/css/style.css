@@ -9,13 +9,13 @@
 # General
 --------------------------------------------------------------*/
 body {
-  font-family: "Open Sans", sans-serif;
-  color: #4d4643;
+    font-family: 'Raleway';
+    color: #4d4643;
 }
 
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Muli", sans-serif;
+    font-family: 'Raleway';
 }
 
 /*--------------------------------------------------------------
@@ -156,16 +156,16 @@ h1, h2, h3, h4, h5, h6 {
   padding-left: 20px;
 }
 
-.nav-menu a {
-  display: block;
-  position: relative;
-  color: #65534c;
-  padding: 14px 0 15px 0;
-  transition: 0.3s;
-  font-size: 13px;
-  font-family: "Open Sans", sans-serif;
-  text-transform: uppercase;
-}
+    .nav-menu a {
+        display: block;
+        position: relative;
+        color: #65534c;
+        padding: 14px 0 15px 0;
+        transition: 0.3s;
+        font-size: 13px;
+        font-family: 'Raleway';
+        text-transform: uppercase;
+    }
 
 .nav-menu a:hover, .nav-menu .active > a, .nav-menu li:hover > a {
   color: #f03c02;
@@ -209,11 +209,11 @@ h1, h2, h3, h4, h5, h6 {
   color: #f03c02;
 }
 
-.nav-menu .drop-down > a:after {
-  content: "\ea99";
-  font-family: IcoFont;
-  padding-left: 5px;
-}
+    .nav-menu .drop-down > a:after {
+        content: "\ea99";
+        font-family: 'Raleway';
+        padding-left: 5px;
+    }
 
 .nav-menu .drop-down .drop-down ul {
   top: 0;
@@ -230,12 +230,12 @@ h1, h2, h3, h4, h5, h6 {
   padding-right: 35px;
 }
 
-.nav-menu .drop-down .drop-down > a:after {
-  content: "\eaa0";
-  font-family: IcoFont;
-  position: absolute;
-  right: 15px;
-}
+    .nav-menu .drop-down .drop-down > a:after {
+        content: "\eaa0";
+        font-family: 'Raleway';
+        position: absolute;
+        right: 15px;
+    }
 
 @media (max-width: 1366px) {
   .nav-menu .drop-down .drop-down ul {
@@ -307,13 +307,13 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
 }
 
-.mobile-nav .drop-down > a:after {
-  content: "\ea99";
-  font-family: IcoFont;
-  padding-left: 10px;
-  position: absolute;
-  right: 15px;
-}
+    .mobile-nav .drop-down > a:after {
+        content: "\ea99";
+        font-family: 'Raleway';
+        padding-left: 10px;
+        position: absolute;
+        right: 15px;
+    }
 
 .mobile-nav .active.drop-down > a:after {
   content: "\eaa1";
@@ -408,7 +408,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
     #hero .btn-get-started {
-        font-family: "Muli", sans-serif;
+        font-family: 'Raleway';
         font-weight: 500;
         font-size: 14px;
         letter-spacing: 1px;
@@ -602,13 +602,13 @@ section {
         color: #e6a756;
     }
 
-.cta p {
-  padding: 0;
-  margin: 0;
-}
+    .cta p {
+        padding: 0;
+        margin: 0;
+    }
 
     .cta .cta-btn {
-        font-family: "Poppins", sans-serif;
+        font-family: 'Raleway';
         text-transform: uppercase;
         font-weight: 500;
         font-size: 14px;
@@ -627,7 +627,12 @@ section {
         .cta .cta-btn:hover {
             background-color: #df902a;
             border-color: #df902a
-}
+        }
+
+        .cta .cta-btn:active {
+            background-color: #0062cc;
+            border-color: #005cbf
+        }
 
 @media (max-width: 1024px) {
   .cta {
@@ -988,15 +993,15 @@ section {
   background: none;
 }
 
-.skills .progress .skill {
-  padding: 0;
-  margin: 0 0 6px 0;
-  text-transform: uppercase;
-  display: block;
-  font-weight: 600;
-  font-family: "Poppins", sans-serif;
-  color: #2b2320;
-}
+    .skills .progress .skill {
+        padding: 0;
+        margin: 0 0 6px 0;
+        text-transform: uppercase;
+        display: block;
+        font-weight: 600;
+        font-family: 'Raleway';
+        color: #2b2320;
+    }
 
 .skills .progress .skill .val {
   float: right;
@@ -1096,11 +1101,11 @@ section {
 }
 
 .pricing h4 {
-  font-size: 42px;
-  color: #f03c02;
-  font-weight: 500;
-  font-family: "Open Sans", sans-serif;
-  margin-bottom: 20px;
+    font-size: 42px;
+    color: #f03c02;
+    font-weight: 500;
+    font-family: 'Raleway';
+    margin-bottom: 20px;
 }
 
 .pricing h4 sup {
@@ -1139,17 +1144,17 @@ section {
 }
 
 .pricing .btn-buy {
-  color: #9c847b;
-  border: 2px solid #e9e3e1;
-  display: inline-block;
-  padding: 10px 40px 12px 40px;
-  border-radius: 4px;
-  transition: none;
-  font-size: 14px;
-  font-weight: 400;
-  font-family: "Muli", sans-serif;
-  font-weight: 600;
-  transition: 0.3s;
+    color: #9c847b;
+    border: 2px solid #e9e3e1;
+    display: inline-block;
+    padding: 10px 40px 12px 40px;
+    border-radius: 4px;
+    transition: none;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Raleway';
+    font-weight: 600;
+    transition: 0.3s;
 }
 
 .pricing .btn-buy:hover {
@@ -1195,22 +1200,22 @@ section {
   font-weight: 700;
 }
 
-.cta-pricing .cta-btn {
-  font-family: "Poppins", sans-serif;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 14px;
-  letter-spacing: 1px;
-  display: inline-block;
-  padding: 10px 25px;
-  border-radius: 2px;
-  transition: 0.4s;
-  margin: 10px;
-  border-radius: 4px;
-  border: 2px solid #f03c02;
-  color: #f03c02;
-  background: #fff;
-}
+    .cta-pricing .cta-btn {
+        font-family: 'Raleway';
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 14px;
+        letter-spacing: 1px;
+        display: inline-block;
+        padding: 10px 25px;
+        border-radius: 2px;
+        transition: 0.4s;
+        margin: 10px;
+        border-radius: 4px;
+        border: 2px solid #f03c02;
+        color: #f03c02;
+        background: #fff;
+    }
 
 .cta-pricing .cta-btn:hover {
   background: #f03c02;
@@ -2039,13 +2044,13 @@ section {
   color: #fff;
 }
 
-#footer .footer-top .footer-contact p {
-  font-size: 14px;
-  line-height: 24px;
-  margin-bottom: 0;
-  font-family: "Muli", sans-serif;
-  color: #b4aca8;
-}
+    #footer .footer-top .footer-contact p {
+        font-size: 14px;
+        line-height: 24px;
+        margin-bottom: 0;
+        font-family: 'Raleway';
+        color: #b4aca8;
+    }
 
 #footer .footer-top h4 {
   font-size: 16px;
@@ -2067,7 +2072,7 @@ section {
 
 #footer .footer-top .footer-links ul i {
   padding-right: 2px;
-  color: #fd6f41;
+  color: #e6a756;
   font-size: 18px;
   line-height: 1;
 }
@@ -2091,7 +2096,7 @@ section {
 
 #footer .footer-top .footer-links ul a:hover {
   text-decoration: none;
-  color: #fd6f41;
+  color: #e6a756;
 }
 
 #footer .footer-newsletter {
@@ -2150,7 +2155,6 @@ section {
 #footer .social-links a {
   font-size: 18px;
   display: inline-block;
-  background: #f03c02;
   color: #fff;
   line-height: 1;
   padding: 8px 0;
@@ -2163,7 +2167,7 @@ section {
 }
 
 #footer .social-links a:hover {
-  background: #fd5c28;
+  background: #e6a756;
   color: #fff;
   text-decoration: none;
 }

@@ -1,16 +1,14 @@
-﻿/*--
-Author: Colorlib
-Author URL: https://colorlib.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
---*/
-/*-- reset --*/
+﻿/*!
+ * Start Bootstrap - Business Casual v5.0.9 (https://startbootstrap.com/template-overviews/business-casual)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-business-casual/blob/master/LICENSE)
+ */
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, dl, dt, dd, ol, nav ul, nav li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
     margin: 0;
     padding: 0;
     border: 0;
     font-size: 100%;
-    font: Raleway;
+    font-family: 'Raleway';
     vertical-align: baseline;
 }
 
@@ -117,7 +115,6 @@ body {
     background: linear-gradient(rgba(76,35,21,0.15),rgba(62,37,37,54%)),url('../../Images/BackGroundImage/Background.jpg');
     background-size: cover;
     background-attachment: fixed;
-    font-family: Raleway;
 }
 
 h1 {
@@ -126,8 +123,6 @@ h1 {
     color: #fff;
     font-weight: 100;
     text-transform: uppercase;
-    /*letter-spacing: 4px;*/
-    font-family: Raleway;
 }
 
 /*-- main --*/
@@ -163,7 +158,6 @@ input[type="text"], input[type="email"], input[type="number"], input[type="passw
     background-size: 100%;
     background-repeat: no-repeat;
     color: #fff;
-    font-family: Raleway;
 }
 
 input.email, input.text, input.number, input.text.w3lpass {
