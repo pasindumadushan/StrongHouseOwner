@@ -3,13 +3,13 @@
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-business-casual/blob/master/LICENSE)
  */
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, dl, dt, dd, ol, nav ul, nav li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, label, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, dl, dt, dd, ol, nav ul, nav li, fieldset, form, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
     font-family: 'Raleway';
-    vertical-align: baseline;
+    /*vertical-align: baseline;*/
+    text-align: center;
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
@@ -39,6 +39,10 @@ table {
 /*-- start editing from here --*/
 a {
     text-decoration: none;
+}
+
+.text-primary {
+    color: #e6a756!important;
 }
 
 .txt-rt {
@@ -107,6 +111,7 @@ img {
 
 /*-- end reset --*/
 body {
+    font-size: 12px;
     background: #6699ff;
     /* fallback for old browsers //////////*/
     background: -webkit-linear-gradient(to top, #6699ff, #3377ff);
@@ -116,10 +121,12 @@ body {
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 h1 {
-    font-size: 3em;
+    font-size: 5rem;
     text-align: center;
     color: #fff;
     font-weight: 100;
@@ -128,7 +135,7 @@ h1 {
 
 /*-- main --*/
 .main-w3layouts {
-    padding: 3em 0 1em;
+    /*padding: 3em 0 1em;*/
 }
 
 .main-agileinfo {
@@ -146,7 +153,7 @@ input[type="text"], input[type="email"], input[type="number"], input[type="passw
     font-size: 0.9em;
     color: #fff;
     font-weight: 100;
-    width: 94.5%;
+    width: 100%;
     display: block;
     border: none;
     padding: 0.8em;
@@ -163,11 +170,14 @@ input[type="text"], input[type="email"], input[type="number"], input[type="passw
 
 input.email, input.text, input.number, input.text.w3lpass {
     margin-top: 2em;
-    margin-right: 0px;
-    margin-bottom: 0em;
-    margin-left: 0px;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-left: auto;
 }
-
+.error {
+    color: #fff;
+    margin-left: 25px;
+}
 .text:focus, .text:valid {
     box-shadow: none;
     outline: none;
@@ -214,7 +224,10 @@ input[type="submit"] {
     padding: 0.9em;
     -webkit-appearance: none;
     width: 100%;
-    margin: 2em 0;
+    margin-left: 18.250px;
+    margin-right:18.250px;
+    margin-top:18.250px;
+    margin-bottom:18.250px;
     /*letter-spacing: 4px;*/
 }
 
@@ -536,7 +549,7 @@ input.checkbox {
 
 @media(max-width:1366px) {
     h1 {
-        font-size: 2.6em;
+        font-size: 2em;
     }
 
     .agileits-top {
