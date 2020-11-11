@@ -13,6 +13,7 @@ namespace StrongHouseOwner.Controllers
     {
         HouseDetailRepository houseDetailRepository;
         HouseDetail houseDetail;
+        SearchRepository searchRepository;
         // GET: Store
         public ActionResult Index()
         {
@@ -28,20 +29,26 @@ namespace StrongHouseOwner.Controllers
 
         }
 
-        public ActionResult UserPanel()
+        public ActionResult UserPanel(string SearchBy, string SearchValue)
         {
 
             houseDetailRepository = new HouseDetailRepository();
-     
-            var objResult = houseDetailRepository.GetHouseDetailListRP(Convert.ToInt32(Session["User_Id"]));
+            searchRepository = new SearchRepository();
+            List<HouseDetail> objResult = new List<HouseDetail>();
+
+            if (SearchValue != null)
+            {
+                objResult = searchRepository.HouseDetailSearchRP((int)Session["User_Id"], SearchBy, SearchValue);
+            }
+            else
+            {
+                objResult = houseDetailRepository.GetHouseDetailListRP(Convert.ToInt32(Session["User_Id"]));
+            }
 
             ViewBag.userId = Convert.ToInt32(Session["User_Id"]);
-
             return View(objResult);
 
         }
-
-
 
         public ActionResult Create(int userId)
         {

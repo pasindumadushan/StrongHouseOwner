@@ -150,6 +150,7 @@
     <Compile Include="Repository\HousePlanRepository.cs" />
     <Compile Include="Repository\HouseWallingStoreRepository.cs" />
     <Compile Include="Repository\RegistrationRepository.cs" />
+    <Compile Include="Repository\SearchRepository.cs" />
     <Compile Include="Repository\WallingRepository.cs" />
     <Compile Include="Repository\CeilingRepository.cs" />
     <Compile Include="Repository\FlooringRepository.cs" />
