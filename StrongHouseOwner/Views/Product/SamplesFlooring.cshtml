@@ -59,10 +59,10 @@
                             <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Register
                         </a>
                         @*<div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Logout
-                        </a>*@
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>*@
                     </div>
 
                 }
@@ -121,6 +121,52 @@
         </div>
     </nav>
 
+    <div id="page-content-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0" style="width: 100%;">
+                    <li class="nav-item active" style="width: 100%;">
+                        <table style="width: 100%;">
+                            <tr>
+                                <td style="width: 70%;">
+                                    @*<button class="btn btn-primary" onclick="location.href='@Url.Action("Create","Store", new { userId = @ViewBag.userId})'">
+                                            <i class="fas fa-cart-plus ml-2" aria-hidden="true">Create House</i>
+                                        </button>*@
+                                </td>
+
+                                <td style="width: 30%;">
+                                    <form asp-action="SamplesFlooring" method="post" enctype="application/x-www-form-urlencoded">
+                                        <table>
+
+                                            <tr>
+
+                                                <td>
+                                                    <select class="custom-select" id="SearchBy" name="SearchBy">
+                                                        <option value="Name">Name</option>
+                                                        <option value="Code">Code</option>
+                                                    </select>
+                                                </td>
+
+                                                <td>
+                                                    <input class="form-control input-sm" type="text" id="SearchValue" name="SearchValue" style="height:24px;">
+                                                </td>
+                                                <td>
+                                                    <input type="submit" class="btn btn-primary" id="SearchSubmit" value="Search">
+                                                </td>
+
+                                            </tr>
+
+                                        </table>
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
     <div class="bg-faded p-4 rounded">
         <div class="container">
             <div class="row">
@@ -155,7 +201,7 @@
                                             <label id="price">@item.FlooringTypeSamplePrice</label>
                                         </strong>
                                     </td>
-                                    
+
                                     <td class="col-sm-1 col-md-1 text-center">
 
                                         <button type="button" class="btn btn-primary">

@@ -14,13 +14,24 @@ namespace StrongHouseOwner.Controllers
         HouseWallingStoreRepository houseWallingStoreRepository;
         WallingRepository wallingRepository;
         StoredWalling storedWalling;
+        SearchRepository searchRepository;
+
         // GET: HouseFloorStore
-        public ActionResult Index(int houseId)
+        public ActionResult Index(int houseId, string SearchBy, string SearchValue)
         {
             houseWallingStoreRepository = new HouseWallingStoreRepository();
             ViewBag.ViewBagHouseRefId = houseId;
+            searchRepository = new SearchRepository();
+            List<StoredWalling> objResult = new List<StoredWalling>();
 
-            var objResult = houseWallingStoreRepository.GetHouseStoredWallingListRP(houseId);
+            if (SearchValue != null)
+            {
+                objResult = searchRepository.GetHouseStoredWallingListSearchRP(houseId, SearchBy, SearchValue);
+            }
+            else
+            {
+                objResult = houseWallingStoreRepository.GetHouseStoredWallingListRP(houseId);
+            }
 
             return View(objResult);
         }

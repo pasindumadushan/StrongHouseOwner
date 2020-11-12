@@ -1,4 +1,5 @@
-﻿using StrongHouseOwner.Data.Repository;
+﻿using StrongHouseOwner.Data.EntityModel;
+using StrongHouseOwner.Data.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace StrongHouseOwner.Controllers
         FlooringRepository flooringRepository;
         WallingRepository wallingRepository;
         CeilingRepository ceilingRepository;
+        SearchRepository searchRepository;
         // GET: Product
         public ActionResult Products()
         {
@@ -19,63 +21,110 @@ namespace StrongHouseOwner.Controllers
         }
 
 
-        public ActionResult ListOfFlooringTypes()
+        public ActionResult ListOfFlooringTypes(string SearchBy, string SearchValue)
         {
-
             flooringRepository = new FlooringRepository();
-            var objResult = flooringRepository.GetFlooringListTypesRP();
+            searchRepository = new SearchRepository();
+            List<TypeOfFlooring> objResult = new List<TypeOfFlooring>();
 
+            if (SearchValue != null)
+            {
+                objResult = searchRepository.GetFlooringListTypesSearchRP(SearchBy, SearchValue);
+            }
+            else
+            {
+                objResult = flooringRepository.GetFlooringListTypesRP();
+            }
+                
             return View(objResult);
         }
         
-        public ActionResult ListOfWallingTypes()
+        public ActionResult ListOfWallingTypes(string SearchBy, string SearchValue)
         {
 
             wallingRepository = new WallingRepository();
-            var objResult = wallingRepository.GetWallingListTypesRP();
-
+            searchRepository = new SearchRepository();
+            List<TypeOfWalling> objResult = new List<TypeOfWalling>();
+            if (SearchValue != null)
+            {
+                objResult = searchRepository.GetWallingListTypesSearchRP(SearchBy, SearchValue);
+            }
+            else
+            {
+                objResult = wallingRepository.GetWallingListTypesRP();
+            }
             return View(objResult);
         }
         
-        public ActionResult ListOfCeilingTypes()
+        public ActionResult ListOfCeilingTypes(string SearchBy, string SearchValue)
         {
 
             ceilingRepository = new CeilingRepository();
-            var objResult = ceilingRepository.GetCeilingListTypesRP();
-
+            searchRepository = new SearchRepository();
+            List<TypeOfCeiling> objResult = new List<TypeOfCeiling>();
+            if (SearchValue != null)
+            {
+                objResult = searchRepository.GetCeilingListTypesSearchRP(SearchBy, SearchValue);
+            }
+            else
+            {
+                objResult = ceilingRepository.GetCeilingListTypesRP();
+            }
             return View(objResult);
         }
 
-
-
-        public ActionResult SamplesFlooring(int flooringTypeId)
+        public ActionResult SamplesFlooring(int flooringTypeId, string SearchBy, string SearchValue)
         {
 
             flooringRepository = new FlooringRepository();
-            var objResult = flooringRepository.SamplesListRP(flooringTypeId);
-
+            searchRepository = new SearchRepository();
+            List<TypeOfFlooringSample> objResult = new List<TypeOfFlooringSample>();
+            if (SearchValue != null)
+            {
+                objResult = searchRepository.SamplesFlooringListSearchRP(flooringTypeId,SearchBy, SearchValue);
+            }
+            else
+            {
+                objResult = flooringRepository.SamplesListRP(flooringTypeId);
+            }
             ViewBag.ViewBagRefflooringTypeId = flooringTypeId;
 
             return View(objResult);
         }
 
-        public ActionResult SamplesWalling(int wallingTypeId)
+        public ActionResult SamplesWalling(int wallingTypeId, string SearchBy, string SearchValue)
         {
 
             wallingRepository = new WallingRepository();
-            var objResult = wallingRepository.SamplesListRP(wallingTypeId);
-
+            searchRepository = new SearchRepository();
+            List<TypeOfWallingSample> objResult = new List<TypeOfWallingSample>();
+            if (SearchValue != null)
+            {
+                objResult = searchRepository.SamplesWallingListSearchRP(wallingTypeId, SearchBy, SearchValue);
+            }
+            else
+            {
+                objResult = wallingRepository.SamplesListRP(wallingTypeId);
+            }
             ViewBag.ViewBagRefwallingTypeId = wallingTypeId;
 
             return View(objResult);
         }
 
-        public ActionResult SamplesCeiling(int ceilingTypeId)
+        public ActionResult SamplesCeiling(int ceilingTypeId, string SearchBy, string SearchValue)
         {
 
             ceilingRepository = new CeilingRepository();
-            var objResult = ceilingRepository.SamplesListRP(ceilingTypeId);
-
+            searchRepository = new SearchRepository();
+            List<TypeOfCeilingSample> objResult = new List<TypeOfCeilingSample>();
+            if (SearchValue != null)
+            {
+                objResult = searchRepository.SamplesCeilingListSearchRP(ceilingTypeId, SearchBy, SearchValue);
+            }
+            else
+            {
+                objResult = ceilingRepository.SamplesListRP(ceilingTypeId);
+            }
             ViewBag.ViewBagRefceilingTypeId = ceilingTypeId;
 
             return View(objResult);

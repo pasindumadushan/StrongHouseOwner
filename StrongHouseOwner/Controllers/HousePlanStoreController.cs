@@ -13,16 +13,24 @@ namespace StrongHouseOwner.Controllers
     {
         HousePlanRepository housePlanRepository;
         StoredPlan storedPlan;
+        SearchRepository searchRepository;
 
         // GET: HousePlanStore
-        public ActionResult Index(int houseId)
+        public ActionResult Index(int houseId, string SearchBy, string SearchValue)
         {
 
             housePlanRepository = new HousePlanRepository();
             ViewBag.ViewBagHouseRefId = houseId;
-
-            var objResult = housePlanRepository.GetHouseStoredPlanListRP(houseId);
-            
+            searchRepository = new SearchRepository();
+            List<StoredPlan> objResult = new List<StoredPlan>();
+            if (SearchValue != null)
+            {
+                objResult = searchRepository.GetHouseStoredPlanListSearchRP(houseId, SearchBy, SearchValue);
+            }
+            else
+            {
+                objResult = housePlanRepository.GetHouseStoredPlanListRP(houseId);
+            }
             return View(objResult);
         }
 

@@ -133,45 +133,63 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <button class="btn btn-primary" id="menu-toggle">
-                    <span class="glyphicon glyphicon-menu-hamburger">
-                    </span>
-                </button>
+            <div id="page-content-wrapper">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto mt-2 mt-lg-0" style="width: 100%;">
+                            <li class="nav-item active" style="width: 100%;">
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <td style="width: 5%;">
+                                            <button class="btn btn-primary" id="menu-toggle">
+                                                <span class="glyphicon glyphicon-menu-hamburger">
+                                                </span>
+                                            </button>
+                                        </td>
+                                        <td style="width: 60%;">
+                                            <button class="btn btn-primary" onclick="location.href='@Url.Action("Create","HouseFlooringStore", new { houseId = @ViewBag.ViewBagHouseRefId})'">
+                                                <i class="fas fa-cart-plus ml-2" aria-hidden="true">Store a Flooring</i>
+                                            </button>
+                                        </td>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                        <li class="nav-item active">
-                            <button class="btn btn-primary" onclick="location.href='@Url.Action("Create","HouseFlooringStore", new { houseId = @ViewBag.ViewBagHouseRefId})'">
-                                <i class="fas fa-cart-plus ml-2" aria-hidden="true">Store a Flooring</i>
-                            </button>
-                        </li>
-                        @*<li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <td style="width: 30%;">
+                                            <form asp-action="index" method="post" enctype="application/x-www-form-urlencoded">
+                                                <table>
+
+                                                    <tr>
+
+                                                        <td style="width: 30%;">
+                                                            <select class="custom-select" id="SearchBy" name="SearchBy">
+                                                                <option value="Partition">Partition</option>
+                                                                <option value="Category">Category</option>
+                                                            </select>
+                                                        </td>
+
+                                                        <td style="width: 50%;">
+                                                            <input class="form-control input-sm" type="text" id="SearchValue" name="SearchValue" style="height:24px;">
+                                                        </td>
+                                                        <td style="width: 20%;">
+                                                            <input type="submit" class="btn btn-primary" id="SearchSubmit" value="Search">
+                                                        </td>
+
+                                                    </tr>
+
+                                                </table>
+                                            </form>
+                                        </td>
+
+                                        <td style="width: 5%;">
+                                            <button class="btn btn-primary" onclick="location.href='@Url.Action("UserPanel","Store")'">
+                                                <i class="fas fa-cart-plus ml-2" aria-hidden="true">Back</i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </li>
+                        </ul>
                     </div>
-                </li>*@
-                    </ul>
-                </div>
-                <div class="navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                        <li class="nav-item active">
-                            <button class="btn btn-primary" onclick="location.href='@Url.Action("UserPanel","Store")'">
-                                <i class="fas fa-cart-plus ml-2" aria-hidden="true">Back</i>
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+                </nav>
+            </div>
 
             <div class="bg-faded p-4 rounded">
                 <div class="container" style="margin-right:0px;margin-left:0;padding-right:0px;padding-left:0px;width:100%;">

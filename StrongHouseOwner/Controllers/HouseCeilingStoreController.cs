@@ -14,13 +14,24 @@ namespace StrongHouseOwner.Controllers
         HouseCeilingStoreRepository houseCeilingStoreRepository;
         CeilingRepository ceilingRepository;
         StoredCeiling storedCeiling;
+        SearchRepository searchRepository;
+
         // GET: HouseFloorStore
-        public ActionResult Index(int houseId)
+        public ActionResult Index(int houseId, string SearchBy, string SearchValue)
         {
             houseCeilingStoreRepository = new HouseCeilingStoreRepository();
             ViewBag.ViewBagHouseRefId = houseId;
+            searchRepository = new SearchRepository();
+            List<StoredCeiling> objResult = new List<StoredCeiling>();
 
-            var objResult = houseCeilingStoreRepository.GetHouseStoredCeilingListRP(houseId);
+            if (SearchValue != null)
+            {
+                objResult = searchRepository.GetHouseStoredCeilingListSearchRP(houseId, SearchBy, SearchValue);
+            }
+            else
+            {
+                objResult = houseCeilingStoreRepository.GetHouseStoredCeilingListRP(houseId);
+            }
 
             return View(objResult);
         }

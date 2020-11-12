@@ -14,14 +14,25 @@ namespace StrongHouseOwner.Controllers
         HouseFlooringStoreRepository houseFlooringStoreRepository;
         FlooringRepository flooringRepository;
         StoredFlooring storedFlooring;
+        SearchRepository searchRepository;
+
         // GET: HouseFloorStore
-        public ActionResult Index(int houseId)
+        public ActionResult Index(int houseId, string SearchBy, string SearchValue)
         {
             houseFlooringStoreRepository = new HouseFlooringStoreRepository();
             ViewBag.ViewBagHouseRefId = houseId;
+            searchRepository = new SearchRepository();
+            List<StoredFlooring> objResult = new List<StoredFlooring>();
 
-            var objResult = houseFlooringStoreRepository.GetHouseStoredFlooringListRP(houseId);
-            
+            if (SearchValue != null)
+            {
+                objResult = searchRepository.GetHouseStoredFlooringListSearchRP(houseId, SearchBy, SearchValue);
+            }
+            else
+            {
+                objResult = houseFlooringStoreRepository.GetHouseStoredFlooringListRP(houseId);
+            }
+
             return View(objResult);
         }
 

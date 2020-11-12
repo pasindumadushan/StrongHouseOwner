@@ -116,183 +116,231 @@
             </div>
         </div>
     </nav>
-    <div class="bg-faded p-5 rounded">
-        @{int i = 0;}
-        @foreach (var item in Model)
-        {
-            if (i % 2 == 0 && @item.FlooringTypeDetails != null)
-            {
 
-                <section class="page-section">
-                    <div class="container">
-                        <div class="product-item">
-                            <div class="product-item-title d-flex">
-                                <div class="bg-faded p-5 d-flex mr-auto rounded">
-                                    <h2 class="section-heading mb-0">
-                                        <span class="section-heading-upper">@item.FlooringTypeCategory</span>
-                                        <span class="section-heading-lower  btn btn-primary w-100 btn-xl" onclick="location.href='@Url.Action("SamplesFlooring", "Product", new { flooringTypeId = item.FlooringTypeId})'">@item.FlooringType</span>
-                                    </h2>
-                                </div>
-                            </div>
-                            @if (!string.IsNullOrWhiteSpace(item.FlooringTypeImage))
-                            {
-                                <img class="product-item-img mx-2 d-flex rounded img-fluid mb-3 mb-lg-0" src="@Url.Content(item.FlooringTypeImage)" style="height:400px;width:800px" alt="">
-                            }
-                            <div class="product-item-description d-flex ml-auto">
-                                <div class="bg-faded p-5 rounded">
-                                    <p class="mb-0">@item.FlooringTypeDetails</p>
+    
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0" style="width: 100%;">
+                        <li class="nav-item active" style="width: 100%;">
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td style="width: 70%;">
+                                        @*<button class="btn btn-primary" onclick="location.href='@Url.Action("Create","Store", new { userId = @ViewBag.userId})'">
+                                            <i class="fas fa-cart-plus ml-2" aria-hidden="true">Create House</i>
+                                        </button>*@
+                                    </td>
 
-                                    <!-- More Details -->
+                                    <td style="width: 30%;">
+                                        <form asp-action="ListOfFlooringTypes" method="post" enctype="application/x-www-form-urlencoded">
+                                            <table>
 
-                                    <div class="row" style="padding-left:2%;padding-right:2%;padding-bottom: 2%;width:100%;">
-                                        <div class="card" style="width:100%;">
+                                                <tr>
 
-                                            <!-- Card header -->
-                                            <div class="card-header" role="tab" id="headingOne1">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#@("accordionEx"+i)" href="#@("collapseOne1"+i)"
-                                                   aria-expanded="false" aria-controls="collapseOne1">
-                                                    <h5 class="mb-0">
-                                                        Read<i class="fas fa-angle-down rotate-icon"></i>
-                                                    </h5>
-                                                </a>
-                                            </div>
+                                                    <td>
+                                                        <select class="custom-select" id="SearchBy" name="SearchBy">
+                                                            <option value="Type">Type</option>
+                                                            <option value="Category">Category</option>
+                                                        </select>
+                                                    </td>
 
-                                            <!-- Card body -->
-                                            <div id="@("collapseOne1"+i)" class="collapse" role="tabpanel" aria-labelledby="headingOne1"
-                                                 data-parent="#@("accordionEx"+i)">
-                                                <div class="card-body">
-                                                    <table>
-                                                        <thead></thead>
-                                                        <thead></thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">Advantages :  </td>
-                                                                <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">@item.FlooringTypeAdvantage</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">Disadvantages :  </td>
-                                                                <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">@item.FlooringTypeDisadvantage</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">Best use :  </td>
-                                                                <td style="padding-top:20px;padding-bottom:20px;padding-right:20px"> @item.FlooringTypeBestUse</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                                                       
+                                                    <td>
+                                                        <input class="form-control input-sm" type="text" id="SearchValue" name="SearchValue" style="height:24px;">
+                                                    </td>
+                                                    <td>
+                                                        <input type="submit" class="btn btn-primary" id="SearchSubmit" value="Search">
+                                                    </td>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            }
-            else if (i % 2 == 1 && @item.FlooringTypeDetails != null)
-            {
-                <section class="page-section">
-                    <div class="container">
-                        <div class="product-item">
-                            <div class="product-item-title d-flex">
-                                <div class="bg-faded p-5 d-flex ml-auto rounded">
-                                    <h2 class="section-heading mb-0">
-                                        <span class="section-heading-upper">@item.FlooringTypeCategory</span>
-                                        <span class="section-heading-lower btn btn-primary w-100 btn-xl" onclick="location.href='@Url.Action("SamplesFlooring", "Product", new { flooringTypeId = item.FlooringTypeId})'">@item.FlooringType</span>
-                                    </h2>
-                                </div>
-                            </div>
-                            @if (!string.IsNullOrWhiteSpace(item.FlooringTypeImage))
-                            {
-                                <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="@Url.Content(item.FlooringTypeImage)" style="height:400px;width:800px" alt="">
-                            }
-                            <div class="product-item-description d-flex mr-auto">
-                                <div class="bg-faded p-5 rounded">
-                                    <p class="mb-0">@item.FlooringTypeDetails</p>
+                                                </tr>
 
-                                    <!-- More Details -->
-
-                                    <div class="row" style="padding-left:2%;padding-right:2%;padding-bottom: 2%;width:100%;">
-                                        <div class="card" style="width:100%;">
-
-                                            <!-- Card header -->
-                                            <div class="card-header" role="tab" id="headingOne1">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#@("accordionEx"+i)" href="#@("collapseOne1"+i)"
-                                                   aria-expanded="false" aria-controls="collapseOne1">
-                                                    <h5 class="mb-0">
-                                                        Read<i class="fas fa-angle-down rotate-icon"></i>
-                                                    </h5>
-                                                </a>
-                                            </div>
-
-                                            <!-- Card body -->
-                                            <div id="@("collapseOne1"+i)" class="collapse" role="tabpanel" aria-labelledby="headingOne1"
-                                                 data-parent="#@("accordionEx"+i)">
-                                                <div class="card-body">
-                                                    <table>
-                                                        <thead></thead>
-                                                        <thead></thead>
-                                                        <tbody>
-                                                            <tr>
-
-                                                                <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">Advantages : </td>
-                                                                <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">@item.FlooringTypeAdvantage</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">Disadvantages : </td>
-                                                                <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">@item.FlooringTypeDisadvantage</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">Best use : </td>
-                                                                <td style="padding-top:20px;padding-bottom:20px;padding-right:20px"> @item.FlooringTypeBestUse</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            }
-            else
-            {
-                <section class="page-section">
-                    <div class="container">
-                        <div class="product-item">
-                            <div class="product-item-title d-flex">
-                                <div class="bg-faded p-5 d-flex mr-auto rounded">
-                                    <h2 class="section-heading mb-0">
-                                        <span class="section-heading-upper">@item.FlooringTypeCategory</span>
-                                        <span class="section-heading-lower btn btn-primary w-100 btn-xl" onclick="location.href='@Url.Action("SamplesFlooring", "Product", new { flooringTypeId = item.FlooringTypeId})'">@item.FlooringType</span>
-                                    </h2>
-                                </div>
-                            </div>
-                            @if (!string.IsNullOrWhiteSpace(item.FlooringTypeImage))
-                            {
-                                <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="@Url.Content(item.FlooringTypeImage)" style="height:400px;width:800px" alt="">
-                            }
-                        </div>
-                    </div>
-                </section>
-            }
-            i = i + 1;
-        }
-    </div>
-    <footer class="footer text-faded text-center py-5">
-        <div class="container">
-            <p class="m-0 small">Copyright &copy; Your Website 2020</p>
+                                            </table>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </table>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         </div>
-    </footer>
 
-    <!-- Bootstrap core JavaScript -->
+            <div class="bg-faded p-5 rounded">
+                @{int i = 0;}
+                @foreach (var item in Model)
+                {
+                    if (i % 2 == 0 && @item.FlooringTypeDetails != null)
+                    {
+
+                        <section class="page-section">
+                            <div class="container">
+                                <div class="product-item">
+                                    <div class="product-item-title d-flex">
+                                        <div class="bg-faded p-5 d-flex mr-auto rounded">
+                                            <h2 class="section-heading mb-0">
+                                                <span class="section-heading-upper">@item.FlooringTypeCategory</span>
+                                                <span class="section-heading-lower  btn btn-primary w-100 btn-xl" onclick="location.href='@Url.Action("SamplesFlooring", "Product", new { flooringTypeId = item.FlooringTypeId})'">@item.FlooringType</span>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                    @if (!string.IsNullOrWhiteSpace(item.FlooringTypeImage))
+                                    {
+                                        <img class="product-item-img mx-2 d-flex rounded img-fluid mb-3 mb-lg-0" src="@Url.Content(item.FlooringTypeImage)" style="height:400px;width:800px" alt="">
+                                    }
+                                    <div class="product-item-description d-flex ml-auto">
+                                        <div class="bg-faded p-5 rounded">
+                                            <p class="mb-0">@item.FlooringTypeDetails</p>
+
+                                            <!-- More Details -->
+
+                                            <div class="row" style="padding-left:2%;padding-right:2%;padding-bottom: 2%;width:100%;">
+                                                <div class="card" style="width:100%;">
+
+                                                    <!-- Card header -->
+                                                    <div class="card-header" role="tab" id="headingOne1">
+                                                        <a class="collapsed" data-toggle="collapse" data-parent="#@("accordionEx"+i)" href="#@("collapseOne1"+i)"
+                                                           aria-expanded="false" aria-controls="collapseOne1">
+                                                            <h5 class="mb-0">
+                                                                Read<i class="fas fa-angle-down rotate-icon"></i>
+                                                            </h5>
+                                                        </a>
+                                                    </div>
+
+                                                    <!-- Card body -->
+                                                    <div id="@("collapseOne1"+i)" class="collapse" role="tabpanel" aria-labelledby="headingOne1"
+                                                         data-parent="#@("accordionEx"+i)">
+                                                        <div class="card-body">
+                                                            <table>
+                                                                <thead></thead>
+                                                                <thead></thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">Advantages :  </td>
+                                                                        <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">@item.FlooringTypeAdvantage</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">Disadvantages :  </td>
+                                                                        <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">@item.FlooringTypeDisadvantage</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">Best use :  </td>
+                                                                        <td style="padding-top:20px;padding-bottom:20px;padding-right:20px"> @item.FlooringTypeBestUse</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    }
+                    else if (i % 2 == 1 && @item.FlooringTypeDetails != null)
+                    {
+                        <section class="page-section">
+                            <div class="container">
+                                <div class="product-item">
+                                    <div class="product-item-title d-flex">
+                                        <div class="bg-faded p-5 d-flex ml-auto rounded">
+                                            <h2 class="section-heading mb-0">
+                                                <span class="section-heading-upper">@item.FlooringTypeCategory</span>
+                                                <span class="section-heading-lower btn btn-primary w-100 btn-xl" onclick="location.href='@Url.Action("SamplesFlooring", "Product", new { flooringTypeId = item.FlooringTypeId})'">@item.FlooringType</span>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                    @if (!string.IsNullOrWhiteSpace(item.FlooringTypeImage))
+                                    {
+                                        <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="@Url.Content(item.FlooringTypeImage)" style="height:400px;width:800px" alt="">
+                                    }
+                                    <div class="product-item-description d-flex mr-auto">
+                                        <div class="bg-faded p-5 rounded">
+                                            <p class="mb-0">@item.FlooringTypeDetails</p>
+
+                                            <!-- More Details -->
+
+                                            <div class="row" style="padding-left:2%;padding-right:2%;padding-bottom: 2%;width:100%;">
+                                                <div class="card" style="width:100%;">
+
+                                                    <!-- Card header -->
+                                                    <div class="card-header" role="tab" id="headingOne1">
+                                                        <a class="collapsed" data-toggle="collapse" data-parent="#@("accordionEx"+i)" href="#@("collapseOne1"+i)"
+                                                           aria-expanded="false" aria-controls="collapseOne1">
+                                                            <h5 class="mb-0">
+                                                                Read<i class="fas fa-angle-down rotate-icon"></i>
+                                                            </h5>
+                                                        </a>
+                                                    </div>
+
+                                                    <!-- Card body -->
+                                                    <div id="@("collapseOne1"+i)" class="collapse" role="tabpanel" aria-labelledby="headingOne1"
+                                                         data-parent="#@("accordionEx"+i)">
+                                                        <div class="card-body">
+                                                            <table>
+                                                                <thead></thead>
+                                                                <thead></thead>
+                                                                <tbody>
+                                                                    <tr>
+
+                                                                        <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">Advantages : </td>
+                                                                        <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">@item.FlooringTypeAdvantage</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">Disadvantages : </td>
+                                                                        <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">@item.FlooringTypeDisadvantage</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="padding-top:20px;padding-bottom:20px;padding-right:20px">Best use : </td>
+                                                                        <td style="padding-top:20px;padding-bottom:20px;padding-right:20px"> @item.FlooringTypeBestUse</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    }
+                    else
+                    {
+                        <section class="page-section">
+                            <div class="container">
+                                <div class="product-item">
+                                    <div class="product-item-title d-flex">
+                                        <div class="bg-faded p-5 d-flex mr-auto rounded">
+                                            <h2 class="section-heading mb-0">
+                                                <span class="section-heading-upper">@item.FlooringTypeCategory</span>
+                                                <span class="section-heading-lower btn btn-primary w-100 btn-xl" onclick="location.href='@Url.Action("SamplesFlooring", "Product", new { flooringTypeId = item.FlooringTypeId})'">@item.FlooringType</span>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                    @if (!string.IsNullOrWhiteSpace(item.FlooringTypeImage))
+                                    {
+                                        <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="@Url.Content(item.FlooringTypeImage)" style="height:400px;width:800px" alt="">
+                                    }
+                                </div>
+                            </div>
+                        </section>
+                    }
+                    i = i + 1;
+                }
+            </div>
+            <footer class="footer text-faded text-center py-5">
+                <div class="container">
+                    <p class="m-0 small">Copyright &copy; Your Website 2020</p>
+                </div>
+            </footer>
+
+            <!-- Bootstrap core JavaScript -->
 </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
