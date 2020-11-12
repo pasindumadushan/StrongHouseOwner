@@ -15,6 +15,8 @@ namespace StrongHouseOwner.Controllers
         FlooringRepository flooringRepository;
         TypeOfFlooring objFlooringType;
         TypeOfFlooringSample objFlooringSample;
+        SearchRepository searchRepository;
+
         // GET: CreateFlooring
         int validation;
 
@@ -133,12 +135,23 @@ namespace StrongHouseOwner.Controllers
         }
 
 
-        public ActionResult ListOfFlooringTypes()
+        public ActionResult ListOfFlooringTypes(string SearchBy, string SearchValue)
         {
+            searchRepository = new SearchRepository();
+            flooringRepository = new FlooringRepository();
+            List<TypeOfFlooring> objResult = new List<TypeOfFlooring>();
+
             if (Convert.ToInt32(Session["User_Type"]) == 1 || Convert.ToInt32(Session["User_Type"]) == 3)
             {
-                flooringRepository = new FlooringRepository();
-                var objResult = flooringRepository.GetFlooringListTypesRP();
+
+                if (SearchValue != null)
+                {
+                    objResult = searchRepository.GetFlooringListTypesSearchRP(SearchBy, SearchValue);
+                }
+                else
+                {
+                    objResult = flooringRepository.GetFlooringListTypesRP();
+                }
 
                 return View(objResult);
             }
@@ -150,12 +163,20 @@ namespace StrongHouseOwner.Controllers
             
         }
 
-        public ActionResult Samples(int flooringTypeId)
+        public ActionResult Samples(int flooringTypeId, string SearchBy, string SearchValue)
         {
 
             flooringRepository = new FlooringRepository();
-            var objResult = flooringRepository.SamplesListRP(flooringTypeId);
-
+            searchRepository = new SearchRepository();
+            List<TypeOfFlooringSample> objResult = new List<TypeOfFlooringSample>();
+            if (SearchValue != null)
+            {
+                objResult = searchRepository.SamplesFlooringListSearchRP(flooringTypeId, SearchBy, SearchValue);
+            }
+            else
+            {
+                objResult = flooringRepository.SamplesListRP(flooringTypeId);
+            }
             ViewBag.ViewBagRefflooringTypeId = flooringTypeId;
 
             return View(objResult);

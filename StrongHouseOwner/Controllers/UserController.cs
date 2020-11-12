@@ -12,13 +12,23 @@ namespace StrongHouseOwner.Controllers
     {
         RegistrationRepository registrationRepository;
         UserRegistration userRegistration;
+        SearchRepository searchRepository;
 
         // GET: User
-        public ActionResult Index()
+        public ActionResult Index(string SearchBy, string SearchValue)
         {
-
+            searchRepository = new SearchRepository();
             registrationRepository = new RegistrationRepository();
-            var objResult = registrationRepository.GetUserListRP();
+            List<UserRegistration> objResult = new List<UserRegistration>();
+
+            if (SearchValue != null)
+            {
+                objResult = searchRepository.GetUserListRPSearchRP(SearchBy, SearchValue);
+            }
+            else
+            {
+                objResult = registrationRepository.GetUserListRP();
+            }
 
             return View(objResult);
 

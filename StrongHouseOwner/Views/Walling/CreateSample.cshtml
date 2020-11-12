@@ -127,7 +127,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
-                            <button class="btn btn-primary" onclick="location.href='@Url.Action("Samples","Flooring",new { flooringTypeId = @ViewBag.ViewBagRefflooringTypeId })'">
+                            <button class="btn btn-primary" onclick="location.href='@Url.Action("Samples","Walling",new { WallingTypeId = @ViewBag.ViewBagRefWallingTypeId })'">
                                 <i class="fas fa-cart-plus ml-2" aria-hidden="true">Back</i>
                             </button>
                         </li>
@@ -138,22 +138,6 @@
             <hr />
             <div class="bg-faded p-4 rounded">
                 <div class="container">
-                    @*<p>
-                            @Html.ActionLink("Flooring Types", "ListOfFlooringTypes")
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                            @Html.ActionLink("Flooring Types", "Samples", new { flooringTypeId = @ViewBag.ViewBagRefflooringTypeId })
-                        </p>
-                        <hr />*@
-
-                    <h4>
-                        @ViewBag.ViewBagMessage
-                    </h4>
-                    <p>
-                        @Html.ActionLink("Walling Types", "ListOfWallingTypes")
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                        @Html.ActionLink("Walling Types", "Samples", new { WallingTypeId = @ViewBag.ViewBagRefWallingTypeId })
-                    </p>
-                    <hr />
 
                     <form id="Sample" method="post" enctype="application/x-www-form-urlencoded" novalidate>
                         <label class="checkbox-inline">

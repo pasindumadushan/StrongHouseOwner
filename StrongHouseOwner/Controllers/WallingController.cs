@@ -15,6 +15,8 @@ namespace StrongHouseOwner.Controllers
         WallingRepository WallingRepository;
         TypeOfWalling objWallingType;
         TypeOfWallingSample objWallingSample;
+        SearchRepository searchRepository;
+
         // GET: CreateWalling
         int validation;
 
@@ -146,22 +148,38 @@ namespace StrongHouseOwner.Controllers
         }
 
 
-        public ActionResult ListOfWallingTypes()
+        public ActionResult ListOfWallingTypes(string SearchBy, string SearchValue)
         {
-
+            searchRepository = new SearchRepository();
             WallingRepository = new WallingRepository();
-            var objResult = WallingRepository.GetWallingListTypesRP();
+            List<TypeOfWalling> objResult = new List<TypeOfWalling>();
+
+            if (SearchValue != null)
+            {
+                objResult = searchRepository.GetWallingListTypesSearchRP(SearchBy, SearchValue);
+            }
+            else
+            {
+                objResult = WallingRepository.GetWallingListTypesRP();
+            }
 
             return View(objResult);
         }
 
-        public ActionResult Samples(int WallingTypeId)
+        public ActionResult Samples(int wallingTypeId, string SearchBy, string SearchValue)
         {
-
             WallingRepository = new WallingRepository();
-            var objResult = WallingRepository.SamplesListRP(WallingTypeId);
-
-            ViewBag.ViewBagRefWallingTypeId = WallingTypeId;
+            searchRepository = new SearchRepository();
+            List<TypeOfWallingSample> objResult = new List<TypeOfWallingSample>();
+            if (SearchValue != null)
+            {
+                objResult = searchRepository.SamplesWallingListSearchRP(wallingTypeId, SearchBy, SearchValue);
+            }
+            else
+            {
+                objResult = WallingRepository.SamplesListRP(wallingTypeId);
+            }
+            ViewBag.ViewBagRefWallingTypeId = wallingTypeId;
 
             return View(objResult);
         }

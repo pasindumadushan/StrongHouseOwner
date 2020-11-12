@@ -15,6 +15,8 @@ namespace StrongHouseOwner.Controllers
         CeilingRepository CeilingRepository;
         TypeOfCeiling objCeilingType;
         TypeOfCeilingSample objCeilingSample;
+        SearchRepository searchRepository;
+
         // GET: CreateCeiling
         int validation;
 
@@ -132,22 +134,40 @@ namespace StrongHouseOwner.Controllers
         }
 
 
-        public ActionResult ListOfCeilingTypes()
+        public ActionResult ListOfCeilingTypes(string SearchBy, string SearchValue)
         {
-
+            searchRepository = new SearchRepository();
             CeilingRepository = new CeilingRepository();
-            var objResult = CeilingRepository.GetCeilingListTypesRP();
+            List<TypeOfCeiling> objResult = new List<TypeOfCeiling>();
+
+            if (SearchValue != null)
+            {
+                objResult = searchRepository.GetCeilingListTypesSearchRP(SearchBy, SearchValue);
+            }
+            else
+            {
+                objResult = CeilingRepository.GetCeilingListTypesRP();
+            }
 
             return View(objResult);
         }
 
-        public ActionResult Samples(int CeilingTypeId)
+        public ActionResult Samples(int ceilingTypeId, string SearchBy, string SearchValue)
         {
 
             CeilingRepository = new CeilingRepository();
-            var objResult = CeilingRepository.SamplesListRP(CeilingTypeId);
+            searchRepository = new SearchRepository();
+            List<TypeOfCeilingSample> objResult = new List<TypeOfCeilingSample>();
+            if (SearchValue != null)
+            {
+                objResult = searchRepository.SamplesCeilingListSearchRP(ceilingTypeId, SearchBy, SearchValue);
+            }
+            else
+            {
+                objResult = CeilingRepository.SamplesListRP(ceilingTypeId);
+            }
 
-            ViewBag.ViewBagRefCeilingTypeId = CeilingTypeId;
+            ViewBag.ViewBagRefCeilingTypeId = ceilingTypeId;
 
             return View(objResult);
         }

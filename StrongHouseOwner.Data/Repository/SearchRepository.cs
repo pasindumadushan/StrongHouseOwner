@@ -338,6 +338,32 @@ namespace StrongHouseOwner.Data.Repository
             }
 
         }
+
+        
+        public List<UserRegistration> GetUserListRPSearchRP(string searchBy, string searchValue)
+        {
+            try
+            {
+                objEntity = new StrongHouseDBEntities();
+                List<UserRegistration> objResult = new List<UserRegistration>();
+
+                if (searchBy == "Username")
+                {
+                    objResult = objEntity.UserRegistrations.Where(x => x.UserName.Contains(searchValue)).ToList();
+                }
+                else
+                {
+                    objResult = objEntity.UserRegistrations.Where(x => x.UserMail.Contains(searchValue)).ToList();
+                }
+                return objResult;
+
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+        }
     }
 
 }

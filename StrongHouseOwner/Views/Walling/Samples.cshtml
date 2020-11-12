@@ -128,7 +128,6 @@
         <div class="bg-light" id="sidebar-wrapper">
             <div class="sidebar-heading">Menu</div>
             <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action bg-light">Plans</a>
                 <a href='@Url.Action("ListOfFlooringTypes", "Flooring")' class="list-group-item list-group-item-action bg-light">Flooring Details</a>
                 <a href='@Url.Action("ListOfWallingTypes", "Walling")' class="list-group-item list-group-item-action bg-light" style="z-index:2;color:#007bff;background-color:#555;border-color:#ddd">Walling Details</a>
                 <a href='@Url.Action("ListOfCeilingTypes", "Ceiling")' class="list-group-item list-group-item-action bg-light">Ceiling Details</a>
@@ -140,22 +139,65 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <button class="btn btn-primary" id="menu-toggle">
-                    <span class="glyphicon glyphicon-menu-hamburger">
-                    </span>
-                </button>
+            <div id="page-content-wrapper">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto mt-2 mt-lg-0" style="width: 100%;">
+                            <li class="nav-item active" style="width: 100%;">
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <td style="width: 5%;">
+                                            <button class="btn btn-primary" id="menu-toggle">
+                                                <span class="glyphicon glyphicon-menu-hamburger">
+                                                </span>
+                                            </button>
+                                        </td>
+                                        <td style="width: 60%;">
+                                            <button class="btn btn-primary" onclick="location.href='@Url.Action("CreateSample","Walling", new { refwallingTypeId = ViewBag.ViewBagRefwallingTypeId })'">
+                                                <i class="fas fa-cart-plus ml-2" aria-hidden="true">Create Sample</i>
+                                            </button>
+                                        </td>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                        <li class="nav-item active">
-                            <button class="btn btn-primary" onclick="location.href='@Url.Action("CreateSample","Walling", new { refwallingTypeId = ViewBag.ViewBagRefwallingTypeId })'">
-                                <i class="fas fa-cart-plus ml-2" aria-hidden="true">Create Sample</i>
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+                                        <td style="width: 30%;">
+                                            <form asp-action="Samples" method="post" enctype="application/x-www-form-urlencoded">
+                                                <table>
+
+                                                    <tr>
+
+                                                        <td style="width: 30%;">
+                                                            <select class="custom-select" id="SearchBy" name="SearchBy">
+                                                                <option value="Name">Name</option>
+                                                                <option value="Code">Code</option>
+                                                                <option value="Brand">Brand</option>
+                                                            </select>
+                                                        </td>
+
+                                                        <td style="width: 50%;">
+                                                            <input class="form-control input-sm" type="text" id="SearchValue" name="SearchValue" style="height:24px;">
+                                                        </td>
+                                                        <td style="width: 20%;">
+                                                            <input type="submit" class="btn btn-primary" id="SearchSubmit" value="Search">
+                                                        </td>
+
+                                                    </tr>
+
+                                                </table>
+                                            </form>
+                                        </td>
+                                        <td style="width: 5%;">
+                                            <button class="btn btn-primary" onclick="location.href='@Url.Action("ListOfWallingTypes","Walling")'">
+                                                <i class="fas fa-cart-plus ml-2" aria-hidden="true">Back</i>
+                                            </button>
+                                        </td>
+
+                                    </tr>
+                                </table>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+
             <!--End side menu-->
             <!--Start Table-->
             <div class="bg-faded p-4 rounded">
@@ -194,22 +236,22 @@
                                             @foreach (var item in Model)
                                             {
 
-                                            <tr>
-                                                <td scope="row">@(i = i + 1)</td>
-                                                <td>@item.WallingTypeSampleCode</td>
-                                                <td>@item.WallingTypeSampleName</td>
-                                                <td>@item.WallingTypeBrand</td>
-                                                <td>@item.WallingTypeSampleSizeHeight x @item.WallingTypeSampleSizeWidth ''</td>
-                                                <td>@item.WallingMilliliters</td>
-                                                <td>@item.WallingTypeSamplePrice</td>
-                                                <td></td>
-                                                <td>
-                                                    <p data-placement="top" data-toggle="tooltip" title="Delete">
-                                                        <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-id="@item.WallingTypeSampleId" onclick="location.href='@Url.Action("DeleteSample", "Walling",new { wallingSampleId = item.WallingTypeSampleId, wallingTypeId = @ViewBag.ViewBagRefwallingTypeId})'"><span class="glyphicon glyphicon-trash"></span></button>
-                                                    </p>
-                                                </td>
+                                                <tr>
+                                                    <td scope="row">@(i = i + 1)</td>
+                                                    <td>@item.WallingTypeSampleCode</td>
+                                                    <td>@item.WallingTypeSampleName</td>
+                                                    <td>@item.WallingTypeBrand</td>
+                                                    <td>@item.WallingTypeSampleSizeHeight x @item.WallingTypeSampleSizeWidth ''</td>
+                                                    <td>@item.WallingMilliliters</td>
+                                                    <td>@item.WallingTypeSamplePrice</td>
+                                                    <td></td>
+                                                    <td>
+                                                        <p data-placement="top" data-toggle="tooltip" title="Delete">
+                                                            <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-id="@item.WallingTypeSampleId" onclick="location.href='@Url.Action("DeleteSample", "Walling",new { wallingSampleId = item.WallingTypeSampleId, wallingTypeId = @ViewBag.ViewBagRefwallingTypeId})'"><span class="glyphicon glyphicon-trash"></span></button>
+                                                        </p>
+                                                    </td>
 
-                                            </tr>
+                                                </tr>
 
                                             }
                                         </tbody>
