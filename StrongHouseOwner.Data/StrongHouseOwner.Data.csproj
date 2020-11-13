@@ -89,6 +89,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityModel\Comment.cs">
+      <DependentUpon>Model_StrongHouseOwner.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityModel\HouseDetail.cs">
       <DependentUpon>Model_StrongHouseOwner.tt</DependentUpon>
     </Compile>
@@ -108,6 +111,9 @@
       <DependentUpon>Model_StrongHouseOwner.edmx</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\Plan.cs">
+      <DependentUpon>Model_StrongHouseOwner.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\Reply.cs">
       <DependentUpon>Model_StrongHouseOwner.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\StoredCeiling.cs">
@@ -144,6 +150,7 @@
       <DependentUpon>Model_StrongHouseOwner.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\CommentRepository.cs" />
     <Compile Include="Repository\HouseCeilingStoreRepository.cs" />
     <Compile Include="Repository\HouseDetailRepository.cs" />
     <Compile Include="Repository\HouseFlooringStoreRepository.cs" />

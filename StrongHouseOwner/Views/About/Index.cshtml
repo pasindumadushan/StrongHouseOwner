@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<StrongHouseOwner.Data.EntityModel.Comment>
+@{
     ViewBag.Title = "Index";
 }
 <!DOCTYPE html>
@@ -189,7 +190,7 @@
                             I am Pasindu, experienced developer. I am giving you web application related solution for issue that we are facing.
                             This application is developed for my research related to "CHANGE THE FUTURE OF RENOVATION WHILE KEEPING
                             CONSTRUCTION DETAILS". This application covers the informations storing and exploring of construction materials and products.
-                            
+
 
 
                         </p>
@@ -204,18 +205,114 @@
                             </h1>
                             <ul>
                                 <li>
-                                    Phone: +9471 033 7486                                   
+                                    Phone: +9471 033 7486
                                 </li>
-                                <li> 
+                                <li>
                                     Email: pasindumadushan7@gmail.com
                                 </li>
                             </ul>
                         </p>
                     </div>
+                    <div class="product-item-description" style="width:100%;height:400px;overflow: scroll;">
+                        <div class="bg-faded p-5 rounded" style="width:100%">
+                            <p class="mb-0">Comments</p>
+                            <hr />
+                            <table>
+                                @foreach (var c in Model)
+                                {
+                                    <tr>
+                                        <th style="padding-top:10px;">
+                                            @c.UserRegistration.UserName
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @c.Comment1
+                                        </td>
+                                    </tr>
+                                    if (Session["User_Id"] != null && c.UserRefId == (int)Session["User_Id"])
+                                    {
+                                        <tr>
+                                            <td>
+                                                <button class="btn btn-primary" type="button" id="CommentDelete" style="width:100px;" onclick="location.href='@Url.Action("DeleteComment","About", new {commentId = c.CommentId})'">
+                                                    <span class="navbar-toggler-icon">Delete</span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    }
+
+                                    <tr>
+                                        <td>
+                                            <table style="margin-left:10%;margin-top:10px;">
+                                                <tr>
+                                                    <th>
+                                                        Replay
+                                                        <hr />
+                                                    </th>
+                                                </tr>
+                                                @foreach (var r in c.Replies)
+                                                {
+                                                    <tr>
+                                                        <td style="padding-top:5px;">
+                                                            <b>@r.UserRegistration.UserName</b>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            @r.Reply1
+                                                        </td>
+                                                    </tr>
+                                                    if (Session["User_Id"] != null && r.UserRefId == (int)Session["User_Id"])
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                <button class="btn btn-primary" type="button" id="ReplyDelete" style="width:100px;" onclick="location.href='@Url.Action("DeleteReply","About", new {replyId = r.ReplyId })'">
+                                                                    <span class="navbar-toggler-icon">Delete</span>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    }
+
+                                                }
+                                                <tr>
+                                                    <td style="padding-top:10px;">
+                                                        <textarea name="Reply" id="@("Reply-"+c.CommentId)" style="width:400px;height:50px;" placeholder="Add a reply"></textarea>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <button class="btn btn-primary" type="button" id="@("replyBtn-"+c.CommentId)" style="width:100px;">
+                                                            <span class="navbar-toggler-icon">Reply</span>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                }
+
+                                <tr>
+                                    <td style="padding-top:50px;">
+                                        <textarea name="Comment" id="Comment" style="width:400px;height:50px;" placeholder="Add a Comment"></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button class="btn btn-primary" type="button" id="commentBtn" style="width:100px;">
+                                            <span class="navbar-toggler-icon">Post</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
-</section>
+        </section>
     </div>
 
     <footer class="footer text-faded text-center py-5">
@@ -237,10 +334,112 @@
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
+        $("#commentBtn").click(function () {
+            getComment();
+        });
 
-        $('.mdb-select').materialSelect();
+        $(".btn").click(function () {
+            var id = $(this).attr('id'); 
+            if (id.indexOf("reply") >= 0) {
+                var commentId = id.split("-")[1];
+                getReply(commentId);
+            }
+            
+        });
+
 
     });
 
+    function getComment()
+    {
+        if ($("#Comment").val() == "" || $("#Comment").val() == null || !$("#Comment").val().replace(/\s/g, '').length) {
+
+            alert("Comment is empty!");
+
+        }
+        else if("@Session["User_Id"]" == ""){
+            alert("Please login!");
+        }
+        else {
+            
+            var comment = $("#Comment").val();
+            var userId = "@Session["User_Id"]";
+
+            $.ajax({
+                type: 'POST',
+                data: '{ userId : "' + userId + '", comment : "' + comment + '" }',
+                url: '@Url.Action("AddComment","About")',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8', // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                processData: false, // NEEDED, DON'T OMIT THIS
+                //cache: false,
+                success: function (data) {
+
+                    if (data.validation == 0) {
+                        alert("Thank you for comments!");
+                        window.location.href = "/About/Index"
+
+                    }
+                    else if (data.validation == 1) {
+                        alert("Retry!");
+
+                    }
+
+                },
+                error: function (response) {
+
+                    alert("error!");  //
+
+                }
+            });
+
+        }
+    }
+    function getReply(commentId)
+    {
+        if ($("#Reply-" + commentId).val() == "" || $("#Reply-" + commentId).val() == null || !$("#Reply-" + commentId).val().replace(/\s/g, '').length) {
+
+            alert("Reply is empty!");
+
+        }
+        else if("@Session["User_Id"]" == ""){
+            alert("Please login!");
+        }
+        else {
+            
+            var commentId = commentId;
+            var reply = $("#Reply-" + commentId).val();
+            var userId = "@Session["User_Id"]";
+
+            $.ajax({
+                type: 'POST',
+                data: '{ userId : "' + userId + '", commentId : "' + commentId + '", reply : "' + reply + '"}',
+                url: '@Url.Action("AddReply","About")',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8', // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                processData: false, // NEEDED, DON'T OMIT THIS
+                //cache: false,
+                success: function (data) {
+
+                    if (data.validation == 0) {
+                        alert("Thank you for Reply!");
+                        window.location.href = "/About/Index"
+
+                    }
+                    else if (data.validation == 1) {
+                        alert("Retry!");
+
+                    }
+
+                },
+                error: function (response) {
+
+                    alert("error!");  //
+
+                }
+            });
+
+        }
+    }
 
 </script>

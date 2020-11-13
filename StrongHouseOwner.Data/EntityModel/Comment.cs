@@ -12,30 +12,21 @@ namespace StrongHouseOwner.Data.EntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class UserRegistration
+    public partial class Comment
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UserRegistration()
+        public Comment()
         {
-            this.HouseDetails = new HashSet<HouseDetail>();
             this.Replies = new HashSet<Reply>();
-            this.Comments = new HashSet<Comment>();
         }
     
-        public int UserId { get; set; }
-        public string UserName { get; set; }
-        public string UserMail { get; set; }
-        public int UserAge { get; set; }
-        public string UserPassword { get; set; }
-        public string UserAddress { get; set; }
-        public string UserPhoneNumber { get; set; }
-        public int UserType { get; set; }
+        public int CommentId { get; set; }
+        public Nullable<int> UserRefId { get; set; }
+        public string Comment1 { get; set; }
+        public Nullable<System.DateTime> CommentDateTime { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HouseDetail> HouseDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reply> Replies { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual UserRegistration UserRegistration { get; set; }
     }
 }

@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="StrongHouseDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserRefId" Type="int" />
+          <Property Name="Comment" Type="varchar" MaxLength="200" />
+          <Property Name="CommentDateTime" Type="datetime" />
+        </EntityType>
         <EntityType Name="HouseDetails">
           <Key>
             <PropertyRef Name="HouseId" />
@@ -35,6 +44,16 @@
           <Property Name="TypeOfPlan" Type="nvarchar" MaxLength="50" />
           <Property Name="PlanDetails" Type="nvarchar(max)" />
           <Property Name="PlanImagePath" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Reply">
+          <Key>
+            <PropertyRef Name="ReplyId" />
+          </Key>
+          <Property Name="ReplyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserRefId" Type="int" />
+          <Property Name="CommentRefId" Type="int" />
+          <Property Name="Reply" Type="varchar" MaxLength="200" />
+          <Property Name="ReplyDateTime" Type="datetime" />
         </EntityType>
         <EntityType Name="StoredCeiling">
           <Key>
@@ -224,6 +243,18 @@
           <Property Name="UserPhoneNumber" Type="nvarchar" MaxLength="10" />
           <Property Name="UserType" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_CommentRefIdFK_CommentIdPK">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
+          <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="CommentId" />
+            </Principal>
+            <Dependent Role="Reply">
+              <PropertyRef Name="CommentRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_HouseRefIdFK_HouseDetailsPK">
           <End Role="HouseDetails" Type="Self.HouseDetails" Multiplicity="1" />
           <End Role="StoredFlooring" Type="Self.StoredFlooring" Multiplicity="*" />
@@ -332,9 +363,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserRefIdFK_UserIdPK2">
+          <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="0..1" />
+          <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRegistration">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Reply">
+              <PropertyRef Name="UserRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRefIdFK_UserIdPK3">
+          <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="0..1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRegistration">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="UserRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="StrongHouseDBModelStoreContainer">
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HouseDetails" EntityType="Self.HouseDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Plan" EntityType="Self.Plan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reply" EntityType="Self.Reply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StoredCeiling" EntityType="Self.StoredCeiling" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StoredFlooring" EntityType="Self.StoredFlooring" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StoredPlan" EntityType="Self.StoredPlan" Schema="dbo" store:Type="Tables" />
@@ -346,6 +403,10 @@
           <EntitySet Name="TypeOfWalling" EntityType="Self.TypeOfWalling" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeOfWallingSample" EntityType="Self.TypeOfWallingSample" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRegistration" EntityType="Self.UserRegistration" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CommentRefIdFK_CommentIdPK" Association="Self.FK_CommentRefIdFK_CommentIdPK">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="Reply" EntitySet="Reply" />
+          </AssociationSet>
           <AssociationSet Name="FK_HouseRefIdFK_HouseDetailsPK" Association="Self.FK_HouseRefIdFK_HouseDetailsPK">
             <End Role="HouseDetails" EntitySet="HouseDetails" />
             <End Role="StoredFlooring" EntitySet="StoredFlooring" />
@@ -381,6 +442,14 @@
           <AssociationSet Name="FK_UserRefIdFK_UserIdPK" Association="Self.FK_UserRefIdFK_UserIdPK">
             <End Role="UserRegistration" EntitySet="UserRegistration" />
             <End Role="HouseDetails" EntitySet="HouseDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRefIdFK_UserIdPK2" Association="Self.FK_UserRefIdFK_UserIdPK2">
+            <End Role="UserRegistration" EntitySet="UserRegistration" />
+            <End Role="Reply" EntitySet="Reply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRefIdFK_UserIdPK3" Association="Self.FK_UserRefIdFK_UserIdPK3">
+            <End Role="UserRegistration" EntitySet="UserRegistration" />
+            <End Role="Comment" EntitySet="Comment" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -480,6 +549,20 @@
             <End Role="HouseDetail" EntitySet="HouseDetails" />
             <End Role="StoredCeiling" EntitySet="StoredCeilings" />
           </AssociationSet>
+          <EntitySet Name="Comments" EntityType="StrongHouseDBModel.Comment" />
+          <EntitySet Name="Replies" EntityType="StrongHouseDBModel.Reply" />
+          <AssociationSet Name="FK_CommentRefIdFK_CommentIdPK" Association="StrongHouseDBModel.FK_CommentRefIdFK_CommentIdPK">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="Reply" EntitySet="Replies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRefIdFK_UserIdPK2" Association="StrongHouseDBModel.FK_UserRefIdFK_UserIdPK2">
+            <End Role="UserRegistration" EntitySet="UserRegistrations" />
+            <End Role="Reply" EntitySet="Replies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRefIdFK_UserIdPK3" Association="StrongHouseDBModel.FK_UserRefIdFK_UserIdPK3">
+            <End Role="UserRegistration" EntitySet="UserRegistrations" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="TypeOfCeiling">
           <Key>
@@ -537,6 +620,8 @@
           <Property Name="UserPhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="UserType" Type="Int32" Nullable="false" />
           <NavigationProperty Name="HouseDetails" Relationship="StrongHouseDBModel.FK_UserRefIdFK_UserIdPK" FromRole="UserRegistration" ToRole="HouseDetail" />
+          <NavigationProperty Name="Replies" Relationship="StrongHouseDBModel.FK_UserRefIdFK_UserIdPK2" FromRole="UserRegistration" ToRole="Reply" />
+          <NavigationProperty Name="Comments" Relationship="StrongHouseDBModel.FK_UserRefIdFK_UserIdPK3" FromRole="UserRegistration" ToRole="Comment" />
         </EntityType>
         <EntityType Name="TypeOfWalling">
           <Key>
@@ -783,6 +868,65 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserRefId" Type="Int32" />
+          <Property Name="Comment1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CommentDateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Replies" Relationship="StrongHouseDBModel.FK_CommentRefIdFK_CommentIdPK" FromRole="Comment" ToRole="Reply" />
+          <NavigationProperty Name="UserRegistration" Relationship="StrongHouseDBModel.FK_UserRefIdFK_UserIdPK3" FromRole="Comment" ToRole="UserRegistration" />
+        </EntityType>
+        <EntityType Name="Reply">
+          <Key>
+            <PropertyRef Name="ReplyId" />
+          </Key>
+          <Property Name="ReplyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserRefId" Type="Int32" />
+          <Property Name="CommentRefId" Type="Int32" />
+          <Property Name="Reply1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Comment" Relationship="StrongHouseDBModel.FK_CommentRefIdFK_CommentIdPK" FromRole="Reply" ToRole="Comment" />
+          <NavigationProperty Name="UserRegistration" Relationship="StrongHouseDBModel.FK_UserRefIdFK_UserIdPK2" FromRole="Reply" ToRole="UserRegistration" />
+          <Property Name="ReplyDateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_CommentRefIdFK_CommentIdPK">
+          <End Type="StrongHouseDBModel.Comment" Role="Comment" Multiplicity="0..1" />
+          <End Type="StrongHouseDBModel.Reply" Role="Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="CommentId" />
+            </Principal>
+            <Dependent Role="Reply">
+              <PropertyRef Name="CommentRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRefIdFK_UserIdPK2">
+          <End Type="StrongHouseDBModel.UserRegistration" Role="UserRegistration" Multiplicity="0..1" />
+          <End Type="StrongHouseDBModel.Reply" Role="Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRegistration">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Reply">
+              <PropertyRef Name="UserRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRefIdFK_UserIdPK3">
+          <End Type="StrongHouseDBModel.UserRegistration" Role="UserRegistration" Multiplicity="0..1" />
+          <End Type="StrongHouseDBModel.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRegistration">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="UserRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1018,6 +1162,27 @@
                 <ScalarProperty Name="StoredTypeOfCeilingRefId" ColumnName="StoredTypeOfCeilingRefId" />
                 <ScalarProperty Name="HouseRefId" ColumnName="HouseRefId" />
                 <ScalarProperty Name="CeilingId" ColumnName="CeilingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="StrongHouseDBModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="CommentDateTime" ColumnName="CommentDateTime" />
+                <ScalarProperty Name="Comment1" ColumnName="Comment" />
+                <ScalarProperty Name="UserRefId" ColumnName="UserRefId" />
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Replies">
+            <EntityTypeMapping TypeName="StrongHouseDBModel.Reply">
+              <MappingFragment StoreEntitySet="Reply">
+                <ScalarProperty Name="ReplyDateTime" ColumnName="ReplyDateTime" />
+                <ScalarProperty Name="Reply1" ColumnName="Reply" />
+                <ScalarProperty Name="CommentRefId" ColumnName="CommentRefId" />
+                <ScalarProperty Name="UserRefId" ColumnName="UserRefId" />
+                <ScalarProperty Name="ReplyId" ColumnName="ReplyId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -38,5 +38,7 @@ namespace StrongHouseOwner.Data.EntityModel
         public virtual DbSet<StoredFlooring> StoredFloorings { get; set; }
         public virtual DbSet<StoredWalling> StoredWallings { get; set; }
         public virtual DbSet<StoredCeiling> StoredCeilings { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<Reply> Replies { get; set; }
     }
 }
