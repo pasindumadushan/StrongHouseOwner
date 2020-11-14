@@ -188,7 +188,16 @@
                                 <tr onclick="location.href='@Url.Action("SameSamplesWalling", "Product", new {wallingTypeSampleName = @item.WallingTypeSampleName, wallingTypeSampleCode = @item.WallingTypeSampleCode, wallingTypeId = @ViewBag.ViewBagRefwallingTypeId})'">
                                     <td class="col-sm-8 col-md-6">
                                         <div class="media">
-                                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
+                                            <a class="thumbnail pull-left" href="#">
+                                                @if (item.WallingTypeSampleImagePath == null || item.WallingTypeSampleImagePath == "")
+                                                {
+                                                    <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;">
+                                                }
+                                                else
+                                                {
+                                                    <img class="media-object" src="@Url.Content(@item.WallingTypeSampleImagePath)" style="width: 72px; height: 72px;">
+                                                }
+                                            </a>
                                             <div class="media-body col-sm-1 col-md-6">
                                                 <h4 class="media-heading">@item.WallingTypeSampleName - @item.WallingTypeBrand</h4>
                                                 <h5 class="media-heading">@item.WallingTypeSampleCode</h5>

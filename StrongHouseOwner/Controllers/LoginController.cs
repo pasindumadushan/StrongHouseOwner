@@ -45,7 +45,7 @@ namespace StrongHouseOwner.Controllers
             {
                 validation = 0;
             }
-            else if (objResult != null && objResult.UserMail == userLogin.UserMail && objResult.UserPassword == userLogin.UserPassword)
+            else if (objResult != null && objResult.UserMail.ToUpper() == userLogin.UserMail.ToUpper() && objResult.UserPassword == userLogin.UserPassword)
             {
                 validation = 2;
 

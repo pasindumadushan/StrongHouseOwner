@@ -189,7 +189,16 @@
                                 <tr onclick="location.href='@Url.Action("SameSamplesCeiling", "Product", new {ceilingTypeSampleName = @item.CeilingTypeSampleName, ceilingTypeSampleCode = @item.CeilingTypeSampleCode, ceilingTypeId = @ViewBag.ViewBagRefceilingTypeId})'">
                                     <td class="col-sm-8 col-md-6">
                                         <div class="media">
-                                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
+                                            <a class="thumbnail pull-left" href="#">
+                                                @if (item.CeilingTypeSampleImagePath == null || item.CeilingTypeSampleImagePath == "")
+                                                {
+                                                    <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;">
+                                                }
+                                                else
+                                                {
+                                                    <img class="media-object" src="@Url.Content(@item.CeilingTypeSampleImagePath)" style="width: 72px; height: 72px;">
+                                                }
+                                            </a>
                                             <div class="media-body col-sm-1 col-md-6">
                                                 <h4 class="media-heading">@item.CeilingTypeSampleName</h4>
                                                 <h5 class="media-heading">@item.CeilingTypeSampleCode</h5>

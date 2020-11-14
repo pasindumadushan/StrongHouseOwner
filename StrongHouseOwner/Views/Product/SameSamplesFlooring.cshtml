@@ -3,7 +3,6 @@
     ViewBag.Title = "SameSamplesFlooring";
 }
 
-<script src="~/Scripts/jquery-3.3.1.js"></script>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -98,8 +97,8 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav mx-auto">
+            <div class="collapse navbar-collapse" style="margin-left:366px;margin-right:366px" id="navbarResponsive">
+                <ul class="navbar-nav mx-auto justify-content-center">
                     <li class="nav-item px-lg-4">
                         <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Home", "Home")'>
                             Home
@@ -120,6 +119,9 @@
         </div>
     </nav>
 
+
+
+
     <div class="modal fade" id="modalVM" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true" data-backdrop="false">
         <div class="modal-dialog modal-lg" role="document">
@@ -132,20 +134,34 @@
                                  data-ride="carousel">
                                 <!--Slides-->
                                 <div class="carousel-inner" role="listbox">
+
+                                    @foreach (var i in Model)
+                                    {
+                                        if ((i.FlooringTypeSampleImagePath == null || i.FlooringTypeSampleImagePath == ""))
+                                        {
+
+                                        }
+                                        else if (i.TypeOfFlooringRefId == @ViewBag.ViewBagRefTypeOfFlooringRefId)
+                                        {
+                                            <div class="carousel-item">
+                                                <a class="thumbnail pull-left" href="#"> <img class="d-block w-100" src="@Url.Content(@i.FlooringTypeSampleImagePath)" alt="First slide"> <span> Sample Code : @i.FlooringTypeSampleCode </span></a>
+                                            </div>
+                                        }
+                                        else
+                                        {
+
+                                        }
+                                    }
+
                                     <div class="carousel-item active">
-                                        <img class="d-block w-100"
-                                             src="https://storage.googleapis.com/rocell_customer_web/tile/collections/featured_images/468.jpg"
-                                             alt="First slide">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img class="d-block w-100"
-                                             src=""
-                                             alt="Second slide">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img class="d-block w-100"
-                                             src=""
-                                             alt="Third slide">
+                                        @if (@ViewBag.ViewBagRefflooringTypeImage == null || @ViewBag.ViewBagRefflooringTypeImage == "")
+                                        {
+                                            <a class="thumbnail pull-left" href="#"> <img class="d-block w-100" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" alt="Second slide"> </a>
+                                        }
+                                        else
+                                        {
+                                            <a class="thumbnail pull-left" href="#"> <img class="d-block w-100" src="@Url.Content(@ViewBag.ViewBagRefflooringTypeImage)" alt="Second slide"> </a>
+                                        }
                                     </div>
                                 </div>
                                 <!--/.Slides-->
@@ -164,9 +180,6 @@
                                         <img src="https://storage.googleapis.com/rocell_customer_web/tile/collections/featured_images/468.jpg" width="60">
                                     </li>
                                     <li data-target="#carousel-thumb" data-slide-to="1">
-                                        <img src="" width="60">
-                                    </li>
-                                    <li data-target="#carousel-thumb" data-slide-to="2">
                                         <img src="" width="60">
                                     </li>
                                 </ol>
@@ -195,35 +208,35 @@
                             <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
 
                                 <!-- Accordion card -->
+
                                 <div class="card">
 
                                     <!-- Card header -->
                                     <div class="card-header" role="tab" id="headingOne1">
-                                        <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
-                                           aria-controls="collapseOne1">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx2" href="#collapseOne1" aria-expanded="false" aria-controls="collapseOne1">
                                             <h5 class="mb-0">
-                                                More Details <i class="fas fa-angle-down rotate-icon"></i>
+                                                More Details<i class="fas fa-angle-down rotate-icon"></i>
                                             </h5>
                                         </a>
                                     </div>
 
                                     <!-- Card body -->
                                     <div id="collapseOne1" class="collapse" role="tabpanel" aria-labelledby="headingOne1"
-                                         data-parent="#accordionEx">
+                                         data-parent="#accordionEx2">
                                         <div class="card-body">
                                             @ViewBag.ViewBagRefflooringTypeDetails
                                         </div>
                                     </div>
 
                                 </div>
+
                                 <!-- Accordion card -->
                                 <!-- Accordion card -->
                                 <div class="card">
 
                                     <!-- Card header -->
                                     <div class="card-header" role="tab" id="headingTwo2">
-                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2"
-                                           aria-expanded="false" aria-controls="collapseTwo2">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx1" href="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo2">
                                             <h5 class="mb-0">
                                                 Best Use<i class="fas fa-angle-down rotate-icon"></i>
                                             </h5>
@@ -232,16 +245,13 @@
 
                                     <!-- Card body -->
                                     <div id="collapseTwo2" class="collapse" role="tabpanel" aria-labelledby="headingTwo2"
-                                         data-parent="#accordionEx">
+                                         data-parent="#accordionEx1">
                                         <div class="card-body">
                                             @ViewBag.ViewBagRefflooringTypeBestUse
                                         </div>
                                     </div>
 
                                 </div>
-                                <!-- Accordion card -->
-                                <!-- Accordion card -->
-                                <!-- Accordion card -->
 
                             </div>
                             <!-- Accordion wrapper -->
@@ -254,7 +264,7 @@
                                             <option value="" disabled selected>Choose your option</option>
                                             @foreach (var item in Model)
                                             {
-                                                <option value="@item.FlooringTypeSampleSizeHeight x @item.FlooringTypeSampleSizeWidth x Rs.@item.FlooringTypeSamplePrice">@item.FlooringTypeSampleSizeHeight x @item.FlooringTypeSampleSizeWidth </option>
+                                                <option value="@item.FlooringTypeSampleSizeHeight x @item.FlooringTypeSampleSizeWidth x Rs.@item.FlooringTypeSamplePrice">@item.FlooringTypeSampleSizeHeight x @item.FlooringTypeSampleSizeWidth</option>
 
                                             }
                                         </select>
@@ -310,6 +320,10 @@
     $(window).on('load', function () {
         $('#modalVM').modal('show');
     });
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
     $(document).ready(function () {
 
         $('#Size').change(function () {
@@ -323,6 +337,6 @@
         });
 
     });
-                             
+
 
 </script>

@@ -189,7 +189,16 @@
                                 <tr onclick="location.href='@Url.Action("SameSamplesFlooring", "Product", new {flooringTypeSampleName = @item.FlooringTypeSampleName, flooringTypeSampleCode = @item.FlooringTypeSampleCode, flooringTypeId = @ViewBag.ViewBagRefflooringTypeId})'">
                                     <td class="col-sm-8 col-md-6">
                                         <div class="media">
-                                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
+                                            <a class="thumbnail pull-left" href="#">
+                                                @if (item.FlooringTypeSampleImagePath == null || item.FlooringTypeSampleImagePath == "")
+                                                {
+                                                    <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;">
+                                                }
+                                                else
+                                                {
+                                                    <img class="media-object" src="@Url.Content(@item.FlooringTypeSampleImagePath)" style="width: 72px; height: 72px;">
+                                                }
+                                            </a>
                                             <div class="media-body col-sm-1 col-md-6">
                                                 <h4 class="media-heading">@item.FlooringTypeSampleName</h4>
                                                 <h5 class="media-heading">@item.FlooringTypeSampleCode</h5>
