@@ -190,44 +190,51 @@
                     @{int i = 0;}
                     @foreach (var item in Model)
                     {
-                        <div class="row">
-                            <div class="col-12 col-md-6">
-                                <div class="media">
-                                    @if (item.HouseImagePath == null || item.HouseImagePath == "")
-                                    {
-                                        <a class="thumbnail pull-left" href="#"> <img class="media-object" src="https://www.kinmade.com/pub/media/catalog/product/placeholder/default/no-image-available_1.jpg" style="width: 72px; height: 72px;"> </a>
-                                    }
-                                    else
-                                    {
-                                        <a class="thumbnail pull-left" href="#"> <img class="media-object" src="@Url.Content(@item.HouseImagePath)" style="width: 72px; height: 72px;"> </a>
-                                    }
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="media">
+                            @if (item.HouseImagePath == null || item.HouseImagePath == "")
+                            {
+                                <a class="thumbnail pull-left" href="#"> <img class="media-object" src="https://www.kinmade.com/pub/media/catalog/product/placeholder/default/no-image-available_1.jpg" style="width: 72px; height: 72px;"> </a>
+                            }
+                            else
+                            {
+                                <a class="thumbnail pull-left" href="#"> <img class="media-object" src="@Url.Content(@item.HouseImagePath)" style="width: 72px; height: 72px;"> </a>
+                            }
 
-                                    <div class="media-body col-sm-1 col-md-6">
-                                        <h4 class="media-heading">@item.HouseName</h4>
-                                        <h5 class="media-heading">@item.HouseAddress</h5>
-                                        <span></span><span class="text-success"><strong></strong></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-1 col-md-2 text-center">
-                                <strong>
-                                    <label id="price">Value : Rs.@item.EstimatedValue</label>
-                                </strong>
-                            </div>
-
-                            <div class="col-0.5 col-md-1 text-center">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@("modalQuickView"+i)">
-                                    <span class="glyphicon glyphicon-option-horizontal"></span>
-                                </button>
-                            </div>
-
-                            <div class="col-0.5 col-md-0.5 text-center">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" onclick="location.href='@Url.Action("Index","HousePlanStore", new { houseId = item.HouseId})'">
-                                    <span class="glyphicon glyphicon-folder-open"></span>
-                                </button>
+                            <div class="media-body col-sm-1 col-md-6">
+                                <h4 class="media-heading">@item.HouseName</h4>
+                                <h5 class="media-heading">@item.HouseAddress</h5>
+                                <span></span><span class="text-success"><strong></strong></span>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="col-1 col-md-2 text-center">
+                        <strong>
+                            <label id="price">Value : Rs.@item.EstimatedValue</label>
+                        </strong>
+                    </div>
+
+                    <div class="col-0.5 col-md-1 text-center">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@("modalQuickView"+i)">
+                            <span class="glyphicon glyphicon-option-horizontal"></span>
+                        </button>
+                    </div>
+
+                    <div class="col-0.5 col-md-0.5 text-center">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" onclick="location.href='@Url.Action("Index","HousePlanStore", new { houseId = item.HouseId})'">
+                            <span class="glyphicon glyphicon-folder-open"></span>
+                        </button>
+                    </div>
+
+
+                    <div class="col-0.5 col-md-1 text-center">
+                        <button type="button" class="btn btn-danger" data-title="Delete" data-toggle="modal" onclick="location.href='@Url.Action("Delete", "Store",new { houseId = item.HouseId})'">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </div>
+                </div>
 
                         <!--Modal-->
                         <div class="modal fade" id="@("modalQuickView"+i)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

@@ -176,5 +176,15 @@ namespace StrongHouseOwner.Controllers
             var result = new { validation };
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult Delete(int houseId)
+        {
+            houseDetailRepository = new HouseDetailRepository();
+            var objResult = houseDetailRepository.DeleteHouseDetailRP(houseId);
+
+            return RedirectToAction("index");
+        }
     }
+
+    
 }

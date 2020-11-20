@@ -92,5 +92,28 @@ namespace StrongHouseOwner.Data.Repository
             }
         }
 
+        public HouseDetail DeleteHouseDetailRP(int houseId)
+        {
+            try
+            {
+
+                objEntity = new StrongHouseDBEntities();
+
+                HouseDetail hd = objEntity.HouseDetails.Find(houseId);
+
+                objEntity.HouseDetails.Remove(hd);
+                objEntity.SaveChanges();
+
+                return hd;
+
+            }
+            catch (Exception)
+            {
+
+                return null;
+
+            }
+        }
+
     }
 }
