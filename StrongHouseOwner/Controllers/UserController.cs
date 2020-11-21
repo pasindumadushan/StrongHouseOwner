@@ -69,7 +69,6 @@ namespace StrongHouseOwner.Controllers
 
         }
 
-        [HttpGet]
         public ActionResult Edit(int userId)
         {
 
@@ -91,7 +90,6 @@ namespace StrongHouseOwner.Controllers
 
         }
 
-        [HttpPost]
         public ActionResult EditUser()
         {
 
@@ -109,7 +107,7 @@ namespace StrongHouseOwner.Controllers
             registrationRepository = new RegistrationRepository();
             var objEntity = registrationRepository.EditUserRP(userRegistration);
 
-            return Json(objEntity);
+            return Json(objEntity, JsonRequestBehavior.AllowGet);
 
         }
     }

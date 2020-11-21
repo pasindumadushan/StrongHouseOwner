@@ -234,7 +234,7 @@
                                         </tbody>
                                     </table>
                                     <span class="glyphicon glyphicon-pencil">
-                                        <form id="myModalForm" method="post" enctype="application/x-www-form-urlencoded" novalidate>
+                                        <form id="myModalForm" novalidate>
                                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true" data-backdrop="false">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
@@ -400,17 +400,16 @@
 
     function getData()
     {
-
         var EditUser = new FormData();
-        EditUser.append("user_Id", @ViewBag.UserId);
+        EditUser.append("user_Id", "@ViewBag.UserId");
         EditUser.append("user_Name", $("#userName").val());
         EditUser.append("user_Mail", "@ViewBag.UserMail");
         EditUser.append("user_Age", $("#userAge").val());
-        EditUser.append("user_Password", @ViewBag.UserPassword);
+        EditUser.append("user_Password", "@ViewBag.UserPassword");
         EditUser.append("user_Address", $("#userAddress").val());
         EditUser.append("user_Phone_Number", $("#userPhoneNumber").val());
         EditUser.append("user_Type", $("#userType").val());
-
+        
         $.ajax({
                     type: 'POST',
                     data: EditUser,

@@ -5,70 +5,275 @@
 }
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Business Casual - Start Bootstrap Theme</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/BootstrapStart/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/BootstrapStart/css/business-casual.min.css" rel="stylesheet" />
+    <link href="~/BootstrapStart/css/simple-sidebar.css" rel="stylesheet" />
+
     <link href="~/maxcdn/css/bootstrap.min.css" rel="stylesheet" />
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <style>
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+        }
+    </style>
+
 </head>
 <body>
 
-
-    <div class="container">
+    <!--header start-->
+    <h1 class="site-heading text-center text-white d-none d-lg-block">
+        <span class="site-heading-upper text-primary mb-3">RENOVATION WHILE KEEPING CONSTRUCTION DETAILS</span>
+        <!-- User profile show -->
         <div class="row">
-
-            <div class="col-md-12">
-                <h4>Samples</h4>
-                <div class="table-responsive">
-
-                    <p>
-                        @Html.ActionLink("Create Sample", "CreateSample", new { refWallingTypeId = ViewBag.ViewBagRefWallingTypeId })
-                    </p>
-                    <table id="mytable" class="table table-bordred table-striped">
-
-                        <thead>
-                        <th></th>
-                        <th>Code</th>
-                        <th>Name</th>
-                        <th>Size</th>
-                        <th>Price</th>
-                        <th>Image</th>
-                        <th></th>
-                        <th></th>
-                        </thead>
-
-                        <tbody class="thead-light">
-                            @{int i = 0;}
-
-                            @foreach (var item in Model)
-                            {
-
-                                <tr>
-                                    <td scope="row">@(i = i + 1)</td>
-                                    <td>@item.WallingTypeSampleCode</td>
-
-                                    <td>@item.WallingTypeSampleName</td>
-
-                                    <td><table><td>@item.WallingTypeSampleSizeHeight</td><td> x</td><td>@item.WallingTypeSampleSizeWidth</td><td> ''</td></table></td>
-
-                                    <td>@item.WallingTypeSamplePrice</td>
-                                    <td></td>
-
-                                    <td>
-                                        <p data-placement="top" data-toggle="tooltip" title="Delete">
-                                            <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-id="@item.WallingTypeSampleId" onclick="location.href='@Url.Action("DeleteSample", "Walling",new { WallingSampleId = item.WallingTypeSampleId, WallingTypeId = @ViewBag.ViewBagRefWallingTypeId})'"><span class="glyphicon glyphicon-trash"></span></button>
-                                        </p>
-                                    </td>
-
-                                </tr>
-
-                            }
-                        </tbody>
-
-                    </table>
-                    <div class="clearfix"></div>
-
-                </div>
-
+            <div class="col-4 col-md-10" style="padding-right: 0px;padding-left: 200px;">
+                <span class="site-heading-lower">Strong House Owner</span>
             </div>
+
+            <div class="col-4 col-md-2">
+                @if (Session["User_Name"] == null)
+                {
+
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="color:#fff;font-size:.9rem;"></span>
+                        <img class="img-profile rounded-circle" src="~/Images/User/DefaultImage.png" style="width: 50px; height: 50px;">
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="font-size:12px;">
+                        <a class="dropdown-item" href='@Url.Action("Index","Login")'>
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Login
+                        </a>
+                        <a class="dropdown-item" href='@Url.Action("Index","Registration")'>
+                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Register
+                        </a>
+                    </div>
+
+                }
+                else
+                {
+
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="color:#fff;font-size:.9rem;">@Session["User_Name"]</span>
+                        <img class="img-profile rounded-circle" src="~/Images/User/DefaultImage.png" style="width: 50px; height: 50px;">
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="font-size:12px;">
+                        <a class="dropdown-item" href='@Url.Action("ListOfFlooringTypes", "Flooring")'>
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            User Panel
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href='@Url.Action("LogOut","Login")'>
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </a>
+                    </div>
+
+                }
+            </div>
+            <!-- End user profile show -->
+        </div>
+    </h1>
+    <!--header end-->
+    <!--main menu-->
+    <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Start Bootstrap</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" style="margin-left:366px;margin-right:366px" id="navbarResponsive">
+                <ul class="navbar-nav mx-auto justify-content-center">
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Home", "Home")'>
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Index", "About")'>About</a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Products", "Product")'>Products</a>
+                    </li>
+                    <li class="nav-item px-lg-4">
+                        <a class="nav-link text-uppercase text-expanded" href='@Url.Action("Index", "Store")'>Store</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--End main menu-->
+    <!--side menu-->
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-light" id="sidebar-wrapper">
+            <div class="sidebar-heading">Menu</div>
+            <div class="list-group list-group-flush">
+                <a href='@Url.Action("ListOfFlooringTypes", "Flooring")' class="list-group-item list-group-item-action bg-light">Flooring Details</a>
+                <a href='@Url.Action("ListOfWallingTypes", "Walling")' class="list-group-item list-group-item-action bg-light" style="z-index:2;color:#007bff;background-color:#555;border-color:#ddd">Walling Details</a>
+                <a href='@Url.Action("ListOfCeilingTypes", "Ceiling")' class="list-group-item list-group-item-action bg-light">Ceiling Details</a>
+                <a href='@Url.Action("Index", "User")' class="list-group-item list-group-item-action bg-light">Profiles</a>
+            </div>
+        </div>
+
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+
+            <div id="page-content-wrapper">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto mt-2 mt-lg-0" style="width: 100%;">
+                            <li class="nav-item active" style="width: 100%;">
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <td style="width: 5%;">
+                                            <button class="btn btn-primary" id="menu-toggle">
+                                                <span class="glyphicon glyphicon-menu-hamburger">
+                                                </span>
+                                            </button>
+                                        </td>
+                                        <td style="width: 60%;">
+                                            <button class="btn btn-primary" onclick="location.href='@Url.Action("CreateSample","Walling", new { refwallingTypeId = ViewBag.ViewBagRefwallingTypeId })'">
+                                                <i class="fas fa-cart-plus ml-2" aria-hidden="true">Create Sample</i>
+                                            </button>
+                                        </td>
+
+                                        <td style="width: 30%;">
+                                            <form asp-action="Samples" method="post" enctype="application/x-www-form-urlencoded">
+                                                <table>
+
+                                                    <tr>
+
+                                                        <td style="width: 30%;">
+                                                            <select class="custom-select" id="SearchBy" name="SearchBy">
+                                                                <option value="Name">Name</option>
+                                                                <option value="Code">Code</option>
+                                                                <option value="Brand">Brand</option>
+                                                            </select>
+                                                        </td>
+
+                                                        <td style="width: 50%;">
+                                                            <input class="form-control input-sm" type="text" id="SearchValue" name="SearchValue" style="height:24px;">
+                                                        </td>
+                                                        <td style="width: 20%;">
+                                                            <input type="submit" class="btn btn-primary" id="SearchSubmit" value="Search">
+                                                        </td>
+
+                                                    </tr>
+
+                                                </table>
+                                            </form>
+                                        </td>
+                                        <td style="width: 5%;">
+                                            <button class="btn btn-primary" onclick="location.href='@Url.Action("ListOfWallingTypes","Walling")'">
+                                                <i class="fas fa-cart-plus ml-2" aria-hidden="true">Back</i>
+                                            </button>
+                                        </td>
+
+                                    </tr>
+                                </table>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+
+            <!--End side menu-->
+            <!--Start Table-->
+            <div class="bg-faded p-4 rounded">
+                <div class="container" style="margin-right:0px;margin-left:0;padding-right:0px;padding-left:0px;width:100%;">
+                    <div class="row">
+                        <!--start sticky buttons-->
+                        <div id="HorizontalScroll" style="padding-left:15px;">
+                            <button class="btn btn-primary" id="left-button"><span class="glyphicon glyphicon-chevron-left"></span></button>
+                            <button class="btn btn-primary" id="right-button"><span class="glyphicon glyphicon-chevron-right"></span></button>
+                        </div>
+                        <!--end sticky buttons-->
+                        <div class="col-md-12">
+                            <div class="table-responsive" style="overflow-x:hidden;">
+
+                                <div class="center" id="content" style="float:left;width:100%;height:100%;margin:1px;overflow:hidden;">
+
+                                    <table id="mytable" class="table table-bordred table-striped">
+
+                                        <thead>
+                                            <tr>
+                                                <th style="width:10%"></th>
+                                                <th style="width:20%">Image</th>
+                                                <th style="width:10%">Code</th>
+                                                <th style="width:10%">Name</th>
+                                                <th style="width:10%">Brand</th>
+                                                <th style="width:10%">Size</th>
+                                                <th style="width:10%">Milliliters</th>
+                                                <th style="width:10%">Price</th>
+                                                <th style="width:10%"></th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody class="thead-light">
+                                            @{int i = 0;}
+
+                                            @foreach (var item in Model)
+                                            {
+
+                                                <tr>
+                                                    <td scope="row">@(i = i + 1)</td>
+                                                    <td>
+                                                        @if (@item.WallingTypeSampleImagePath == null || @item.WallingTypeSampleImagePath == "")
+                                                        {
+                                                            <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;">
+                                                        }
+                                                        else
+                                                        {
+                                                            <img class="media-object" src="@Url.Content(@item.WallingTypeSampleImagePath)" style="width: 72px; height: 72px;">
+                                                        }
+                                                    </td>
+                                                    <td>@item.WallingTypeSampleCode</td>
+                                                    <td>@item.WallingTypeSampleName</td>
+                                                    <td>@item.WallingTypeBrand</td>
+                                                    <td>@item.WallingTypeSampleSizeHeight x @item.WallingTypeSampleSizeWidth ''</td>
+                                                    <td>@item.WallingMilliliters</td>
+                                                    <td>@item.WallingTypeSamplePrice</td>
+                                                    <td>
+                                                        <p data-placement="top" data-toggle="tooltip" title="Delete">
+                                                            <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-id="@item.WallingTypeSampleId" onclick="location.href='@Url.Action("DeleteSample", "Walling",new { wallingSampleId = item.WallingTypeSampleId, wallingTypeId = @ViewBag.ViewBagRefwallingTypeId})'"><span class="glyphicon glyphicon-trash"></span></button>
+                                                        </p>
+                                                    </td>
+
+                                                </tr>
+
+                                            }
+                                        </tbody>
+
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Table-->
         </div>
     </div>
     <span class="glyphicon glyphicon-pencil">
@@ -76,8 +281,14 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" id="btnSubmitClose" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                        <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
+                        <div class="row" style="width:100%;">
+                            <div class="col-md-9">
+                                <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" id="btnSubmitClose" class="close" data-dismiss="modal" aria-hidden="true" style="padding-right: 0px;padding-top: 0px;padding-bottom: 0px;padding-left: 0px; margin-top: 0px;margin-bottom: 0px;margin-right: 0px;"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-body">
 
