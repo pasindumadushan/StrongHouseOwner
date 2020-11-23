@@ -231,7 +231,7 @@
                                 <label>House Image</label>
 
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="file" id="file" name="file">
+                                    <input type="file" id="file" name="file" accept="image/*">
                                 </div>
 
                             </div>
@@ -294,6 +294,25 @@
             {
                 return this.optional(element) || value.length == param;
             }, $.validator.format("Please enter exactly {0} characters."));
+
+            jQuery.validator.addMethod("filesize_max", function (value, element, param) {
+                 var isOptional = this.optional(element),
+                     file;
+
+                 if (isOptional) {
+                     return isOptional;
+                 }
+
+                 if ($(element).attr("type") === "file") {
+
+                     if (element.files && element.files.length) {
+
+                         file = element.files[0];
+                         return (file.size && file.size <= param);
+                     }
+                 }
+                 return false;
+             }, "File size is too large.");
 
             $("#CreateHouseForm").validate({
                 //errorLabelContainer: "#PasswordError",
@@ -359,6 +378,9 @@
                     },
                     Estimated_Value:  {
                         number: true
+                    },
+                    file: {
+                        filesize_max:800000
                     }
                 },
 
@@ -423,6 +445,9 @@
                     },
                     Estimated_Value:  {
                         number: "Please use valid input"
+                    },
+                    file: {
+                        filesize_max: "File too large please input less than 800KB"
                     }
                 },
 
@@ -524,7 +549,7 @@
                 $("#lblHeight").text(height + "px");
 
                     //InitCrop must call here otherwise it will not work
-                initCrop();
+                //initCrop();
             }
 
                 reader.readAsDataURL(input.files[0]);

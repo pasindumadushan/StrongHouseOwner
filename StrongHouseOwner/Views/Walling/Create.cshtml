@@ -185,7 +185,7 @@
                                     <td><label>Walling Type Image</label></td>
                                     <td>
                                         <div class="col-md-offset-2 col-md-10">
-                                            <input type="file" id="file" name="file">
+                                            <input type="file" id="file" name="file" accept="image/*">
                                         </div>
                                     </td>
                                 </tr>
@@ -237,6 +237,25 @@
                 return this.optional(element) || value.length == param;
             }, $.validator.format("Please enter exactly {0} characters."));
 
+            jQuery.validator.addMethod("filesize_max", function (value, element, param) {
+                 var isOptional = this.optional(element),
+                     file;
+
+                 if (isOptional) {
+                     return isOptional;
+                 }
+
+                 if ($(element).attr("type") === "file") {
+
+                     if (element.files && element.files.length) {
+
+                         file = element.files[0];
+                         return (file.size && file.size <= param);
+                     }
+                 }
+                 return false;
+             }, "File size is too large.");
+
             $("#Walling").validate({
                 //errorLabelContainer: "#PasswordError",
                 wrapper: "div",
@@ -263,6 +282,9 @@
                     },
                     Walling_Type_Reinstall: {
                         maxlength: 500
+                    },
+                    file: {
+                        filesize_max:800000
                     }
                 },
 
@@ -289,6 +311,9 @@
                     },
                     Walling_Type_Reinstall: {
                         maxlength: "Please don't execeed maximum length 500"
+                    },
+                    file: {
+                        filesize_max: "File too large please input less than 800KB"
                     }
                 },
 
