@@ -201,7 +201,7 @@ namespace StrongHouseOwner.Controllers
         {
 
             var areaOfTile = (float)(height* width)/144;
-            var minimalAmout = area / areaOfTile;
+            var minimalAmout = (int)Math.Round(area / areaOfTile);
 
             return Json(minimalAmout, JsonRequestBehavior.AllowGet);
         }

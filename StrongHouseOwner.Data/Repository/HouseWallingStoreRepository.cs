@@ -38,7 +38,7 @@ namespace StrongHouseOwner.Data.Repository
             {
 
                 objEntity = new StrongHouseDBEntities();
-                var objResult = objEntity.StoredWallings.Where(x => x.HouseRefId == houseId).ToList();
+                var objResult = objEntity.StoredWallings.Where(x => x.HouseRefId == houseId).OrderByDescending(c => c.WallingId).ToList();
 
                 return objResult;
 

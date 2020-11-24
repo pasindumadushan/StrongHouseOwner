@@ -39,7 +39,7 @@ namespace StrongHouseOwner.Data.Repository
             {
 
                 objEntity = new StrongHouseDBEntities();
-                var objResult = objEntity.StoredFloorings.Where(x => x.HouseRefId == houseId).ToList();
+                var objResult = objEntity.StoredFloorings.Where(x => x.HouseRefId == houseId).OrderByDescending(c => c.FlooringId).ToList();
 
                 return objResult;
 

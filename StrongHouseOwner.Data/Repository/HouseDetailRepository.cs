@@ -18,7 +18,7 @@ namespace StrongHouseOwner.Data.Repository
             {
 
                 objEntity = new StrongHouseDBEntities();
-                var objResult = objEntity.HouseDetails.Where(x => x.UserRefId == userId).ToList();
+                var objResult = objEntity.HouseDetails.Where(x => x.UserRefId == userId).OrderByDescending(c => c.HouseId).ToList();
 
                 return objResult;
 
