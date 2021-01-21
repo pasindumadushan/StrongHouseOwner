@@ -17,8 +17,10 @@ If he forgot password you can reset it, if you need to register you can register
 
 # Reset account page
 “Reset account page” you have to fill your registered email address then after recovery code will be send to it. 
-![](https://github.com/pasindumadushan/StrongHouseOwner/blob/master/User%20Guide%20images/Reset%20mail%20entering.PNG) 
+![](https://github.com/pasindumadushan/StrongHouseOwner/blob/master/User%20Guide%20images/Reset%20mail%20entering.PNG)
+
 After that you have to reset your password using that recovery code. 
+
 ![](https://github.com/pasindumadushan/StrongHouseOwner/blob/master/User%20Guide%20images/Reset%20to%20new%20password.PNG) 
 ![](https://github.com/pasindumadushan/StrongHouseOwner/blob/master/User%20Guide%20images/Main%20navigation.PNG) 
 
