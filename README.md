@@ -7,11 +7,12 @@ This application mainly gives solution to common problem of keep their house det
 ## Register page 
 "Register page” is needed to fill user name, email, age, password, address, phone number for registration.
 ![](https://github.com/pasindumadushan/StrongHouseOwner/blob/master/User%20Guide%20images/Register%20and%20login%20button.PNG) 
-![](![](https://github.com/pasindumadushan/StrongHouseOwner/blob/master/User%20Guide%20images/Register%20and%20login%20button.PNG) ) 
+![](https://github.com/pasindumadushan/StrongHouseOwner/blob/master/User%20Guide%20images/Register.PNG)
 
 ## Login page
 User have to include a correct email and the password to login. 
 If he forgot password you can reset it, if you need to register you can register as new user.
+
 ![](https://github.com/pasindumadushan/StrongHouseOwner/blob/master/User%20Guide%20images/Login.PNG) 
 
 # Reset account page
